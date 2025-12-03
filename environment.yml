@@ -1,0 +1,15 @@
+name: p5tutor
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip:
+    - tiktoken
+    - langchain-chroma 
+    - langchain 
+    - langchain-text-splitters 
+    - langchain-community 
+    - bs4
+    - python-dotenv
+    - langchain-ollama
+prefix: /opt/anaconda3/envs/p5tutor

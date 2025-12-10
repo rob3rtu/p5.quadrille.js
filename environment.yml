@@ -12,4 +12,5 @@ dependencies:
     - bs4
     - python-dotenv
     - langchain-ollama
+    - esprima
 prefix: /opt/anaconda3/envs/p5tutor

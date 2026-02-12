@@ -2,7 +2,6 @@
 public/
 resources/
 themes/
-content/
 
 # Node dependencies
 node_modules/

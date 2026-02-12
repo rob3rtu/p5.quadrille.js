@@ -2,7 +2,6 @@
 public/
 resources/
 themes/
-content/
 
 # Node dependencies
 node_modules/
@@ -34,8 +33,9 @@ coverage/
 .node_repl_history
 
 # hugo
-content/
 public/
 resources/
 themes/
 .hugo*
+
+.env

@@ -13,4 +13,7 @@ dependencies:
     - python-dotenv
     - langchain-ollama
     - esprima
+    - torch 
+    - torchvision 
+    - torchaudio
 prefix: /opt/anaconda3/envs/p5tutor

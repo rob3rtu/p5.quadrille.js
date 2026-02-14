@@ -20,22 +20,24 @@ To find the best chunks for in the retrieval phase I used the `cosine_similarity
 
 Retrieved knowledge:
 
-- (similarity: 0.65) /\*\*
-  - Inverts filled/empty status in-place.
-  - - Filled cells become empty (cleared).
-  - - Empty cells get filled with `target`.
-  - @param {\*} target Value to place into previously-empty cells
-  - @returns {Quadrille} this
-    \*/
-    not(target) {
-    this.visit(({ row, col, value }) =>
-    this.constructor.isFilled(value)
-    ? this.clear(row, col)
-    : this.fill(row, col, target)
-    );
-    return this;
-    }
-- (similarity: 0.62) // Instance methods
+(similarity: 0.65) \*\*
+
+- Inverts filled/empty status in-place.
+- - Filled cells become empty (cleared).
+- - Empty cells get filled with `target`.
+- @param {\*} target Value to place into previously-empty cells
+- @returns {Quadrille} this
+  \*/
+  not(target) {
+  this.visit(({ row, col, value }) =>
+  this.constructor.isFilled(value)
+  ? this.clear(row, col)
+  : this.fill(row, col, target)
+  );
+  return this;
+  }
+
+(similarity: 0.62) // Instance methods
 
 /\*\*
 
@@ -48,36 +50,38 @@ Retrieved knowledge:
   return this.constructor.isEmpty(this.read(row, col));
   }
 
-* (similarity: 0.61) /\*\*
-  - Randomly clears or fills cells in the quadrille.
-  - - If `value` is `null`, clears `times` filled cells.
-  - - If `value` is not `null`, fills `times` empty cells with `value`.
-  - Note: For deterministic behavior, call `randomSeed(seed)` explicitly before this method.
-  - @param {number} times - Number of cells to modify.
-  - @param {\*} [value=null] - Value to fill, or `null` to clear cells.
-  - @returns {Quadrille} The modified quadrille (for chaining).
-    \*/
-    rand(times, value = null) {
-    times = this.\_p.abs(times);
-    const isFilling = this.constructor.isFilled(value);
-    const max = isFilling ? this.size - this.order : this.order;
-    times = this.\_p.min(times, max);
-    let count = 0;
-    while (count < times) {
-    const index = this.\_p.int(this.\_p.random(this.size));
-    const { row, col } = this.\_fromIndex(index);
-    const shouldChange = isFilling ? this.isEmpty(row, col) : this.isFilled(row, col);
-    if (shouldChange) {
-    isFilling ? this.fill(row, col, value) : this.clear(row, col);
-    count++;
-    }
-    }
-    return this;
-    }
+(similarity: 0.61) /\*\*
+
+- Randomly clears or fills cells in the quadrille.
+- - If `value` is `null`, clears `times` filled cells.
+- - If `value` is not `null`, fills `times` empty cells with `value`.
+- Note: For deterministic behavior, call `randomSeed(seed)` explicitly before this method.
+- @param {number} times - Number of cells to modify.
+- @param {\*} [value=null] - Value to fill, or `null` to clear cells.
+- @returns {Quadrille} The modified quadrille (for chaining).
+  \*/
+  rand(times, value = null) {
+  times = this.\_p.abs(times);
+  const isFilling = this.constructor.isFilled(value);
+  const max = isFilling ? this.size - this.order : this.order;
+  times = this.\_p.min(times, max);
+  let count = 0;
+  while (count < times) {
+  const index = this.\_p.int(this.\_p.random(this.size));
+  const { row, col } = this.\_fromIndex(index);
+  const shouldChange = isFilling ? this.isEmpty(row, col) : this.isFilled(row, col);
+  if (shouldChange) {
+  isFilling ? this.fill(row, col, value) : this.clear(row, col);
+  count++;
+  }
+  }
+  return this;
+  }
 
 ---
 
-LLM response:
+**LLM response**:
+
 You can invert filled and empty cells using the `not(target)` method. This method inverts the filled/empty status in-place.
 
 Here's an example:

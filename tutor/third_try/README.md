@@ -8,9 +8,13 @@ The chunking strategy used is to split the js code in chunks containing a whole 
 
 To find the best chunks for in the retrieval phase I used the `cosine_similarity` function. May not be the best, but for now it seems to work ok.
 
+### Update 1
+
+I've added the .md docs into the RAGs knowledge. These docs are splited by md header(#). Using the current approach the code generates a total of 626 chunks(170 js and 456 md). Now that I've added a second category of information, in order to keep a balance between them in the retrieval stage I've decided to store them separate and get the model the best matches from both categories.
+
 ### Next steps from here
 
-- Include the .md docs into the RAG knowledge (not it only have the quadrille.js)
+- ~~Include the .md docs into the RAG knowledge (not it only have the quadrille.js)~~
 - Research better approach for the VectorDB
 - Research a better alternative to cossine similarity function
 - Research different models for embedding and LLM

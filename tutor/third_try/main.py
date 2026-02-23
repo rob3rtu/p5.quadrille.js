@@ -34,9 +34,9 @@ class RagClass:
     def ask(self, query):
         retrieved_chunks = self.retrieve(query)
 
-        print('Retrieved knowledge:')
-        for chunk, similarity in retrieved_chunks:
-            print(f' - (similarity: {similarity:.2f}) {chunk}')
+        with open("retrieved_information.txt", "w") as f:
+            for chunk, similarity in retrieved_chunks:
+                f.write(f'\n\n--- similarity: {similarity:.2f}\n {chunk}\n\n')
 
         formatted_chunks = "\n\n---\n\n".join([chunk for chunk, _ in retrieved_chunks])
         prompt = f'''
@@ -53,7 +53,7 @@ class RagClass:
             stream=True
         )
 
-        print("LLM response: ")
+        print("thinking...")
         for chunk in stream:
             print(chunk['message']['content'], end='', flush=True)
 
@@ -82,7 +82,7 @@ class RagClass:
         return similarities[:top_k]
 
     def load_dataset(self):
-        self.dataset_js = self.parse_js('../../src/quadrille.js')
+        self.dataset_js = self.parse_js('../../src/quadrille.js') + self.parse_js("../../src/addon.js")
         self.dataset_md = self.parse_md('../../content/docs/')
         print(f'Loaded {len(self.dataset_js) + len(self.dataset_md)} total entries; ({len(self.dataset_js)} JS, {len(self.dataset_md)} MD)')
 
@@ -220,5 +220,12 @@ class RagClass:
 
 rag = RagClass()
 rag.load_dataset()
-# rag.add_chunks_to_db()
-# rag.ask("How can I invert filled and empty cells?")
+rag.add_chunks_to_db()
+
+print("✅ The model is ready, please ask a question about p5.quadrille.js")
+while True:
+    q = input(f"\n\n❔ Ask {rag.LANGUAGE_MODEL}: ")
+    if q == "q":
+        break
+
+    rag.ask(q)

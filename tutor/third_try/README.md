@@ -12,13 +12,28 @@ To find the best chunks for in the retrieval phase I used the `cosine_similarity
 
 I've added the .md docs into the RAGs knowledge. These docs are splited by md header(#). Using the current approach the code generates a total of 626 chunks(170 js and 456 md). Now that I've added a second category of information, in order to keep a balance between them in the retrieval stage I've decided to store them separate and get the model the best matches from both categories.
 
+### Update 2
+
+I've updated the chat to run in a loop and included some more files in the context: the addon.js and the main README.md of the repo. Running a simple query as "How to use this library?" I found some issues with the current code:
+
+- The best chunk retrieved contains only the header of the function 'visit' and has a similarity of just 56%, which I find pretty low.
+- The RAGs response misses some implementation details, as it tells me to initialize a qudrille like `let quadrille = new Quadrille()`, instead of using the `createQuadrille()` method added to p5. It also see some functions headers but tells me to write the implementation for those, instead of telling me how to use them because they are already implemented.
+
+Some posible thinks to look into that may cause the issues:
+
+- poor .md files indexing
+- poor similarity function (cosine similarity)
+- weak models (llm - llama3, embedding - nomic-embed-text')
+- too little context retrieved (3 js and 3 md)
+
 ### Next steps from here
 
 - ~~Include the .md docs into the RAG knowledge (not it only have the quadrille.js)~~
+- Add current conversation to the context as it goes on
 - Research better approach for the VectorDB
 - Research a better alternative to cossine similarity function
 - Research different models for embedding and LLM
-- Improve demo experience: make it feel more like a chat by listening for the user prompt in a loop
+- ~~Improve demo experience: make it feel more like a chat by listening for the user prompt in a loop~~
 
 ## RAG output for the following prompt: "How can I invert filled and empty cells?"
 

@@ -1,0 +1,82 @@
+
+
+--- similarity: 0.56
+ Context: visit(callback, collection) documentation
+## Syntax
+
+```js
+visit(callback, collection)
+```
+
+
+
+--- similarity: 0.56
+ Context: display functions   documentation
+## Syntax
+
+> `drawQuadrille(quadrille, {tileDisplay, numberDisplay, stringDisplay, colorDisplay, imageDisplay, functionDisplay, arrayDisplay, objectDisplay})`
+
+
+
+--- similarity: 0.55
+ Context: Reformatter   documentation
+**Reformatter methods** enable the conversion of a `quadrille` into various formats, such as [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), [images](https://p5js.org/reference/#/p5.Image), and array-based data structures. These methods ensure seamless transitions and promote interoperability between `quadrille` instances and other data representations, making it easier to integrate quadrilles into different workflows.
+
+
+
+--- similarity: 0.52
+ /**
+ * @file Adds `createQuadrille` and `drawQuadrille` functions to the p5 prototype.
+ * @version 3.4.13
+ * @author JP Charalambos
+ * @license GPL-3.0-only
+ *
+ * @description
+ * Prototype extensions for p5.js that support creating and rendering Quadrille instances.
+ * Part of the p5.quadrille.js library.
+ * See https://objetos.github.io/docs/api/ for full usage and examples.
+ */
+
+'use strict';
+
+import p5 from 'p5';
+import Quadrille from './quadrille.js';
+
+p5.registerAddon((p5, fn) => {
+
+
+
+--- similarity: 0.52
+ _images(image) {
+    const cellWidth = image.width / this.width;
+    const cellHeight = image.height / this.height;
+    this.visit(({ row, col }) => this.fill(row, col, image.get(col * cellWidth, row * cellHeight, cellWidth, cellHeight)));
+  }
+
+
+
+--- similarity: 0.51
+ /**
+ * @file Defines the Quadrille class — the core data structure of the p5.quadrille.js library.
+ * @version 3.4.13
+ * @author JP Charalambos
+ * @license GPL-3.0-only
+ *
+ * @description
+ * Grid-based teaching and rendering utility for p5.js.
+ * This module defines the Quadrille class for cell storage and manipulation.
+ * See https://objetos.github.io/docs/api/ for full usage and examples.
+ */
+
+'use strict';
+
+import p5 from 'p5';
+
+// TODOs
+// i. isPolyomino()
+// ii. perlin / simplex noise
+// iii. sort() using 'webgl' mode, requires using fbos to speed up sample() (which currently only supports 'p2d' renderer)
+// iv. screenRow and screenCol lacks webgl mode (would require p5.treegl)
+// v. Decide mouseCornerX, mouseCornerY, screenCornerX() and screenCornerY()
+class Quadrille {
+

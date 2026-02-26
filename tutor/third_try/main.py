@@ -3,17 +3,6 @@ import os
 import re
 
 class RagClass:
-    dataset_js = []
-    dataset_md = []
-
-    # Each element in the VECTOR_DB_XX will be a tuple (chunk, embedding)
-    # The embedding is a list of floats, for example: [0.1, 0.04, -0.34, 0.21, ...]
-    VECTOR_DB_JS = []
-    VECTOR_DB_MD = []
-
-    EMBEDDING_MODEL = 'nomic-embed-text'
-    LANGUAGE_MODEL = 'llama3'
-
     LLM_INSTRUCTIONS = '''
         You are an expert coding assistant for the 'p5.quadrille.js' library. 
         Your parametric memory regarding this library is unreliable, so you MUST rely ONLY on the Context provided below to answer the user's question. 
@@ -27,36 +16,107 @@ class RagClass:
         
         If the Context does not contain the information needed to answer the request, you must state exactly: 'I cannot find that information in the provided documentation.' 
         Do not make up any new information.
-        
-        Context:
     '''
+
+    dataset_js = []
+    dataset_md = []
+
+    # Each element in the VECTOR_DB_XX will be a tuple (chunk, embedding). The embedding is a list of floats, for example: [0.1, 0.04, -0.34, 0.21, ...]
+    # CONVERSATION_HISTORY will store objects like {role: "system|user|assistant|tool", content: "..."}
+    VECTOR_DB_JS         = []
+    VECTOR_DB_MD         = []
+    CONVERSATION_HISTORY = []
+
+    EMBEDDING_MODEL = 'nomic-embed-text'
+    LANGUAGE_MODEL = 'llama3'
     
     def ask(self, query):
+        multi_query = self.compute_multy_query(query)
+
         retrieved_chunks = self.retrieve(query)
 
+        # debug and analysis
         with open("retrieved_information.txt", "w") as f:
             for chunk, similarity in retrieved_chunks:
                 f.write(f'\n\n--- similarity: {similarity:.2f}\n {chunk}\n\n')
 
         formatted_chunks = "\n\n---\n\n".join([chunk for chunk, _ in retrieved_chunks])
+
+        messages = [{"role": "system", "content": self.LLM_INSTRUCTIONS}]
+        messages.extend(self.CONVERSATION_HISTORY)
+
         prompt = f'''
-            {self.LLM_INSTRUCTIONS}
-            {formatted_chunks}
+        Based on the following Context, answer the User Question.
+        
+        Context:
+        {formatted_chunks}
+        
+        User Question:
+        {query}
         '''
+
+        messages.append({'role': 'user', 'content': prompt})
 
         stream = ollama.chat(
             model=self.LANGUAGE_MODEL,
-            messages=[
-                {'role': 'system', 'content': prompt},
-                {'role': 'user', 'content': query},
-            ],
+            messages=messages,
             stream=True
         )
 
         print("thinking...")
+        response = ""
         for chunk in stream:
-            print(chunk['message']['content'], end='', flush=True)
+            content = chunk['message']['content']
+            response += content
+            print(content, end='', flush=True)
 
+        self.CONVERSATION_HISTORY.append({'role': 'user', 'content': query})
+        self.CONVERSATION_HISTORY.append({'role': 'assistant', 'content': response})
+
+        # debug and analysis
+        with open("conversation_history.txt", "w") as f:
+            for m in self.CONVERSATION_HISTORY:
+                f.write(f'\n\n---\n role: {m["role"]}\n content: {m["content"]}')
+
+    def compute_multy_query(self, query, k=3):
+        """ Given a query, reformulate that in k other similar queries. This takes into account conversation history """
+        queries = [query]
+       
+       # using last 3 pairs of (question, response)
+        recent_history = self.CONVERSATION_HISTORY[-6:] 
+        history_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in recent_history])
+
+        prompt = f"""
+        You are an expert at query expansion for a RAG assistant of the p5.quadrille.js library.
+        
+        USER CONVERSATION HISTORY:
+        {history_text}
+        
+        CURRENT USER QUERY:
+        "{query}"
+        
+        TASK:
+        Generate {k} different versions of the "CURRENT USER QUERY" to improve document retrieval.
+        - Use the history in order to replace pronouns, for example "how do I use it?", where "it" could reffer to a previous mention method
+        - Use different keywords and sentence structures for each version.
+        - Don't use " character to wrap the new queries
+        - Output ONLY the {k} queries, one per line. Don't include any message from you, like "Here are {k} queries"!
+        """
+
+        response = ollama.chat(
+            model=self.LANGUAGE_MODEL,
+            messages=[{'role': 'user', 'content': prompt}],
+            stream=False
+        )["message"]["content"]
+
+        queries.extend([line.strip() for line in response.split('\n') if line.strip()])
+
+        # debug and analysis
+        with open("multi_query.txt", "w") as f:
+            for i, q in enumerate(queries):
+                f.write(f'\n\n--- {"ORIGINAL QUERY" if i == 0 else ""}\n {q}\n\n')
+
+        return queries
 
     
     def retrieve(self, query):

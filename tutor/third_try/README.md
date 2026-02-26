@@ -21,15 +21,21 @@ I've updated the chat to run in a loop and included some more files in the conte
 
 Some posible thinks to look into that may cause the issues:
 
-- poor .md files indexing
+- poor .md and .js files indexing
 - poor similarity function (cosine similarity)
 - weak models (llm - llama3, embedding - nomic-embed-text')
 - too little context retrieved (3 js and 3 md)
 
+### Update 3
+
+I've implemented a `multi_query` function to improve the retrieval, but in order to use it I need to fix the files indexing. I print the results in multi_query.txt: they look ok, I will check later if I can improve it.
+Now the conversation history is saved and the model can use it. It is printed in the debug file I've added for analysis, conversation_history.txt.
+Next step will be to retrieve more chunks based on the multi query, filter out duplicates and improve the files indexing, as it seems to be some problems not just on .md files but on .js too.
+
 ### Next steps from here
 
 - ~~Include the .md docs into the RAG knowledge (not it only have the quadrille.js)~~
-- Add current conversation to the context as it goes on
+- ~~Add current conversation to the context as it goes on~~
 - Research better approach for the VectorDB
 - Research a better alternative to cossine similarity function
 - Research different models for embedding and LLM

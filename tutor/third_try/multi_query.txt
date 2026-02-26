@@ -1,0 +1,20 @@
+
+
+--- ORIGINAL QUERY
+ do i need p5.js to use this?
+
+
+
+--- 
+ do i need p5 js to utilize this method
+
+
+
+--- 
+ can i implement quadrille.js without relying on p5
+
+
+
+--- 
+ must i have p5 installed for the quadrille library to work
+

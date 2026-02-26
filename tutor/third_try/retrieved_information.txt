@@ -1,30 +1,6 @@
 
 
---- similarity: 0.56
- Context: visit(callback, collection) documentation
-## Syntax
-
-```js
-visit(callback, collection)
-```
-
-
-
---- similarity: 0.56
- Context: display functions   documentation
-## Syntax
-
-> `drawQuadrille(quadrille, {tileDisplay, numberDisplay, stringDisplay, colorDisplay, imageDisplay, functionDisplay, arrayDisplay, objectDisplay})`
-
-
-
---- similarity: 0.55
- Context: Reformatter   documentation
-**Reformatter methods** enable the conversion of a `quadrille` into various formats, such as [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), [images](https://p5js.org/reference/#/p5.Image), and array-based data structures. These methods ensure seamless transitions and promote interoperability between `quadrille` instances and other data representations, making it easier to integrate quadrilles into different workflows.
-
-
-
---- similarity: 0.52
+--- similarity: 0.68
  /**
  * @file Adds `createQuadrille` and `drawQuadrille` functions to the p5 prototype.
  * @version 3.4.13
@@ -46,16 +22,18 @@ p5.registerAddon((p5, fn) => {
 
 
 
---- similarity: 0.52
- _images(image) {
-    const cellWidth = image.width / this.width;
-    const cellHeight = image.height / this.height;
-    this.visit(({ row, col }) => this.fill(row, col, image.get(col * cellWidth, row * cellHeight, cellWidth, cellHeight)));
-  }
+--- similarity: 0.67
+ Context: Readme documentation
+# System Requirements
+
+- **Hardware:** Any modern device—PC, phone, or tablet—with a browser supporting [ES6](https://www.w3schools.com/JS/js_es6.asp) (Firefox 54+, Chrome 51+, Safari 10+, Edge 15+, Opera 38+).  
+- **Software:** Like any p5.js sketch—just include **p5.js** and **p5.quadrille.js** via [local file or CDN](#releases).
+
+**Observation**: The library leverages [p5.js](https://beta.p5js.org/) for rendering and modern browser APIs for performance. [WebGL](https://en.wikipedia.org/wiki/WebGL) enhances 3D/GPU examples but is optional.
 
 
 
---- similarity: 0.51
+--- similarity: 0.64
  /**
  * @file Defines the Quadrille class — the core data structure of the p5.quadrille.js library.
  * @version 3.4.13
@@ -79,4 +57,39 @@ import p5 from 'p5';
 // iv. screenRow and screenCol lacks webgl mode (would require p5.treegl)
 // v. Decide mouseCornerX, mouseCornerY, screenCornerX() and screenCornerY()
 class Quadrille {
+
+
+
+--- similarity: 0.64
+ Context: p5 Functions documentation
+The [p5.js](https://p5js.org/) functions provide seamless tools to **create** and **draw** **quadrille** objects. Whether you're building board games, designing generative visuals, or managing cell-based data, these functions serve as a bridge between the p5.js canvas and the **quadrille object**—the core structure of the **p5.quadrille.js** library.
+
+- **[createQuadrille(args)]({{< ref "create_quadrille" >}}):** Creates a **quadrille** with flexible initialization options. You can populate it with an valid JavaScript value, including [colors](https://p5js.org/reference/p5/p5.Color/), numbers, strings, [images](https://p5js.org/reference/p5/p5.Image/) & [videos](https://p5js.org/reference/p5/p5.MediaElement/), [p5.Graphics](https://p5js.org/reference/p5/p5.Graphics/), (drawing) functions, or custom objects.
+
+- **[drawQuadrille(args)]({{< ref "draw_quadrille" >}}):** Renders the quadrille onto the p5.js canvas with options for visual customization. Styles are applied globally to all quadrille cells, allowing you to display content, apply color, and enhance visuals—well-suited to displaying board game states, dynamic patterns, or data visualizations.    
+ 
+Alongside the [p5.js API](https://p5js.org/reference/), these functions allow you to start developing immersive board games, organizing data collections, creating dynamic visual art, and building creative projects based on structured, cell-based content.
+
+
+
+--- similarity: 0.63
+ Context: textFont documentation
+## Parameters
+
+| Param     | Description                                                                                              |
+|-----------|----------------------------------------------------------------------------------------------------------|
+| `textFont` | [p5.Font](https://p5js.org/reference/#/p5.Font): Specifies the font used for rendering text in cells. Default is the current p5.js font |
+
+
+
+--- similarity: 0.59
+ ) {
+    const img = value instanceof p5.Framebuffer
+      ? (value.graphics ||= graphics) !== graphics
+        ? (console.debug('fbo reformat needed'), value.get())
+        : value
+      : value;
+    graphics.noStroke();
+    graphics.image(img, 0, 0, cellLength, cellLength);
+  }
 

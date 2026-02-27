@@ -32,7 +32,11 @@ I've implemented a `multi_query` function to improve the retrieval, but in order
 Now the conversation history is saved and the model can use it. It is printed in the debug file I've added for analysis, conversation_history.txt.
 Next step will be to retrieve more chunks based on the multi query, filter out duplicates and improve the files indexing, as it seems to be some problems not just on .md files but on .js too.
 
-### Next steps from here
+### Update 4
+
+I've adapted the `retrieve` function to work on multi queries. Now that I get multiple chunks found by multiple queries, I improved the ranking system. Instead on relying only on the cossine similarity, I've implemented `Reciprocal Rank Fusion (RRF)`. After getting the best chunks for each query using cossine similarity, I use RRF to rank the chunks considering their similarity with all queries. So if a chunk is in top 3 for multiple queries it will get a higher score comparing to a chunk that is 1st only for 1 query. I can't say now how good it is because I still need to fix the indexing step, which I will do next.
+
+### TO DO
 
 - ~~Include the .md docs into the RAG knowledge (not it only have the quadrille.js)~~
 - ~~Add current conversation to the context as it goes on~~

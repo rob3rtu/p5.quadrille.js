@@ -1,20 +1,20 @@
 
 
 --- ORIGINAL QUERY
- do i need p5.js to use this?
+ what is a quadrille?
 
 
 
 --- 
- do i need p5 js to utilize this method
+ what is a p5.quadrille.js library?
 
 
 
 --- 
- can i implement quadrille.js without relying on p5
+ what can i do with a quadrille in p5js context
 
 
 
 --- 
- must i have p5 installed for the quadrille library to work
+ what does a quadrille mean in terms of visual design and p5js library
 

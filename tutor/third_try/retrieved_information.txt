@@ -1,66 +1,17 @@
 
 
---- similarity: 0.68
+---
  /**
- * @file Adds `createQuadrille` and `drawQuadrille` functions to the p5 prototype.
- * @version 3.4.13
- * @author JP Charalambos
- * @license GPL-3.0-only
- *
- * @description
- * Prototype extensions for p5.js that support creating and rendering Quadrille instances.
- * Part of the p5.quadrille.js library.
- * See https://objetos.github.io/docs/api/ for full usage and examples.
- */
-
-'use strict';
-
-import p5 from 'p5';
-import Quadrille from './quadrille.js';
-
-p5.registerAddon((p5, fn) => {
+   * Gets the internal 2D array representation of the quadrille.
+   * @returns {Array<Array<*>>}
+   */
+  get memory2D() {
+    return this.clone()._memory2D;
+  }
 
 
 
---- similarity: 0.67
- Context: Readme documentation
-# System Requirements
-
-- **Hardware:** Any modern device—PC, phone, or tablet—with a browser supporting [ES6](https://www.w3schools.com/JS/js_es6.asp) (Firefox 54+, Chrome 51+, Safari 10+, Edge 15+, Opera 38+).  
-- **Software:** Like any p5.js sketch—just include **p5.js** and **p5.quadrille.js** via [local file or CDN](#releases).
-
-**Observation**: The library leverages [p5.js](https://beta.p5js.org/) for rendering and modern browser APIs for performance. [WebGL](https://en.wikipedia.org/wiki/WebGL) enhances 3D/GPU examples but is optional.
-
-
-
---- similarity: 0.64
- /**
- * @file Defines the Quadrille class — the core data structure of the p5.quadrille.js library.
- * @version 3.4.13
- * @author JP Charalambos
- * @license GPL-3.0-only
- *
- * @description
- * Grid-based teaching and rendering utility for p5.js.
- * This module defines the Quadrille class for cell storage and manipulation.
- * See https://objetos.github.io/docs/api/ for full usage and examples.
- */
-
-'use strict';
-
-import p5 from 'p5';
-
-// TODOs
-// i. isPolyomino()
-// ii. perlin / simplex noise
-// iii. sort() using 'webgl' mode, requires using fbos to speed up sample() (which currently only supports 'p2d' renderer)
-// iv. screenRow and screenCol lacks webgl mode (would require p5.treegl)
-// v. Decide mouseCornerX, mouseCornerY, screenCornerX() and screenCornerY()
-class Quadrille {
-
-
-
---- similarity: 0.64
+---
  Context: p5 Functions documentation
 The [p5.js](https://p5js.org/) functions provide seamless tools to **create** and **draw** **quadrille** objects. Whether you're building board games, designing generative visuals, or managing cell-based data, these functions serve as a bridge between the p5.js canvas and the **quadrille object**—the core structure of the **p5.quadrille.js** library.
 
@@ -72,24 +23,47 @@ Alongside the [p5.js API](https://p5js.org/reference/), these functions allow yo
 
 
 
---- similarity: 0.63
- Context: textFont documentation
-## Parameters
+---
+ Context: Readme documentation
+# Usage
 
-| Param     | Description                                                                                              |
-|-----------|----------------------------------------------------------------------------------------------------------|
-| `textFont` | [p5.Font](https://p5js.org/reference/#/p5.Font): Specifies the font used for rendering text in cells. Default is the current p5.js font |
+Using **p5.quadrille.js** can be as minimal or as interactive as you need:
+
+* **2 steps** — storage only: declare and create the quadrille.
+* **3 steps** — add rendering: use `drawQuadrille()` in `draw()`.
+* **4 steps** — add interactivity: call a mutator method (e.g. `fill()`, `clear()`, `replace()`) inside an event like `keyPressed()` or `mousePressed()`.
+
+The library works in two setups:
+
+- **[CDN](#cdn)**: Use the [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) (Immediately Invoked Function Expression) format with `<script>` tags directly in the browser, along with [p5.js](https://beta.p5js.org/).
+- **[npm](#npm-esm)**: Use the [ES module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) version in modern projects with [Vite](https://vitejs.dev/) or another bundler.
 
 
 
---- similarity: 0.59
- ) {
-    const img = value instanceof p5.Framebuffer
-      ? (value.graphics ||= graphics) !== graphics
-        ? (console.debug('fbo reformat needed'), value.get())
-        : value
-      : value;
-    graphics.noStroke();
-    graphics.image(img, 0, 0, cellLength, cellLength);
-  }
+---
+ Context: toImage(args) documentation
+Returns a [p5.Image](https://p5js.org/reference/#/p5.Image) representation of this quadrille.
+
+
+
+---
+ Context: Readme documentation
+# p5.quadrille.js
+
+Welcome to the **p5.quadrille.js** source code repository. This open-source [p5.js](https://beta.p5js.org/) addon library offers a simple yet powerful API for grid-based creative coding, game design, and visual computing. Most methods are demonstrated with interactive sketches for hands-on exploration.
+
+![Quadrille cells sorted by luminance](p5.quadrille.js.png)
+***Paintings sorted according to their [luma](https://en.wikipedia.org/wiki/Luma_(video)) using quadrille [sort](https://objetos.github.io/p5.quadrille.js/docs/visual_algorithms/sort/)***
+
+- [Usage](#usage)
+  - [CDN](#cdn)
+  - [npm (ESM)](#npm-esm)
+- [Algorithms \& Performance](#algorithms--performance)
+- [Adoption](#adoption)
+- [Releases](#releases)
+- [System Requirements](#system-requirements)
+- [Contribute](#contribute)
+  - [Support](#support)
+  - [Open TODOs](#open-todos)
+- [Further Reading](#further-reading)
 

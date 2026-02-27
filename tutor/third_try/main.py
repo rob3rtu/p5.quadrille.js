@@ -32,13 +32,12 @@ class RagClass:
     
     def ask(self, query):
         multi_query = self.compute_multy_query(query)
-
-        retrieved_chunks = self.retrieve(query)
+        retrieved_chunks = self.retrieve(multi_query)
 
         # debug and analysis
         with open("retrieved_information.txt", "w") as f:
-            for chunk, similarity in retrieved_chunks:
-                f.write(f'\n\n--- similarity: {similarity:.2f}\n {chunk}\n\n')
+            for chunk, rrf_score in retrieved_chunks:
+                f.write(f'\n\n---\n {chunk}\n\n')
 
         formatted_chunks = "\n\n---\n\n".join([chunk for chunk, _ in retrieved_chunks])
 
@@ -103,9 +102,13 @@ class RagClass:
         - Output ONLY the {k} queries, one per line. Don't include any message from you, like "Here are {k} queries"!
         """
 
+        messages = []
+        messages.extend(self.CONVERSATION_HISTORY)
+        messages.append({'role': 'user', 'content': prompt})
+
         response = ollama.chat(
             model=self.LANGUAGE_MODEL,
-            messages=[{'role': 'user', 'content': prompt}],
+            messages=messages,
             stream=False
         )["message"]["content"]
 
@@ -119,16 +122,29 @@ class RagClass:
         return queries
 
     
-    def retrieve(self, query):
-        """ Retrieve top K from each DB, filtering out poor matches """
-        query_embedding = ollama.embed(model=self.EMBEDDING_MODEL, input=query)['embeddings'][0]
+    def retrieve(self, multi_query, k=5):
+        """ Retrieve top K from each DB, filtering best matches using RRF(Reciprocal Rank Fusion) """
+        rrf_scores = {}
+        multi_query_embedding = [ollama.embed(model=self.EMBEDDING_MODEL, input=query)['embeddings'][0] for query in multi_query]
 
-        top_js = self.get_top_results(self.VECTOR_DB_JS, query_embedding)
-        top_md = self.get_top_results(self.VECTOR_DB_MD, query_embedding)
+        for query_embedding in multi_query_embedding:
+            top_js = self.get_top_results(self.VECTOR_DB_JS, query_embedding, top_k=k)
+            top_md = self.get_top_results(self.VECTOR_DB_MD, query_embedding, top_k=k)
+            
+            combined_results = top_js + top_md
+            combined_results.sort(key=lambda x: x[1], reverse=True)
 
-        results = top_js + top_md
-        results.sort(key=lambda x: x[1], reverse=True)
-        return results
+            for rank, (chunk, _query_similarity) in enumerate(combined_results, start=1):
+                score = 1.0 / (60 + rank)
+                
+                if chunk in rrf_scores:
+                    rrf_scores[chunk] += score
+                else:
+                    rrf_scores[chunk] = score
+
+        final_results = list(rrf_scores.items())
+        final_results.sort(key=lambda x: x[1], reverse=True)
+        return final_results[:k]
     
     def get_top_results(self, db, query_embedding, top_k=3, threshold=0.50):
         similarities = []

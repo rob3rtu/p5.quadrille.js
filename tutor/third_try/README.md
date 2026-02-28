@@ -36,6 +36,10 @@ Next step will be to retrieve more chunks based on the multi query, filter out d
 
 I've adapted the `retrieve` function to work on multi queries. Now that I get multiple chunks found by multiple queries, I improved the ranking system. Instead on relying only on the cossine similarity, I've implemented `Reciprocal Rank Fusion (RRF)`. After getting the best chunks for each query using cossine similarity, I use RRF to rank the chunks considering their similarity with all queries. So if a chunk is in top 3 for multiple queries it will get a higher score comparing to a chunk that is 1st only for 1 query. I can't say now how good it is because I still need to fix the indexing step, which I will do next.
 
+### Update 5.1
+
+Improve md indexing: instead of splitting the files by header now I encode the whole file, as they are pretty small and should fit the model's context window. Will check that later
+
 ### TO DO
 
 - ~~Include the .md docs into the RAG knowledge (not it only have the quadrille.js)~~

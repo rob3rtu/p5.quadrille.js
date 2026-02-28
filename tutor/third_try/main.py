@@ -158,9 +158,20 @@ class RagClass:
         return similarities[:top_k]
 
     def load_dataset(self):
+        """ Create chunks """
         self.dataset_js = self.parse_js('../../src/quadrille.js') + self.parse_js("../../src/addon.js")
         self.dataset_md = self.parse_md('../../content/docs/')
         print(f'Loaded {len(self.dataset_js) + len(self.dataset_md)} total entries; ({len(self.dataset_js)} JS, {len(self.dataset_md)} MD)')
+
+        # debug and analysis
+        with open("js_chunks.txt", "w") as f:
+            for chunk in self.dataset_js:
+                f.write(f'\n\n---\n {chunk}\n\n')
+
+        # debug and analysis
+        with open("md_chunks.txt", "w") as f:
+            for chunk in self.dataset_md:
+                f.write(f'\n\n---\n {chunk}\n\n')
 
     def add_chunks_to_db(self):
         """ Create ambeddings and add them to vector db alonside their coresponsing chunk """
@@ -182,7 +193,7 @@ class RagClass:
         return dot_product / (norm_a * norm_b)
     
     def parse_md(self, folder_path):
-        """ Split all .md files in chunks by headers and including context like function name. """
+        """ Index the entire file as one chunk """
         chunks = []
 
         for root, _, files in os.walk(folder_path):
@@ -194,25 +205,10 @@ class RagClass:
                 with open(filepath, 'r', encoding='utf-8') as f:
                     content = f.read()
 
-                    # 1. Extract Title & Handle Frontmatter (---)
-                    page_title = filename.replace('.md', '').capitalize()
-                    frontmatter_match = re.match(r'^---\n(.*?)\n---\n', content, re.DOTALL)
-
-                    if frontmatter_match:
-                        title_search = re.search(r'title:\s*["\']?([^"\'\n]+)', frontmatter_match.group(1))
-                        if title_search:
-                            page_title = title_search.group(1)
-                        content = content[frontmatter_match.end():]
-
-                    # 2. Split by Markdown Headers
-                    raw_chunks = re.split(r'(?=\n#{1,4}\s)', '\n' + content)
-
-                    for chunk in raw_chunks:
-                        chunk = chunk.strip()
-                        # 3. Filter and Contextualize
-                        if len(chunk) > 20:
-                            contextualized_chunk = f"Context: {page_title} documentation\n{chunk}"
-                            chunks.append(contextualized_chunk)
+                    page_title = filename.replace('.md', '').replace('_', ' ')
+                    clean_content = re.sub(r'^---\n.*?\n---\n', '', content, flags=re.DOTALL).strip()
+                    chunk = f"DOCUMENTATION FOR: {page_title}\n\n{clean_content}"
+                    chunks.append(chunk)
 
         return chunks
 
@@ -296,12 +292,12 @@ class RagClass:
 
 rag = RagClass()
 rag.load_dataset()
-rag.add_chunks_to_db()
+# rag.add_chunks_to_db()
 
-print("✅ The model is ready, please ask a question about p5.quadrille.js")
-while True:
-    q = input(f"\n\n❔ Ask {rag.LANGUAGE_MODEL}: ")
-    if q == "q":
-        break
+# print("✅ The model is ready, please ask a question about p5.quadrille.js")
+# while True:
+#     q = input(f"\n\n❔ Ask {rag.LANGUAGE_MODEL}: ")
+#     if q == "q":
+#         break
 
-    rag.ask(q)
+#     rag.ask(q)

@@ -40,6 +40,10 @@ I've adapted the `retrieve` function to work on multi queries. Now that I get mu
 
 Improve md indexing: instead of splitting the files by header now I encode the whole file, as they are pretty small and should fit the model's context window. Will check that later
 
+### Update 5.2
+
+With the next md indexing I got a small issue. The biggest chunk is about 4k tokens while the nomic-embed-text is limited to a 2k tokens context window. I will look for a model with bigger context window or a new indexing method for the md files
+
 ### TO DO
 
 - ~~Include the .md docs into the RAG knowledge (not it only have the quadrille.js)~~

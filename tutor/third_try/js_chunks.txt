@@ -1,6 +1,6 @@
 
 
----
+@@@@@
  /**
  * @file Defines the Quadrille class — the core data structure of the p5.quadrille.js library.
  * @version 3.4.13
@@ -27,7 +27,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Library version identifier.
    * @type {string}
@@ -36,7 +36,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // Factory
 
   /**
@@ -54,7 +54,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Declares that a value is a shared singleton to be reused across cells. 
    * Unlike `Quadrille.factory(fn)`, this method is purely semantic and does
@@ -74,7 +74,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // STYLE
 
   /**
@@ -85,7 +85,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets the current text color.
    * @returns {string}
@@ -96,7 +96,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Sets the text color used when rendering values.
    * Accepts any valid CSS string or p5 color.
@@ -108,7 +108,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Default text drawing zoom.
    * @type {number}
@@ -117,7 +117,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets the current text zoom scale.
    * @returns {number}
@@ -128,7 +128,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Sets the text zoom scale. Must be a positive number.
    * @param {number} value
@@ -139,7 +139,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Default drawing outline.
    * @type {string}
@@ -148,7 +148,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets the current outline color.
    * @returns {string}
@@ -159,7 +159,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Sets the outline color used to draw cells.
    * Accepts any valid CSS string or p5 color.
@@ -171,7 +171,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Default drawing outline weight.
    * @type {number}
@@ -180,7 +180,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets the current outline stroke weight.
    * @returns {number}
@@ -191,7 +191,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Sets the outline stroke weight. Must be a non-negative number.
    * @param {number} value
@@ -202,7 +202,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Default drawing cell length.
    * @type {number}
@@ -211,7 +211,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets the current cell size in pixels.
    * @returns {number}
@@ -222,7 +222,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Sets the cell size in pixels. Must be a positive number.
    * @param {number} value
@@ -233,7 +233,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Default background used in sort.
    * @type {string}
@@ -242,7 +242,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets the background color used in sort().
    * @returns {string}
@@ -253,7 +253,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Sets the background color used in sort().
    * Accepts any valid CSS string or p5 color.
@@ -265,7 +265,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // CHESS
 
   /**
@@ -276,7 +276,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // Wikipedia; '#769555' // chess.com
 
   /**
@@ -289,7 +289,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Sets the color for dark chessboard squares.
    * @param {string|*} value
@@ -300,7 +300,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Default chess light squares.
    * @type {string}
@@ -309,7 +309,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // Wikipedia; '#EBECCF' // chess.com
 
   /**
@@ -322,7 +322,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Sets the color for light chessboard squares.
    * @param {string|*} value
@@ -333,7 +333,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Internal FEN → symbol map (Unicode, emoji, image, etc.).
    * @type {Map<string, *>}
@@ -346,7 +346,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets a copy of the FEN → symbol map.
    * @returns {Map<string, *>} Copy of internal chessSymbols map.
@@ -357,7 +357,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Updates entries in the FEN → symbol mapping.
    * Accepts either a plain object or a Map. Merges into the current map to support partial updates.
@@ -373,7 +373,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets a reverse map from symbol to FEN key.
    * @returns {Map<*, string>} New reverse map (symbol → FEN)
@@ -384,7 +384,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Returns the bit index (row-major).
    * Default is big-endian (MSB = top-left). Set `littleEndian = true` for LSB = top-left.
@@ -415,7 +415,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Returns the cell position corresponding to a bit index.
    * Optionally supports little-endian (default: false) layout.
@@ -442,7 +442,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // ALGEBRA
 
   /**
@@ -463,7 +463,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Logical OR between two quadrilles.
    * @param {Quadrille} q1 First quadrille
@@ -485,7 +485,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Logical XOR between two quadrilles.
    * @param {Quadrille} q1 First quadrille
@@ -507,7 +507,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Logical difference (q1 minus q2) between two quadrilles.
    * @param {Quadrille} q1 First quadrille
@@ -526,7 +526,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Merges two quadrilles by applying a binary operator to their overlapping cells.
    * Builds the result memory directly and returns a fresh Quadrille (no ctor call).
@@ -563,7 +563,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Allocates a height×width 2D array filled with nulls (never undefined).
    * @param {number} h
@@ -582,7 +582,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Allocates a Quadrille *without* calling the constructor, mirroring the
    * fresh defaults of `new Quadrille(p, ...)`.
@@ -617,7 +617,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Logical NOT of a quadrille (non-destructive).
    * Returns a new quadrille where filled/empty status is inverted.
@@ -631,7 +631,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Returns a shifted copy of the given Quadrille.
    * Shifts all filled cells of `q` by (dRow, dCol) across the grid. 
@@ -652,7 +652,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Constructs a new Quadrille instance with multiple supported initialization modes:
    * 1. No arguments → 8×8 chessboard with default colors.
@@ -784,7 +784,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  _init1D(memory1D, width = memory1D.length) {
     const height = Math.ceil(memory1D.length / width);
     this._memory2D = Array.from({ length: height }, (_, i) => {
@@ -795,7 +795,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  _format(memory1D, size) {
     const cleaned = memory1D.map(v => v === undefined ? null : v);
     return cleaned.length < size
@@ -805,7 +805,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  _fromFEN(...args) {
     if (typeof args[0] === 'string') {
       if (args[0].split('/').length - 1 === 7) {
@@ -829,7 +829,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  _fromImage(...args) {
     if (this.constructor.isImage(args[0])) {
       let src = args[0] instanceof p5.Framebuffer ? args[0].get() : args[0];
@@ -850,7 +850,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  _pixelator1(image) {
     image.resize(this.width, this.height);
     image.loadPixels();
@@ -866,7 +866,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  _pixelator2(image) {
     image.loadPixels();
     const r = Array(this.height).fill().map(() => Array(this.width).fill(0));
@@ -896,7 +896,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  _images(image) {
     const cellWidth = image.width / this.width;
     const cellHeight = image.height / this.height;
@@ -905,21 +905,21 @@ class Quadrille {
 
 
 
----
+@@@@@
  _fromIndex(index, width = this.width) {
     return { row: (index / width) | 0, col: index % width };
   }
 
 
 
----
+@@@@@
  _toIndex(row, col, width = this.width) {
     return row * width + col;
   }
 
 
 
----
+@@@@@
  /**
    * Returns the bit index of the given cell using the instance’s width and height.
    * Delegates to the static version.
@@ -934,7 +934,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Returns the cell position for a given bit index using the instance’s dimensions.
    * Delegates to the static version.
@@ -948,7 +948,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // ITERATOR
 
   /**
@@ -1020,7 +1020,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // PROPERTIES
 
   /**
@@ -1055,7 +1055,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets the internal 2D array representation of the quadrille.
    * @returns {Array<Array<*>>}
@@ -1066,7 +1066,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Sets quadrille width (number of columns).
    * Triggers transposition hack to simulate column resizing.
@@ -1080,7 +1080,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets quadrille width.
    * @returns {number} Number of columns.
@@ -1091,7 +1091,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Sets quadrille height (number of rows).
    * Resizes by inserting or deleting rows.
@@ -1107,7 +1107,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets quadrille height.
    * @returns {number} Number of rows.
@@ -1118,7 +1118,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets total number of cells (width × height).
    * @returns {number}
@@ -1129,7 +1129,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets number of filled cells in the quadrille.
    * @returns {number}
@@ -1144,7 +1144,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets the row index under the mouse.
    * @returns {number}
@@ -1155,7 +1155,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets the column index under the mouse.
    * @returns {number}
@@ -1166,7 +1166,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Gets the minimal axis-aligned span of filled cells.
    * Returns undefined if the quadrille has no filled cells.
@@ -1194,7 +1194,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /*
   get mouseCornerX() {
     return this.screenCornerX(this._p.mouseX);
@@ -1232,7 +1232,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Searches the quadrille for matches to a given pattern quadrille.
    * @param {Quadrille} pattern - The pattern to search for.
@@ -1252,7 +1252,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Converts a pixel Y coordinate to a quadrille row index.
    * @param {number} pixelY - The screen Y-coordinate in pixels.
@@ -1266,7 +1266,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Converts a screen X-coordinate to a quadrille column index.
    * @param {number} pixelX - The screen X-coordinate in pixels.
@@ -1280,7 +1280,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // CELL CONTENTS
 
   /**
@@ -1297,7 +1297,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // Static "protected" methods
 
   // Although undefined is disallowed, isEmpty and isFilled use it for querying cells outside
@@ -1315,7 +1315,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Determines whether a value is considered empty.
    * @param {*} value
@@ -1327,7 +1327,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Determines whether a value is considered filled.
    * @param {*} value
@@ -1339,7 +1339,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the given value is a boolean.
    * @param {*} value
@@ -1351,7 +1351,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the given value is a symbol.
    * @param {*} value
@@ -1363,7 +1363,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the given value is a number.
    * @param {*} value
@@ -1375,7 +1375,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the given value is a BigInt.
    * @param {*} value
@@ -1387,7 +1387,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the given value is a string.
    * @param {*} value
@@ -1399,7 +1399,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the given value is a p5.Color instance.
    * @param {*} value
@@ -1411,7 +1411,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the given value is a function.
    * @param {*} value
@@ -1423,7 +1423,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the given value is a p5.Image, p5.Graphics, MediaElement (video), or Framebuffer.
    * @param {*} value
@@ -1435,7 +1435,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the given value is an array.
    * @param {*} value
@@ -1447,7 +1447,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the given value is a generic object (not a color, image, function, or array).
    * @param {*} value
@@ -1464,7 +1464,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // Instance methods
 
   /**
@@ -1479,7 +1479,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the cell at (row, col) is filled.
    * @param {number} row
@@ -1492,7 +1492,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the cell at (row, col) contains a boolean.
    * @param {number} row
@@ -1505,7 +1505,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the cell at (row, col) contains a symbol.
    * @param {number} row
@@ -1518,7 +1518,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the cell at (row, col) contains a number.
    * @param {number} row
@@ -1531,7 +1531,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the cell at (row, col) contains a BigInt.
    * @param {number} row
@@ -1544,7 +1544,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the cell at (row, col) contains a string.
    * @param {number} row
@@ -1557,7 +1557,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the cell at (row, col) contains a color.
    * @param {number} row
@@ -1570,7 +1570,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the cell at (row, col) contains an array.
    * @param {number} row
@@ -1583,7 +1583,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the cell at (row, col) contains an object.
    * @param {number} row
@@ -1596,7 +1596,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the cell at (row, col) contains an image or graphics object.
    * @param {number} row
@@ -1609,7 +1609,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Checks whether the cell at (row, col) contains a function.
    * @param {number} row
@@ -1622,7 +1622,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // MUTATORS
 
   /**
@@ -1640,7 +1640,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Clears cell values in various ways:
    * 1. `clear()` — clears all filled cells.
@@ -1717,7 +1717,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Fills the quadrille using a variety of modes:
    * 1. `fill()` — fills all cells in chessboard pattern using default colors.
@@ -1832,7 +1832,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Internal helper to evaluate a value for a given cell.
    * If the value is a function tagged with `._isFactory`, it is called
@@ -1848,7 +1848,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Clears a cell value before writing a new one into the grid.
    * If the value is a function or object and contains an internal
@@ -1868,7 +1868,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Recursive flood fill using value1 → value2 replacement.
    * Supports 4- or 8-directional movement and optional border fill.
@@ -1903,7 +1903,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Randomly clears or fills cells in the quadrille.
    * - If `value` is `null`, clears `times` filled cells.
@@ -1933,7 +1933,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Randomly rearranges filled cells in the quadrille.
    * Note: For deterministic behavior, call `randomSeed(seed)` explicitly before this method.
@@ -1955,7 +1955,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Inserts an empty row at the given index.
    * @param {number} row - Index to insert the new row.
@@ -1968,7 +1968,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Deletes the row at the given index.
    * @param {number} row - Index of the row to delete.
@@ -1983,7 +1983,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Swaps two rows or two cells in the quadrille.
    * - `swap(row1, row2)` — swaps two rows.
@@ -2011,7 +2011,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Shifts all filled cells by (dRow, dCol) across the grid.
    *  - dRow > 0: down;   dRow < 0: up
@@ -2064,7 +2064,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Inverts filled/empty status in-place.
    * - Filled cells become empty (cleared).
@@ -2083,7 +2083,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Logical AND between this quadrille and another.
    * @param {Quadrille} q Second quadrille
@@ -2101,7 +2101,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Logical OR between this quadrille and another.
    * @param {Quadrille} q Second quadrille
@@ -2122,7 +2122,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Logical XOR between this quadrille and another.
    * @param {Quadrille} q Second quadrille
@@ -2143,7 +2143,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Logical difference (this minus q) between two quadrilles.
    * @param {Quadrille} q Second quadrille
@@ -2161,7 +2161,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Merges another quadrille into this one by applying a binary operator.
    * Uses an in-place fast path when dimensions match and there is no offset.
@@ -2223,7 +2223,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // TRANSFORMS
 
   /**
@@ -2238,7 +2238,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Transposes the quadrille matrix (rows become columns).
    * @returns {Quadrille} The modified quadrille (for chaining).
@@ -2252,7 +2252,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Rotates the quadrille 90 degrees clockwise.
    * @returns {Quadrille} The modified quadrille (for chaining).
@@ -2266,7 +2266,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // REFORMATTER
 
   /**
@@ -2292,7 +2292,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Returns a flattened array representation of the quadrille.
    * @returns {Array<*>}
@@ -2303,7 +2303,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Saves a rendered image of the quadrille using the specified drawing parameters.
    * @param {string} filename - The output filename (PNG or JPG).
@@ -2354,12 +2354,12 @@ class Quadrille {
 
 
 
----
+@@@@@
  = {}
 
 
 
----
+@@@@@
  ) {
     const graphics = this._p.createGraphics(this.width * cellLength, this.height * cellLength, this._mode);
     this._p.drawQuadrille(this, {
@@ -2373,7 +2373,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Returns a FEN (Forsyth–Edwards Notation) string of the quadrille.
    * Only works on 8×8 boards.
@@ -2407,7 +2407,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // INSTANCE CREATORS
 
   /**
@@ -2433,7 +2433,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Crops a rectangular region. Positive/negative width/height control direction.
    * Optionally wraps indices.
@@ -2479,7 +2479,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Returns a new quadrille trimmed to its minimal span of filled cells.
    * Returns undefined if the quadrille has no filled cells.
@@ -2492,7 +2492,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Creates a new square quadrille centered at (row, col) with side = 2*dimension+1.
    * @param {number} row
@@ -2515,7 +2515,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Extracts a single row as a new 1×W Quadrille.
    * @param {number} row
@@ -2529,7 +2529,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // VISUAL ALGORITHMS
 
   /**
@@ -2563,7 +2563,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  _conv(mask, row, col, cache_half_size = (mask.width - 1) / 2, source = this) {
     let r = 0;
     let g = 0;
@@ -2596,7 +2596,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Colorizes a triangle defined by three corners using barycentric interpolation.
    * @param {number} row0
@@ -2620,7 +2620,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Colorizes the quadrille using four corner colors, interpolated over two triangles.
    * @param {*} color0 - Upper-left corner color.
@@ -2635,7 +2635,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Rasterizes a triangle using attribute interpolation and a fragment shader function.
    * @param {number} row0
@@ -2671,7 +2671,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Rasterizes the quadrille using four corner attribute arrays and a shader function.
    * @param {Function} shader - Function to apply per-cell.
@@ -2687,7 +2687,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  _barycentric_coords(row, col, row0, col0, row1, col1, row2, col2) {
     const edges = this._edge_functions(row, col, row0, col0, row1, col1, row2, col2);
     const area = this._parallelogram_area(row0, col0, row1, col1, row2, col2);
@@ -2696,14 +2696,14 @@ class Quadrille {
 
 
 
----
+@@@@@
  _parallelogram_area(row0, col0, row1, col1, row2, col2) {
     return (col1 - col0) * (row2 - row0) - (col2 - col0) * (row1 - row0);
   }
 
 
 
----
+@@@@@
  _edge_functions(row, col, row0, col0, row1, col1, row2, col2) {
     const e01 = (row0 - row1) * col + (col1 - col0) * row + (col0 * row1 - row0 * col1);
     const e12 = (row1 - row2) * col + (col2 - col1) * row + (col1 * row2 - row1 * col2);
@@ -2713,7 +2713,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Sorts cells by color values.
    * Sorting `mode` options are:
@@ -2774,12 +2774,12 @@ class Quadrille {
 
 
 
----
+@@@@@
  = {}
 
 
 
----
+@@@@@
  ) {
     let memory1D = this.toArray();
     const params = {
@@ -2835,7 +2835,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Renders a cell and returns its average RGBA values as a literal object.
    * @param {Object} [params={}] - Sampling parameters.
@@ -2890,12 +2890,12 @@ class Quadrille {
 
 
 
----
+@@@@@
  = {}
 
 
 
----
+@@@@@
  ) {
     const graphics = createGraphics(cellLength, cellLength, renderer);
     graphics.background(background);
@@ -2920,7 +2920,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  // HELPER RENDER FUNCTIONS
 
   static _display(params) {
@@ -2954,7 +2954,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Renders a number value using its color equivalent.
    * @param {Object} params
@@ -2970,19 +2970,19 @@ class Quadrille {
 
 
 
----
+@@@@@
  = {}
 
 
 
----
+@@@@@
  ) {
     this.colorDisplay({ graphics, value: graphics.color(value), cellLength });
   }
 
 
 
----
+@@@@@
  /**
    * Renders a BigInt value using numberDisplay after converting to Number.
    * @param {Object} params
@@ -3000,12 +3000,12 @@ class Quadrille {
 
 
 
----
+@@@@@
  = {}
 
 
 
----
+@@@@@
  ) {
     this.numberDisplay({
       graphics,
@@ -3016,7 +3016,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Renders a color value by filling the cell.
    * @param {Object} params
@@ -3032,12 +3032,12 @@ class Quadrille {
 
 
 
----
+@@@@@
  = {}
 
 
 
----
+@@@@@
  ) {
     graphics.noStroke();
     graphics.fill(value);
@@ -3046,7 +3046,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Renders a function-based cell using an internal framebuffer in WEBGL mode.
    * Also serves as the fallback renderer for any object with a `display` function.
@@ -3072,12 +3072,12 @@ class Quadrille {
 
 
 
----
+@@@@@
  = {}
 
 
 
----
+@@@@@
  ) {
     if (mode === 'webgl') {
       const fbo = (_this ?? value).fbo ??= graphics.createFramebuffer({ width: cellLength, height: cellLength });
@@ -3100,7 +3100,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Renders an image or framebuffer value.
    * @param {Object} params
@@ -3116,12 +3116,12 @@ class Quadrille {
 
 
 
----
+@@@@@
  = {}
 
 
 
----
+@@@@@
  ) {
     const img = value instanceof p5.Framebuffer
       ? (value.graphics ||= graphics) !== graphics
@@ -3134,7 +3134,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Renders a boolean value centered in the cell using `stringDisplay`.
    * Displays ✅ for `true` and ❎ for `false`.
@@ -3157,12 +3157,12 @@ class Quadrille {
 
 
 
----
+@@@@@
  = {}
 
 
 
----
+@@@@@
  ) {
     this.stringDisplay({
       graphics,
@@ -3176,7 +3176,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Renders a string value centered in the cell.
    * @param {Object} params
@@ -3198,12 +3198,12 @@ class Quadrille {
 
 
 
----
+@@@@@
  = {}
 
 
 
----
+@@@@@
  ) {
     textFont && graphics.textFont(textFont)
     graphics.noStroke();
@@ -3215,7 +3215,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  /**
    * Draws the outline (tile) for a cell.
    * @param {Object} params
@@ -3233,12 +3233,12 @@ class Quadrille {
 
 
 
----
+@@@@@
  = {}
 
 
 
----
+@@@@@
  ) {
     if (outlineWeight !== 0) {
       graphics.noFill();
@@ -3250,7 +3250,7 @@ class Quadrille {
 
 
 
----
+@@@@@
  }
 
 // Export the Quadrille class as the default export
@@ -3258,7 +3258,7 @@ export default Quadrille;
 
 
 
----
+@@@@@
  /**
  * @file Adds `createQuadrille` and `drawQuadrille` functions to the p5 prototype.
  * @version 3.4.13
@@ -3280,7 +3280,7 @@ p5.registerAddon((p5, fn) => {
 
 
 
----
+@@@@@
  /**
    * Creates a new Quadrille instance.
    * Supports all constructor forms documented in the API.
@@ -3297,7 +3297,7 @@ p5.registerAddon((p5, fn) => {
 
 
 
----
+@@@@@
  /**
    * Draws the given Quadrille to the canvas or a p5.Graphics context.
    * Supports 2D and WEBGL modes, honoring origin conventions.
@@ -3362,12 +3362,12 @@ p5.registerAddon((p5, fn) => {
 
 
 
----
+@@@@@
  = {}
 
 
 
----
+@@@@@
  ) {
     quadrille._mode = (graphics._renderer instanceof p5.RendererGL) ? 'webgl' : 'p2d';
     // Warn: here we align with p5 conventions
@@ -3407,7 +3407,7 @@ p5.registerAddon((p5, fn) => {
 
 
 
----
+@@@@@
  });
 
 // Export default for ESM and IIFE

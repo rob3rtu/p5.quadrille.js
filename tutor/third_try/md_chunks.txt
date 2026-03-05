@@ -1,211 +1,6 @@
 
 
----
- DOCUMENTATION FOR: README
-
-[![npm version](https://img.shields.io/npm/v/p5.quadrille.svg)](https://www.npmjs.com/package/p5.quadrille)
-[![p5.js](https://img.shields.io/badge/p5.js-ED225D?logo=p5.js&logoColor=white)](https://beta.p5js.org/)
-[![p5.quadrille.js API](https://img.shields.io/badge/p5.quadrille.js_API-ED225D?logo=p5.js&logoColor=white)](https://objetos.github.io/p5.quadrille.js/)<!-- [![Book Draft](https://img.shields.io/badge/Book_Draft-228B22?logo=mdbook)](https://objetos.github.io/docs/) -->
-[![SoftwareX Paper](https://img.shields.io/badge/SoftwareX_Paper-0066CC?logo=livejournal)](https://www.sciencedirect.com/science/article/pii/S2352711024002097)
-[![Blog](https://img.shields.io/badge/Blog-0A0A0A?logo=dev.to&logoColor=white)](https://jpcharalambosh.co/tags/p5.quadrille.js/)
-
-# p5.quadrille.js
-
-Welcome to the **p5.quadrille.js** source code repository. This open-source [p5.js](https://beta.p5js.org/) addon library offers a simple yet powerful API for grid-based creative coding, game design, and visual computing. Most methods are demonstrated with interactive sketches for hands-on exploration.
-
-![Quadrille cells sorted by luminance](p5.quadrille.js.png)
-***Paintings sorted according to their [luma](https://en.wikipedia.org/wiki/Luma_(video)) using quadrille [sort](https://objetos.github.io/p5.quadrille.js/docs/visual_algorithms/sort/)***
-
-- [Usage](#usage)
-  - [CDN](#cdn)
-  - [npm (ESM)](#npm-esm)
-- [Algorithms \& Performance](#algorithms--performance)
-- [Adoption](#adoption)
-- [Releases](#releases)
-- [System Requirements](#system-requirements)
-- [Contribute](#contribute)
-  - [Support](#support)
-  - [Open TODOs](#open-todos)
-- [Further Reading](#further-reading)
-
-# Usage
-
-Using **p5.quadrille.js** can be as minimal or as interactive as you need:
-
-* **2 steps** — storage only: declare and create the quadrille.
-* **3 steps** — add rendering: use `drawQuadrille()` in `draw()`.
-* **4 steps** — add interactivity: call a mutator method (e.g. `fill()`, `clear()`, `replace()`) inside an event like `keyPressed()` or `mousePressed()`.
-
-The library works in two setups:
-
-- **[CDN](#cdn)**: Use the [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) (Immediately Invoked Function Expression) format with `<script>` tags directly in the browser, along with [p5.js](https://beta.p5js.org/).
-- **[npm](#npm-esm)**: Use the [ES module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) version in modern projects with [Vite](https://vitejs.dev/) or another bundler.
-
-## CDN
-
-Include both libraries using `<script>` tags, which run in both [global](https://github.com/processing/p5.js/wiki/Global-and-instance-mode) and [instance mode](https://github.com/processing/p5.js/wiki/Global-and-instance-mode).
-
-```html
-<!-- index.html -->
-<!-- Load p5.js first (required by p5.quadrille.js, latest version) -->
-<script src="https://cdn.jsdelivr.net/npm/p5/lib/p5.min.js"></script>
-<!-- Load p5.quadrille.js (latest stable version) -->
-<script src="https://cdn.jsdelivr.net/npm/p5.quadrille/dist/p5.quadrille.min.js"></script>
-<script>
-  let q // Step 1: Declare
-
-  function setup() {
-    createCanvas(600, 400)
-    q = createQuadrille(6, 4, 10, '🐲') // Step 2: Create
-  }
-
-  function draw() {
-    background(0)
-    drawQuadrille(q) // Step 3: Render
-  }
-
-  function mousePressed() {
-    q.randomize() // Step 4: Interact
-  }
-</script>
-```
-
-You can run the example, which uses global mode, by opening the `index.html` file in a browser, or by using [VSCodium](https://vscodium.com/) (recommended) or [Visual Studio Code](https://code.visualstudio.com/) with the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
-
-## npm (ESM)
-
-Install both [`p5`](https://www.npmjs.com/package/p5) and [`p5.quadrille`](https://www.npmjs.com/package/p5.quadrille) as dependencies:
-
-```bash
-npm i p5 p5.quadrille
-```
-
-Then import them in your project's entry file (e.g., `main.js`) using a modern bundler like [Vite](https://vitejs.dev/), which runs in [instance mode](https://github.com/processing/p5.js/wiki/Global-and-instance-mode) only:
-
-```js
-// main.js
-import p5 from 'p5'
-import Quadrille from 'p5.quadrille'
-
-const sketch = p => {
-  let q // Step 1: Declare
-
-  p.setup = () => {
-    p.createCanvas(600, 400)
-    q = p.createQuadrille(6, 4, 10, '🐲') // Step 2: Create
-  }
-
-  p.draw = () => {
-    p.background(0)
-    p.drawQuadrille(q) // Step 3: Render
-  }
-
-  p.mousePressed = () => {
-    q.randomize() // Step 4: Interact
-  }
-}
-
-new p5(sketch)
-```
-
-This approach gives you full modularity and clean instance isolation using modern JavaScript tooling.
-
-# Algorithms & Performance
-
-Let `n` be the total number of cells in the quadrille.
-
-* **Grid Operations:** `O(n)` — Covers transformations and cell iteration performed with `for...of` loops.  
-- **Image Filtering:** `O(n × k²)` — Where `k` is the kernel width/height (assumed square).  
-- **Pattern Search & Merging:** `O(n × m)` — Where `m` is the number of cells in the pattern or quadrille being searched/merged.  
-- **Drawing:** `O(n)` — Efficient rendering using the p5.js canvas.
-
-**Observations:**
-
-- Optimized for grid-based games and interactive applications, including WebGL-heavy scenarios. Supports rendering JavaScript functions via [`p5.Framebuffer`](https://beta.p5js.org/reference/p5/p5.Framebuffer/) for advanced effects.  
-- Produces deterministic results—identical inputs always yield the same outputs.  
-- Maintains a clear distinction between mutable and immutable methods, promoting API integrity and predictable behavior.
-
-# Adoption
-
-- Tested in real-world scenarios:  
-  – Object-Oriented Programming courses at UNAL.  
-  – National and international game jams with the UNGames group.  
-- Fosters creativity and problem-solving in both classroom and jam settings.  
-- Publicly showcased at [objetos.github.io/docs/showcase](https://objetos.github.io/docs/showcase/), featuring student projects, games, and demos.
-
-# Releases
-
-- **Latest (v3.4.13):**  
-  These links always point to the latest stable version on npm.
-  - [p5.quadrille.js (unminified)](https://cdn.jsdelivr.net/npm/p5.quadrille/dist/p5.quadrille.js)
-  - [p5.quadrille.min.js (minified)](https://cdn.jsdelivr.net/npm/p5.quadrille/dist/p5.quadrille.min.js)
-  - [npm package](https://www.npmjs.com/package/p5.quadrille)
-
-- **Current tagged version (v3.4.13):**  
-  Use these if you want to lock to a specific version.
-  - [p5.quadrille@3.4.13.js (unminified)](https://cdn.jsdelivr.net/npm/p5.quadrille@3.4.13/dist/p5.quadrille.js)
-  - [p5.quadrille@3.4.13.min.js (minified)](https://cdn.jsdelivr.net/npm/p5.quadrille@3.4.13/dist/p5.quadrille.min.js)
-  - [npm package (v3.4.13)](https://www.npmjs.com/package/p5.quadrille/v/3.4.13)
-
-- **Legacy (v2.x):**  
-  GitHub CDN links compatible with p5 v1.
-  - [p5.quadrille.js (GitHub CDN)](https://cdn.jsdelivr.net/gh/objetos/p5.quadrille.js/p5.quadrille.js)
-  - [All GitHub releases](https://github.com/objetos/p5.quadrille.js/releases)
-
-# System Requirements
-
-- **Hardware:** Any modern device—PC, phone, or tablet—with a browser supporting [ES6](https://www.w3schools.com/JS/js_es6.asp) (Firefox 54+, Chrome 51+, Safari 10+, Edge 15+, Opera 38+).  
-- **Software:** Like any p5.js sketch—just include **p5.js** and **p5.quadrille.js** via [local file or CDN](#releases).
-
-**Observation**: The library leverages [p5.js](https://beta.p5js.org/) for rendering and modern browser APIs for performance. [WebGL](https://en.wikipedia.org/wiki/WebGL) enhances 3D/GPU examples but is optional.
-
-# Contribute
-
-Your contributions are welcome!
-
-## Support  
-
-Use the [bug report](https://github.com/objetos/p5.quadrille.js/blob/main/.github/ISSUE_TEMPLATE/bug_report.md) or [feature request](https://github.com/objetos/p5.quadrille.js/blob/main/.github/ISSUE_TEMPLATE/feature_request.md) templates to report issues or suggest new features.
-
-## Open TODOs  
-
-Fork the repo and submit a pull request to help with any of the following ([GitHub Guide](https://docs.github.com/en/get-started/quickstart/contributing-to-projects)):
-
-1. Implement `isPolyomino()`  
-2. Add `perlin()` and `simplex()` noise-based utilities  
-3. Extend `sort()` to support `'webgl'` mode — requires `Framebuffer` support for `sample()` (currently limited to the `P2D` renderer)  
-4. Add `WEBGL` support for `screenRow()` and `screenCol()` — may depend on features from [p5.treegl](https://github.com/VisualComputing/p5.treegl/)
-
-# Further Reading
-
-- [![npm version](https://img.shields.io/npm/v/p5.quadrille.svg)](https://www.npmjs.com/package/p5.quadrille)  
-  Always use the latest version of **p5.quadrille.js** from npm. Supports modern p5.js v2 and includes ESM and IIFE builds.  
-  Install with `npm i p5.quadrille`.
-- [![p5.js](https://img.shields.io/badge/p5.js-ED225D?logo=p5.js&logoColor=white)](https://beta.p5js.org/)  
-  The creative coding library powering this project. From newcomers to advanced users—explore the [reference](https://beta.p5js.org/reference/), [examples](https://beta.p5js.org/examples/), [tutorials](https://beta.p5js.org/learn/), and [libraries](https://beta.p5js.org/libraries/).
-- [![p5.quadrille.js API](https://img.shields.io/badge/p5.quadrille.js_API-ED225D?logo=p5.js&logoColor=white)](https://objetos.github.io/p5.quadrille.js/)  
-  Browse the full API reference, including all methods, usage patterns, and detailed explanations—each with interactive examples. Start with `createQuadrille()` and `drawQuadrille()`, then explore shape manipulation, color handling, I/O, WebGL rendering, and more.
- <!--  
-- [![Book Draft](https://img.shields.io/badge/Book_Draft-228B22?logo=mdbook)](https://objetos.github.io/docs/)  
-  An evolving educational resource covering:  
-  – Object-Oriented and Functional Programming essentials  
-  – Game design principles  
-  – Tutorials & step-by-step guides  
-  – Real-world projects by students and jam participants  
-  – Advanced demos by the author
--->
-- [![SoftwareX Paper](https://img.shields.io/badge/SoftwareX_Paper-0066CC?logo=livejournal)](https://www.sciencedirect.com/science/article/pii/S2352711024002097)  
-  Published in *SoftwareX*. Goes beyond technical documentation—explains the motivation, research hypothesis, design rationale, and internal architecture of **p5.quadrille.js**.
-- [![Source Code](https://img.shields.io/badge/Source_Code-181717?logo=github)](https://github.com/objetos/p5.quadrille.js)  
-  Official GitHub repository.  
-  – Fork the repo and contribute via pull requests ([GitHub Guide](https://docs.github.com/en/get-started/quickstart/contributing-to-projects))  
-  – Use the [bug report](https://github.com/objetos/p5.quadrille.js/blob/main/.github/ISSUE_TEMPLATE/bug_report.md) or [feature request](https://github.com/objetos/p5.quadrille.js/blob/main/.github/ISSUE_TEMPLATE/feature_request.md) templates for support
-- [![Blog](https://img.shields.io/badge/Blog-0A0A0A?logo=dev.to&logoColor=white)](https://jpcharalambosh.co/tags/p5.quadrille.js/)  
-  Experimental features, new ideas, and early previews shaping future versions of the library.
-
-
-
----
+@@@@@
  DOCUMENTATION FOR: to fen
 
 Generates a string in Forsyth–Edwards Notation ([FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation)) representing the current position of the chess board.
@@ -216,7 +11,7 @@ Generates a string in Forsyth–Edwards Notation ([FEN](https://en.wikipedia.org
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: to image
 
 Returns a [p5.Image](https://p5js.org/reference/#/p5.Image) representation of this quadrille.
@@ -251,7 +46,7 @@ Returns a [p5.Image](https://p5js.org/reference/#/p5.Image) representation of th
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: to array
 
 Returns a [row-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_order) array of the quadrille cells (refer to [createQuadrille()](/docs/p5-fx/create_quadrille) for all the possible cell contents). The resulting array has [width]({{< ref "width" >}}) `*` [height]({{< ref "height" >}}) dimensions.
@@ -262,7 +57,7 @@ Returns a [row-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: to bigint
 
 Returns a [bitboard](https://en.wikipedia.org/wiki/Bitboard)—encoded as a JavaScript [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)—that represents the filled cells of the quadrille.
@@ -285,7 +80,7 @@ Use `littleEndian = true` to reverse the bit order, so the top-left cell becomes
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 **Reformatter methods** enable the conversion of a `quadrille` into various formats, such as [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), [images](https://p5js.org/reference/#/p5.Image), and array-based data structures. These methods ensure seamless transitions and promote interoperability between `quadrille` instances and other data representations, making it easier to integrate quadrilles into different workflows.  
@@ -302,7 +97,7 @@ These reformatter methods provide versatile tools for exporting and working with
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: filter
 
 Apply [convolution mask](https://en.wikipedia.org/wiki/Kernel_%28image_processing%29) filter either to the whole quadrille or at specific `(row, col)` cell.
@@ -588,7 +383,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: colorize triangle
 
 Colorize the triangle defined by vertices `vertex0 (row0, col0)`, `vertex1 (row1, col1)`, and `vertex2 (row2, col2)`, using [barycentric coordinates](https://fgiesen.wordpress.com/2013/02/06/the-barycentric-conspirac/) to interpolate `color0`, `color1` and `color2`. Implemented as:
@@ -750,7 +545,7 @@ function randomize() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: sample
 
 Sample cell as the `{r, g, b, a, total}` object literal. Used by the [sort]({{< ref "sort" >}}) algorithm. For instance `LUMA` sorting is [implemented](https://github.com/objetos/p5.quadrille.js/blob/main/p5.quadrille.js#L1017) as follows:
@@ -799,7 +594,7 @@ Use this method to implementing other sorting criteria of the `quadrille` cells.
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: rasterize triangle
 
 Rasterize the triangle defined by vertices `(row0, col0)`, `(row1, col1)`, and `(row2, col2)`, using [barycentric coordinates](https://fgiesen.wordpress.com/2013/02/06/the-barycentric-conspirac/). The user provided [software rendered](https://en.wikipedia.org/wiki/Software_rendering) [(fragment) shader](https://en.wikipedia.org/wiki/Shader) is a function parameterized with the object literal `{ array: interpolated_data_array, row: i, col: j }` and that should return a [p5.Color](https://p5js.org/reference/#/p5.Color). Refer to the [colorizeTriangle()]({{< ref "colorize_triangle" >}}) method for an example.
@@ -961,7 +756,7 @@ function randomize() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: colorize
 
 Colorize quadrille according to upper-left corner `color0`, bottom-left corner `color1`, upper-right corner `color2`, and bottom-right corner `color3` colors. Call [colorizeTriangle()]({{< ref "colorize_triangle" >}}) on the two non-overlapping triangles entirely covering the quadrille.
@@ -1020,7 +815,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: rasterize
 
 Rasterize quadrille according to upper-left corner vertex `array0`, bottom-left corner vertex `array1`, upper-right corner vertex `array2`, and bottom-right corner vertex `array3`,  using (fragment) `shader`. Call [rasterizeTriangle()]({{< ref "rasterize_triangle" >}}) on the two non-overlapping triangles entirely covering the quadrille.
@@ -1118,7 +913,7 @@ function colorizeShader({ array: rgb }) {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: sort
 
 Sort source cells according to their coloring.
@@ -1219,7 +1014,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 The **visual algorithms** suite comprises methods that manipulate and visually represent data within `quadrille` cells. Functions such as [filter]({{< relref "filter" >}}) for image convolutions, [rasterize]({{< relref "rasterize" >}}) for software-based barycentric interpolations, and [sort]({{< relref "sort" >}}) for arranging cells based on visual criteria enable the creation of dynamic and interactive visualizations. These methods collectively transform the quadrille into an interactive canvas for illustrating and navigating visual computing concepts, offering an intuitive way to explore algorithms for rasterization, image processing, and data sorting.
@@ -1251,7 +1046,7 @@ The **visual algorithms** suite provides essential tools for working with raster
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 **Accessor methods** are powerful tools for extracting information or creating modified versions of a `quadrille` instance. These methods are strictly **non-mutative**, ensuring the original quadrille remains unchanged while offering detailed insights or generating derivative instances.
@@ -1269,7 +1064,7 @@ Through these categories, accessor methods provide a comprehensive way to analyz
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: crop
 
 Returns the rectangular **region** anchored at `(row, col)` as a **new quadrille**.  
@@ -1447,7 +1242,7 @@ function update() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: ring
 
 Returns a new quadrille representing the **square ring of neighboring cells** of radius `dimension` centered at `(row, col)`. When `wrap` is `true`, indices wrap toroidally across borders; when `false` (default), out-of-bounds positions are treated as empty. The result has size `(2·dimension + 1) × (2·dimension + 1)`.
@@ -1576,7 +1371,7 @@ function update() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: clone
 
 Returns a [shallow copy](https://en.wikipedia.org/wiki/Object_copying#Shallow_copy) of the quadrille.
@@ -1657,7 +1452,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: row.es
 
 Devuelve una fila como una nueva cuadrícula.
@@ -1739,7 +1534,7 @@ function mouseMoved() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: row
 
 Returns a row as a new quadrille.
@@ -1821,7 +1616,7 @@ function mouseMoved() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 _Instance accessors_ generate new `quadrille` instances derived from the original. These methods allow you to create modified versions while preserving the original quadrille’s state:  
@@ -1833,7 +1628,7 @@ _Instance accessors_ generate new `quadrille` instances derived from the origina
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: is valid
 
 Checks if the specified cell coordinates `(row, col)` lie within quadrille bounds, i.e., returns `true` if `row` `∈` [[0..height]]({{< ref "height" >}}) and `col` `∈` [[0..width]]({{< ref "width" >}}), and `false` otherwise.
@@ -1855,7 +1650,7 @@ To check bounds individually, you can call `quadrille.isValid(row, 0)` to test o
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: is color
 
 Returns `true` if the cell found at `(row, col)` is a [color](https://p5js.org/reference/#/p5.Color) and `false` otherwise.
@@ -1877,7 +1672,7 @@ Also available as the static method `Quadrille.isColor(value)`, which takes a `v
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: is filled
 
 Returns `true` if the cell found at `(row, col)` is filled and `false` otherwise. Cells not defined as `null` are considered filled.
@@ -1899,7 +1694,7 @@ Also available as the static method `Quadrille.isFilled(value)`, which takes a `
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: is string
 
 Returns `true` if the cell found at `(row, col)` is a string and `false` otherwise.
@@ -1921,7 +1716,7 @@ Also available as the static method `Quadrille.isString(value)`, which takes a `
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: is empty
 
 Returns `true` if the cell found at `(row, col)` is empty and `false` otherwise. Only cells defined as `null` are considered empty.
@@ -1943,7 +1738,7 @@ Also available as the static method `Quadrille.isEmpty(value)`, which takes a `v
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: read
 
 Returns the contents of the quadrille cell at `(row, col)`. Returns `undefined` if the cell doesn't exist.
@@ -1961,7 +1756,7 @@ Returns the contents of the quadrille cell at `(row, col)`. Returns `undefined` 
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: is object
 
 Returns `true` if the cell at `(row, col)` contains a value that qualifies as an object, excluding specific types such as [colors]({{< relref "is_color" >}}), [images]({{< relref "is_image" >}}), [arrays]({{< relref "is_array" >}}), or [functions]({{< relref "is_function" >}}), and `false` otherwise.
@@ -1983,7 +1778,7 @@ Also available as the static method `Quadrille.isObject(value)`, which takes a `
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: is number
 
 Returns `true` if the cell found at `(row, col)` has a number and `false` otherwise.
@@ -2005,7 +1800,7 @@ Also available as the static method `Quadrille.isNumber(value)`, which takes a `
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: is array
 
 Returns `true` if the cell found at `(row, col)` is an array and `false` otherwise.
@@ -2027,7 +1822,7 @@ Also available as the static method `Quadrille.isArray(value)`, which takes a `v
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: is function
 
 Returns `true` if the cell found at `(row, col)` is a function and `false` otherwise.
@@ -2049,7 +1844,7 @@ Also available as the static method `Quadrille.isFunction(value)`, which takes a
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: is bigint
 
 Returns `true` if the cell at `(row, col)` contains a bigint; otherwise, returns `false`.
@@ -2071,7 +1866,7 @@ Also available as the static method `Quadrille.isBigInt(value)`, which takes a `
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: is image
 
 Returns `true` if the cell at `(row, col)` contains a valid image-related type such as an [image](https://p5js.org/reference/#/p5.Image), [graphics](https://p5js.org/reference/#/p5.Graphics), or [framebuffer](https://p5js.org/reference/#/p5.Framebuffer), or if it is a [video](https://p5js.org/reference/#/p5.MediaElement) element, and `false` otherwise.
@@ -2093,7 +1888,7 @@ Also available as the static method `Quadrille.isImage(value)`, which takes a `v
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: is symbol
 
 Returns `true` if the cell at `(row, col)` contains a [symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol); otherwise, returns `false`.
@@ -2115,7 +1910,7 @@ Also available as the static method `Quadrille.isSymbol(value)`, which takes a `
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 These methods focus on determining the **value** and **type** of cells at a specific `(row, col)` position:  
@@ -2399,7 +2194,7 @@ function pulse() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: is boolean
 
 Returns `true` if the cell at `(row, col)` contains a boolean; otherwise, returns `false`.
@@ -2421,7 +2216,7 @@ Also available as the static method `Quadrille.isBoolean(value)`, which takes a 
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: search
 
 Searches for `pattern` within this quadrille and returns an array of `{row, col}` matches. The array length may be 0 if no matches are found. In `strict` mode (i.e., `strict = true`), for a `pattern` to be successfully found within a `quadrille`, the values inside the `pattern` must be identical instances to those in the `quadrille`. Conversely, in non-`strict` mode (i.e., `strict = false`), only the presence of filled cells is required, without regard for their contents.
@@ -2656,7 +2451,7 @@ function update() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: screen row
 
 Returns the quadrille row to which the screen space `pixelY` coordinate belong.
@@ -2680,7 +2475,7 @@ Returns the quadrille row to which the screen space `pixelY` coordinate belong.
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: bit index
 
 Returns the bit index of the cell at `(row, col)` when the quadrille is encoded into a [bitboard](https://en.wikipedia.org/wiki/Bitboard) using row-major ordering.  
@@ -2722,7 +2517,7 @@ Also available as the static method `Quadrille.bitIndex(row, col, width = 8, hei
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: magnitude
 
 Returns the number of non-empty cells of a given quadrille row.
@@ -2780,7 +2575,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: screen col
 
 Returns the quadrille col to which the screen space `pixelX` coordinate belong.
@@ -2804,7 +2599,7 @@ Returns the quadrille col to which the screen space `pixelX` coordinate belong.
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 These non-mutative methods provide detailed information about a given `quadrille`:  
@@ -2816,7 +2611,7 @@ These non-mutative methods provide detailed information about a given `quadrille
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: bit cell
 
 Returns the `(row, col)` coordinates of the cell corresponding to a given `bitIndex` in a [bitboard](https://en.wikipedia.org/wiki/Bitboard), assuming row-major ordering.  
@@ -2857,7 +2652,7 @@ Also available as the static method `Quadrille.bitCell(bitIndex, width = 8, heig
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: insert
 
 Inserts an empty row into the quadrille.
@@ -2936,7 +2731,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: shift
 
 Shifts cells by a **row/column offset**. Returns this quadrille (**chainable**).
@@ -3106,7 +2901,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: randomize
 
 Randomly re-arranges the quadrille cells.
@@ -3175,7 +2970,7 @@ For deterministic (repeatable) randomness, explicitly call [randomSeed(seed)](ht
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: delete
 
 Deletes a row from the quadrille.
@@ -3254,7 +3049,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 **Mutator methods** allow you to directly modify the state of the `quadrille` they are called upon. These transformations are persistent and update the `quadrille` instance **in-place**.
@@ -3290,7 +3085,7 @@ quadrille.randomize();
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: fill row col value directions border
 
 Fills a specific cell and all connected cells in the quadrille with the specified `value`, based on the given `directions` and `border` options, using a [flood fill](https://en.wikipedia.org/wiki/Flood_fill) algorithm.
@@ -3419,7 +3214,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: fill predicate value
 
 Fills cells matching a predicate condition with the specified `value`.
@@ -3504,7 +3299,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: fill row col value
 
 Fills a specific cell in the quadrille with the specified `value`.
@@ -3591,7 +3386,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: fill bitboard value
 
 Fills the quadrille based on a [bitboard](https://en.wikipedia.org/wiki/Bitboard) pattern passed as a JavaScript `BigInt`. Each `1` bit in the binary representation corresponds to a filled cell with the given `value`. The bitboard is read in row-major order, using big-endian by default.
@@ -3668,7 +3463,7 @@ function mousePressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: fill row col value border
 
 Fills a specific cell and all connected cells in the quadrille with the specified `value` using a [flood fill](https://en.wikipedia.org/wiki/Flood_fill) algorithm. The `border` parameter determines if the fill includes the boundary of the flood fill area.
@@ -3768,7 +3563,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: fill noargs
 
 Fills all cells in the quadrille with a chessboard pattern.
@@ -3845,7 +3640,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: fill color color
 
 Fills all cells in the quadrille with a chessboard pattern.
@@ -3923,7 +3718,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: fill row value
 
 Fills an entire row in the quadrille with the specified `value`.
@@ -4007,7 +3802,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: fill value
 
 Fills all empty cells in the quadrille with the specified `value`.
@@ -4098,7 +3893,7 @@ Empty cells appear black because the background is set to black (`background(0)`
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 Fills quadrille cells in several ways: 1. Without value: as a chessboard; or, 2. With `value`: in current empty cells, a specific cell, a designated row, or a group of matching cells using [flood fill](https://en.m.wikipedia.org/wiki/Flood_fill).
@@ -4109,7 +3904,7 @@ Fills quadrille cells in several ways: 1. Without value: as a chessboard; or, 2.
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: fill row col value directions
 
 Fills a specific cell and all connected cells in the quadrille with the specified `value`, based on the given `directions` using a [flood fill](https://en.wikipedia.org/wiki/Flood_fill) algorithm.
@@ -4209,7 +4004,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: swap cell1 cell2
 
 Swaps the contents of the cell at `(row1, col1)` with the cell at `(row2, col2)` in the `quadrille`.
@@ -4336,7 +4131,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: swap row1 row2
 
 Swaps the contents of `row1` and `row2` in the `quadrille`.
@@ -4455,14 +4250,14 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 Either swaps the contents of two cells of two rows.
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: clear noargs
 
 Clears all cells in the quadrille, setting each cell to empty (i.e., `null`).
@@ -4545,7 +4340,7 @@ Empty cells appear black because the background is set to black (`background(0)`
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: clear bitboard
 
 Clears the cells of the quadrille according to a [bitboard](https://en.wikipedia.org/wiki/Bitboard) passed as a JavaScript `BigInt`. Each `1` bit in the binary representation corresponds to a cell to be cleared (set to `null`). The bitboard is read in row-major order, using big-endian by default.
@@ -4624,7 +4419,7 @@ function mousePressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: clear predicate
 
 Clears all cells that match a given condition, setting their values to `null`.
@@ -4706,7 +4501,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: clear row col
 
 Clears a specific cell in the quadrille, setting it to empty (i.e., `null`).
@@ -4790,7 +4585,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: clear row col border
 
 Clears a specific cell and all connected cells in the quadrille using a [flood fill](https://en.wikipedia.org/wiki/Flood_fill) algorithm. The `border` parameter determines if the clearing includes the boundary of the flood fill area.
@@ -4887,7 +4682,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: clear row col directions
 
 Clears a specific cell and all connected cells in the quadrille based on the specified `directions`, using a [flood fill](https://en.wikipedia.org/wiki/Flood_fill) algorithm.
@@ -4984,7 +4779,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: clear row
 
 Clears an entire row in the quadrille, setting each cell in the row to empty (i.e., `null`).
@@ -5065,7 +4860,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: clear row col directions border
 
 Clears a specific cell and all connected cells in the quadrille based on the specified `directions`, using a [flood fill](https://en.wikipedia.org/wiki/Flood_fill) algorithm. The `border` parameter determines if the clearing includes the boundary of the flood fill area.
@@ -5191,7 +4986,7 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 Clears quadrille cells (i.e., sets cells to `null`). Either all cells, a given cell, a given `row` or a set of identical cells using [flood fill](https://en.m.wikipedia.org/wiki/Flood_fill) or all cells.
@@ -5202,7 +4997,7 @@ Use `clear` instead of [fill]({{< relref "fill" >}}) to set cells to `null`.
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: replace value1 value2
 
 Replaces all cells containing `value1` with `value2` in the quadrille. 
@@ -5306,7 +5101,7 @@ To replace `value1` with `value2`, all cells containing `value1` must share the 
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: replace value
 
 Replaces all non-empty cells in the quadrille with the specified `value`.
@@ -5393,14 +5188,14 @@ function reset() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 Either replaces non empty cells with `value`, or `value1` filled cells with `value2`.
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: rand times
 
 Randomly clears `times` number of cells in the quadrille. Same as [random(times, null)]({{< ref "rand_times_value" >}}).
@@ -5483,7 +5278,7 @@ For deterministic (repeatable) randomness, explicitly call [randomSeed(seed)](ht
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: rand times value
 
 Randomly fills the quadrille with the specified `value` a given number of `times`.
@@ -5583,7 +5378,7 @@ For deterministic (repeatable) randomness, explicitly call [randomSeed(seed)](ht
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 Randomly [fills]({{< relref "rand_times_value" >}}) or [clears]({{< relref "rand_times" >}}) a specified number of times cells in the quadrille.
@@ -5594,7 +5389,7 @@ For deterministic (repeatable) randomness, explicitly call [randomSeed(seed)](ht
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 The [p5.js](https://p5js.org/) functions provide seamless tools to **create** and **draw** **quadrille** objects. Whether you're building board games, designing generative visuals, or managing cell-based data, these functions serve as a bridge between the p5.js canvas and the **quadrille object**—the core structure of the **p5.quadrille.js** library.
@@ -5607,7 +5402,7 @@ Alongside the [p5.js API](https://p5js.org/reference/), these functions allow yo
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille jagged array
 
 The `createQuadrille` function creates a **quadrille** and fills its cells using items from a [jagged_array](https://en.wikipedia.org/wiki/Jagged_array). The array can contain any combination of [valid JavaScript values](https://www.w3schools.com/js/js_datatypes.asp), with `null` representing empty cells.
@@ -6062,7 +5857,7 @@ Function cells are the preferred choice in this API's examples while occasionall
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille width array
 
 The `createQuadrille(width, array)` function creates a **quadrille** with a specified number of columns (`width`) and fills its cells using items from the provided `array`. The items are arranged sequentially across the specified columns, creating one or more rows as needed. The array can contain any combination of [valid JavaScript values](https://www.w3schools.com/js/js_datatypes.asp), with `null` representing empty cells.
@@ -6125,7 +5920,7 @@ The `createQuadrille(width, array)` function lets you specify the number of colu
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille width bigint value
 
 Creates a quadrille by decoding a [bitboard](https://en.wikipedia.org/wiki/Bitboard)—passed as a JavaScript `BigInt`—into a rectangular quadrille. Each bit in the bitboard determines whether a corresponding cell is filled (`1`) or empty (`0`). The number of columns is set by `width`, and rows are inferred as needed.
@@ -6270,7 +6065,7 @@ To define different values in `createQuadrille(width, bigint, value)`, refer to 
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille width image
 
 Converts an `image` (a [p5.Image](https://p5js.org/reference/#/p5.Image), [p5.Graphics](https://p5js.org/reference/#/p5.Graphics)) or video [p5.MediaElement](https://p5js.org/reference/p5/p5.MediaElement/) into a quadrille with the specified number of columns (`width`), pixelating the image into cells.
@@ -6331,7 +6126,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille width height predicate value
 
 Creates a quadrille of the specified size and fills each cell **only if** the given `predicate({ row, col })` returns true. The filled cells are assigned the provided `value`.
@@ -6391,7 +6186,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille FEN
 
 Creates a quadrille with the chess board position described by the given [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation).
@@ -6555,7 +6350,7 @@ Quadrille.chessKeys.get('♔');    // 'K'
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille string
 
 Creates a quadrille and fills its cells using the characters from the provided `string`. The number of columns in the quadrille matches the length of the string.
@@ -6609,7 +6404,7 @@ The `createQuadrille(string)` function fills a quadrille with each character of 
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille width image coherence
 
 Converts an `image` (a [p5.Image](https://p5js.org/reference/#/p5.Image), [p5.Graphics](https://p5js.org/reference/#/p5.Graphics), or a video [p5.MediaElement](https://p5js.org/reference/p5/p5.MediaElement/)) into a pixelated quadrille. The `coherence` parameter **must be provided** to control spatial coherence; omitting it invokes [createQuadrille(width, image)]({{< relref "create_quadrille_width_image" >}}).
@@ -6691,7 +6486,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille width height
 
 Creates an empty quadrille having `width` number of columns and `height` number of rows.
@@ -6756,7 +6551,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille width string
 
 Creates a quadrille and fills its cells using the characters from the provided `string`. The number of columns is defined by `width`, and the characters are arranged across multiple rows if necessary.
@@ -6811,7 +6606,7 @@ The `createQuadrille(width, string)` function allows you to control the number o
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille width height order value
 
 Creates a quadrille and fills its cells using the specified `value`, which is randomly repeated throughout the quadrille up to `order` number of times. The dimensions of the quadrille are determined by `width` and `height`.
@@ -6870,7 +6665,7 @@ To define different values in `createQuadrille(width, height, order, value)`, re
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille noargs
 
 Creates an 8x8 quadrille with a chessboard pattern.
@@ -6954,7 +6749,7 @@ The following parameters are static fields of the `Quadrille` class, meaning the
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille array
 
 The `createQuadrille` function creates a **quadrille** and fills its cells using items from the `array` as the source. The array can contain any combination of [valid JavaScript values](https://www.w3schools.com/js/js_datatypes.asp), with `null` representing empty cells.
@@ -7016,7 +6811,7 @@ The `createQuadrille(array)` function lets you populate a quadrille with any val
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 The `p5.createQuadrille` method is a [polymorphic](https://en.wikipedia.org/wiki/Ad_hoc_polymorphism) function that generates a [quadrille](https://en.wikipedia.org/wiki/Square_tiling) object. Each cell in a quadrille can hold any [valid JavaScript value](https://www.w3schools.com/js/js_datatypes.asp), such as `numbers`, `strings`, `arrays`, `objects`, `functions`, or `null` (representing an empty cell), including p5-specific types like [p5.Color](https://p5js.org/reference/p5/p5.Color), [p5.Image](https://p5js.org/reference/p5/p5.Image), and [p5.Graphics](https://p5js.org/reference/p5/p5.Graphics). If a cell is created with an `undefined` value, it is automatically converted to `null` to ensure consistency.
@@ -7025,7 +6820,7 @@ The `p5.createQuadrille` function enforces a key [invariant](https://en.wikipedi
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille width height bigint value
 
 Creates a quadrille by decoding a [bitboard](https://en.wikipedia.org/wiki/Bitboard)—passed as a JavaScript `BigInt`—into a fixed-size rectangular quadrille. Each bit in the bitboard determines whether a corresponding cell is filled (`1`) or empty (`0`). The number of columns is set by `width`, and the number of rows is explicitly set by `height`.
@@ -7191,7 +6986,7 @@ This layout matches **little-endian rank-file ordering** as used in engines like
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: create quadrille color color
 
 Creates an 8x8 quadrille with a chessboard pattern.
@@ -7260,7 +7055,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: x y
 
 The `x` and `y` parameters define the upper-left corner where the quadrille is drawn, in pixels.
@@ -7318,7 +7113,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: display fns
 
 Display functions determine how quadrille cells are visually rendered based on their values. To disable a specific display function, assign it a value of `0` or `null`.
@@ -7459,7 +7254,7 @@ This example overrides the default square tiling by supplying JavaScript [arrow 
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: outline
 
 Defines the default outline color used for drawing the quadrille cells. The default value is `Quadrille.outline`, which is `'OrangeRed'`.
@@ -7552,7 +7347,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: text color
 
 Defines the default text color used for drawing the quadrille cells. The default value is `Quadrille.textColor`, which is `'DodgerBlue'`.
@@ -7641,7 +7436,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: cell length
 
 Defines the drawing cell length for quadrilles in pixels. The default is `Quadrille.cellLength`, which is `100`.
@@ -7732,7 +7527,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: origin
 
 The `origin` parameter defines the top-left corner of the quadrille for drawing: `CORNER` positions it at the top-left corner of the canvas, the default in `P2D`; `CENTER` positions it at the center of the canvas, the default in `WEBGL`.
@@ -7807,7 +7602,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: filter prop
 
 Filters which cells to draw from a given quadrille `q`. It accepts the following types:
@@ -8113,7 +7908,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: row col
 
 The `row` and `col` parameters define the position of the upper-left corner where the quadrille is drawn, in row and column units.
@@ -8175,7 +7970,7 @@ The [mouseRow]({{< ref "mouse_row" >}}) and [mouseCol]({{< ref "mouse_col" >}}) 
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: graphics
 
 The `graphics` parameter renders quadrilles onto a custom [p5.Graphics](https://p5js.org/reference/#/p5.Graphics) buffer, enabling flexible compositing and advanced texturing.
@@ -8358,7 +8153,7 @@ The **`WEBGL` mode** in **`p5.js`** has a **higher carbon footprint** due to its
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: outline weight
 
 Defines the default outline weight (stroke thickness) for drawing the quadrille cells. The default value is `Quadrille.outlineWeight`, which is `2`.
@@ -8449,7 +8244,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: text zoom
 
 Defines the default text zoom level for quadrille cells. The default is `Quadrille.textZoom`, which is `0.89`.
@@ -8540,7 +8335,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 The `drawQuadrille` function is used to render a quadrille onto the canvas or a specified graphics buffer. It provides various parameters for customizing the appearance and behavior of the drawn quadrille, including cell dimensions, colors, and display styles.
@@ -8616,7 +8411,7 @@ The remaining parameters in the `{ options }` object use their default values, m
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: text font
 
 Defines the default font used for drawing the text in quadrille cells. The default is the current font set in p5.js.
@@ -8697,7 +8492,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: transpose
 
 [Transposes](https://en.wikipedia.org/wiki/Transpose) the quadrille cells.
@@ -8764,7 +8559,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: reflect
 
 Horizontal reflection of the quadrille cells.
@@ -8827,7 +8622,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: rotate
 
 π/2 clockwise rotation of the quadrille cells.
@@ -8890,7 +8685,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 **Transform methods** modify the geometry of a `quadrille` by altering the spatial arrangement of its cells. Operations such as [rotation]({{< relref "rotate" >}}), [reflection]({{< relref "reflect" >}}), and [transposition]({{< relref "transpose" >}}) enable precise and dynamic transformations of the quadrille’s structure.  
@@ -8919,7 +8714,7 @@ These transformation methods provide intuitive tools for reshaping a quadrille's
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 The **Quadrille** object includes a robust set of **properties** designed to facilitate both state inspection and dynamic configuration. These properties are neatly divided into **read-only** and **read/write** categories, offering intuitive control over the quadrille's behavior and layout. The read-only properties provide valuable insights, while the read/write properties enable direct modifications to shape and content.
@@ -8934,7 +8729,7 @@ These properties can be easily accessed and manipulated using JavaScript's **dot
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: width
 
 Quadrille width read-write property.
@@ -8997,7 +8792,7 @@ function mouseMoved() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: height.es
 
 Propiedad de lectura y escritura de la altura de la cuadrícula.
@@ -9076,7 +8871,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: height
 
 Quadrille height read-write property.
@@ -9139,7 +8934,7 @@ function mouseMoved() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 Read/write properties can be both accessed and modified, allowing dynamic control over the quadrille's dimensions and content:  
@@ -9149,7 +8944,7 @@ Read/write properties can be both accessed and modified, allowing dynamic contro
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: memory 2d
 
 Quadrille memory read-write property. Always returns a square array where empty cells are filled with `null` (even if they are filled with `undefined` when the `memory2D` is set).
@@ -9239,7 +9034,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: mouse row
 
 Read-only property that retrieves the quadrille row under the current mouse position.
@@ -9292,7 +9087,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: mouse col
 
 Read-only property that retrieves the quadrille col under the current mouse position.
@@ -9345,7 +9140,7 @@ function draw() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: size
 
 Read-only property that retrieves the quadrille width times the quadrille height.
@@ -9410,7 +9205,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: order
 
 Read-only property that retrieves the quadrille non-empty number of cells.
@@ -9494,7 +9289,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 Read-only properties provide insights into the quadrille's current state and cannot be directly modified:  
@@ -9506,7 +9301,7 @@ Read-only properties provide insights into the quadrille's current state and can
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: diff
 
 Returns a new quadrille with all the filled cells from the `q1` quadrille but not from the `q2` quadrille.
@@ -9614,7 +9409,7 @@ Observe that the dimensions of the resulting `q3` quadrille **span the minimum a
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: xor
 
 Returns a new quadrille containing all the filled cells from either the `q1` or `q2` quadrille, but not from both.
@@ -9722,7 +9517,7 @@ Observe that the dimensions of the resulting `q3` quadrille **span the minimum a
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: not
 
 Returns a new quadrille by clearing `q` quadrille filled cells, and filling its empty cells with `value` (any data type instance but `undefined`).
@@ -9789,7 +9584,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: and
 
 Returns a new quadrille containing all the filled cells from both `q1` and `q2` quadrilles, with `q1` cells taking precedence.
@@ -9897,7 +9692,7 @@ Observe that the dimensions of the resulting `q3` quadrille **span the minimum a
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: merge
 
 Static method that computes a new quadrille by applying a specified logical `operator` to each corresponding cell of two given quadrilles. This method serves as the foundation for higher-level logical operations, such as [or]({{< ref "or" >}}), [xor]({{< ref "xor" >}}), [and]({{< ref "and" >}}), and [diff]({{< ref "diff" >}}).
@@ -10035,7 +9830,7 @@ function keyPressed() {
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 The **quadrille algebra** provides a suite of [static methods](https://developer.mozilla.org/en-US/docs/Glossary/Static_method) for applying logical operations to `quadrille` instances. Inspired by [constructive solid geometry](https://en.wikipedia.org/wiki/Constructive_solid_geometry) and [boolean algebra](https://en.wikipedia.org/wiki/Boolean_algebra), these methods combine and manipulate quadrilles, leading to **new quadrilles** as an aggregation of others.  
@@ -10060,7 +9855,7 @@ All algebra methods also have **destructive, chainable instance** forms: they mu
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: or
 
 Returns a new quadrille containing all the filled cells from the `q1` quadrille or `q2` quadrille, or both, with `q1` cells taking precedence.
@@ -10168,7 +9963,7 @@ Observe that the dimensions of the resulting `q3` quadrille **span the minimum a
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: visit collection
 
 Iterates cells in **row-major** order and calls `callback({ row, col, value })` for each cell whose value is contained in `collection` (`Array` or `Set`). Reading and mutating the grid inside the callback is allowed.
@@ -10266,7 +10061,7 @@ visit(callback, collection)
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: visit
 
 Iterates **all cells** in row-major order and calls `callback({ row, col, value })` for each. Reading and mutating the grid inside the callback is allowed.
@@ -10347,7 +10142,7 @@ visit(callback)
 
 
 
----
+@@@@@
  DOCUMENTATION FOR: visit predicate
 
 Iterates cells in **row-major** order and calls `callback({ row, col, value })` for each cell where `predicate({ row, col, value })` returns `true`. Reading and mutating the grid inside the callback is allowed.
@@ -10447,7 +10242,7 @@ visit(callback, predicate)
 
 
 
----
+@@@@@
  DOCUMENTATION FOR:  index
 
 The `visit` method provides a single high-level mechanism to traverse a quadrille in **row-major** order (rows `0..height-1`, within each row columns `0..width-1`). The callback is invoked with `{ row, col, value }`, may read or mutate cells, and iteration **stops early** if the callback returns `false`. Traversal can apply to **all cells**, or be restricted by a **collection** of allowed values or a **predicate** function, encouraging a [declarative programming](https://en.wikipedia.org/wiki/Declarative_programming) approach.

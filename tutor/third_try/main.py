@@ -166,12 +166,12 @@ class RagClass:
         # debug and analysis
         with open("js_chunks.txt", "w") as f:
             for chunk in self.dataset_js:
-                f.write(f'\n\n---\n {chunk}\n\n')
+                f.write(f'\n\n@@@@@\n {chunk}\n\n')
 
         # debug and analysis
         with open("md_chunks.txt", "w") as f:
             for chunk in self.dataset_md:
-                f.write(f'\n\n---\n {chunk}\n\n')
+                f.write(f'\n\n@@@@@\n {chunk}\n\n')
 
     def add_chunks_to_db(self):
         """ Create ambeddings and add them to vector db alonside their coresponsing chunk """
@@ -180,7 +180,7 @@ class RagClass:
             self.VECTOR_DB_JS.append((chunk, embedding))
         
         for chunk in self.dataset_md:
-            embedding = ollama.embed(model=self.EMBEDDING_MODEL, input=chunk)['embeddings'][0]
+            embedding = ollama.embed(model=self.EMBEDDING_MODEL, input=chunk, truncate=True)['embeddings'][0]
             self.VECTOR_DB_MD.append((chunk, embedding))
             
         print(f'Added {len(self.VECTOR_DB_JS)} JS chunks and {len(self.VECTOR_DB_MD)} MD chunks.')
@@ -292,12 +292,12 @@ class RagClass:
 
 rag = RagClass()
 rag.load_dataset()
-# rag.add_chunks_to_db()
+rag.add_chunks_to_db()
 
-# print("✅ The model is ready, please ask a question about p5.quadrille.js")
-# while True:
-#     q = input(f"\n\n❔ Ask {rag.LANGUAGE_MODEL}: ")
-#     if q == "q":
-#         break
+print("✅ The model is ready, please ask a question about p5.quadrille.js")
+while True:
+    q = input(f"\n\n❔ Ask {rag.LANGUAGE_MODEL}: ")
+    if q == "q":
+        break
 
-#     rag.ask(q)
+    rag.ask(q)

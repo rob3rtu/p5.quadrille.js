@@ -27,7 +27,7 @@ class RagClass:
     VECTOR_DB_MD         = []
     CONVERSATION_HISTORY = []
 
-    EMBEDDING_MODEL = 'nomic-embed-text'
+    EMBEDDING_MODEL = 'qwen3-embedding:0.6b'
     LANGUAGE_MODEL = 'llama3'
     
     def ask(self, query):
@@ -62,7 +62,7 @@ class RagClass:
             stream=True
         )
 
-        print("thinking...")
+        print("thinking...\n")
         response = ""
         for chunk in stream:
             content = chunk['message']['content']
@@ -146,7 +146,7 @@ class RagClass:
         final_results.sort(key=lambda x: x[1], reverse=True)
         return final_results[:k]
     
-    def get_top_results(self, db, query_embedding, top_k=3, threshold=0.50):
+    def get_top_results(self, db, query_embedding, top_k=3, threshold=0.0):
         similarities = []
         for chunk, chunk_embedding in db:
             similarity = self.cosine_similarity(query_embedding, chunk_embedding)

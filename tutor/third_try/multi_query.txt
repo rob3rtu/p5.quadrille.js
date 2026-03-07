@@ -1,20 +1,20 @@
 
 
 --- ORIGINAL QUERY
- what is a quadrille?
+ how to install it?
 
 
 
 --- 
- what is a p5.quadrille.js library?
+ how to install this method?
 
 
 
 --- 
- what can i do with a quadrille in p5js context
+ how do i use the installation?
 
 
 
 --- 
- what does a quadrille mean in terms of visual design and p5js library
+ what are the steps to install this method?
 

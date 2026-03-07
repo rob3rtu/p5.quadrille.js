@@ -2,63 +2,8 @@
 
 ---
  role: user
- content: how to install the library and create a simple quadrille?
+ content: how to install it?
 
 ---
  role: assistant
- content: Based on the provided Context, here's a step-by-step guide on how to install the `p5.quadrille.js` library and create a simple quadrille:
-
-**Installation Options:**
-
-You can choose between two installation methods:
-
-1. **CDN (Content Delivery Network):**
-	* Add the following `<script>` tag in your HTML file:
-```html
-<script src="https://cdn.jsdelivr.net/npm/p5.quadrille.js@latest/dist/p5.quadrille.min.js"></script>
-```
-2. **npm (ESM) and Vite:**
-	* Install the library using npm or yarn:
-```
-npm install p5-quadrille
-```
-	* Create a new project with Vite or another bundler, and import the library in your JavaScript file:
-```javascript
-import { createQuadrille } from 'p5-quadrille';
-```
-
-**Creating a Simple Quadrille:**
-
-Once installed, you can start using the `createQuadrille` function to create a quadrille. Here's an example:
-
-```javascript
-function setup() {
-  createQuadrille({
-    cellLength: 20,
-    width: 400,
-    height: 400,
-    origin: 'center'
-  });
-}
-
-function draw() {
-  background(220);
-  drawQuadrille();
-}
-```
-
-In this example, we're creating a quadrille with a cell length of 20 pixels, a width and height of 400 pixels each, and an origin set to the center. We then render the quadrille onto the canvas in the `draw` function.
-
-That's it! You've successfully installed and used the `p5.quadrille.js` library to create a simple quadrille.
-
----
- role: user
- content: what is a quadrille?
-
----
- role: assistant
- content: Based on the provided Context, a **quadrille** is described as the core structure of the `p5.quadrille.js` library. It is a grid-based object that can be used to create and draw various types of content, such as board games, generative visuals, or cell-based data.
-
-In the documentation, quadrilles are mentioned as an essential part of the library's functionality. The `createQuadrille()` function creates a quadrille with flexible initialization options, while the `drawQuadrille()` function renders the quadrille onto the p5.js canvas with options for visual customization.
-
-Therefore, a quadrille is essentially a 2D grid-based structure that can be used to organize and display various types of data or content.
+ content: I cannot find that information in the provided documentation. The provided context is the documentation for the `p5.quadrille.js` library, and it does not contain information on how to install the library.

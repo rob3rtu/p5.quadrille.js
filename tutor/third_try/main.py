@@ -27,7 +27,7 @@ class RagClass:
     VECTOR_DB_MD         = []
     CONVERSATION_HISTORY = []
 
-    EMBEDDING_MODEL = 'qwen3-embedding:0.6b'
+    EMBEDDING_MODEL = 'embeddinggemma'
     LANGUAGE_MODEL = 'llama3'
     
     def ask(self, query):
@@ -77,33 +77,56 @@ class RagClass:
             for m in self.CONVERSATION_HISTORY:
                 f.write(f'\n\n---\n role: {m["role"]}\n content: {m["content"]}')
 
-    def compute_multy_query(self, query, k=3):
+    def compute_multy_query(self, query, k=5):
         """ Given a query, reformulate that in k other similar queries. This takes into account conversation history """
         queries = [query]
        
        # using last 3 pairs of (question, response)
         recent_history = self.CONVERSATION_HISTORY[-6:] 
         history_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in recent_history])
+        
+        if not history_text.strip():
+            history_text = "No prior conversation history."
 
         prompt = f"""
-        You are an expert at query expansion for a RAG assistant of the p5.quadrille.js library.
+        You are an expert at query expansion for a RAG assistant of the 'p5.quadrille.js' library.
+        
+        TASK:
+        Generate {k} different, highly specific versions of the "CURRENT USER QUERY" to improve document retrieval in a vector database.
+        
+        RULES:
+        1. If the user uses "it", "this", or "that", replace it with the specific method or concept from the CONVERSATION HISTORY.
+        2. If there is NO history, ALWAYS assume "it" refers to the "p5.quadrille.js" library itself.
+        3. Use different technical keywords for each version (e.g., "install" -> "setup", "npm", "import").
+        4. Output ONLY the {k} queries, one per line. No quotes, no numbering, no text of any kind added by you, like "Here are the queries", just the text of the query.
+
+        EXAMPLES:
+        User Query: "how to install it?"
+        History: No prior conversation history.
+        Output:
+        how to setup p5.quadrille.js
+        npm install p5.quadrille dependencies
+        importing p5.quadrille in my project
+
+        User Query: "what parameters does it take?"
+        History: user: how do I use the insert() method?
+        Output:
+        arguments for the insert method in p5.quadrille
+        parameters accepted by insert()
+        insert row method syntax
+
+        ---
         
         USER CONVERSATION HISTORY:
         {history_text}
         
         CURRENT USER QUERY:
-        "{query}"
+        {query}
         
-        TASK:
-        Generate {k} different versions of the "CURRENT USER QUERY" to improve document retrieval.
-        - Use the history in order to replace pronouns, for example "how do I use it?", where "it" could reffer to a previous mention method
-        - Use different keywords and sentence structures for each version.
-        - Don't use " character to wrap the new queries
-        - Output ONLY the {k} queries, one per line. Don't include any message from you, like "Here are {k} queries"!
+        Output:
         """
 
         messages = []
-        messages.extend(self.CONVERSATION_HISTORY)
         messages.append({'role': 'user', 'content': prompt})
 
         response = ollama.chat(
@@ -159,7 +182,8 @@ class RagClass:
 
     def load_dataset(self):
         """ Create chunks """
-        self.dataset_js = self.parse_js('../../src/quadrille.js') + self.parse_js("../../src/addon.js")
+        # self.dataset_js = self.parse_js('../../src/quadrille.js') + self.parse_js("../../src/addon.js")
+        self.dataset_js = self.parse_js('../../src/quadrille.js')
         self.dataset_md = self.parse_md('../../content/docs/')
         print(f'Loaded {len(self.dataset_js) + len(self.dataset_md)} total entries; ({len(self.dataset_js)} JS, {len(self.dataset_md)} MD)')
 
@@ -193,110 +217,72 @@ class RagClass:
         return dot_product / (norm_a * norm_b)
     
     def parse_md(self, folder_path):
-        """ Index the entire file as one chunk """
-        chunks = []
+            """ Split the MD file by headers and inject the page title into each chunk """
+            chunks = []
 
-        for root, _, files in os.walk(folder_path):
-            for filename in files:
-                if not filename.endswith(".md"):
-                    continue
-                
-                filepath = os.path.join(root, filename)
-                with open(filepath, 'r', encoding='utf-8') as f:
-                    content = f.read()
+            for root, _, files in os.walk(folder_path):
+                for filename in files:
+                    if not filename.endswith(".md"):
+                        continue
+                    
+                    filepath = os.path.join(root, filename)
+                    with open(filepath, 'r', encoding='utf-8') as f:
+                        content = f.read()
 
-                    page_title = filename.replace('.md', '').replace('_', ' ')
-                    clean_content = re.sub(r'^---\n.*?\n---\n', '', content, flags=re.DOTALL).strip()
-                    chunk = f"DOCUMENTATION FOR: {page_title}\n\n{clean_content}"
-                    chunks.append(chunk)
+                        title_match = re.search(r'title:\s*(.+)', content)
+                        page_title = title_match.group(1).strip() if title_match else filename.replace('.md', '').replace('_', ' ')
+                        
+                        clean_content = re.sub(r'^---\n.*?\n---\n', '', content, flags=re.DOTALL).strip()
+                        
+                        sections = re.split(r'\n(?=#+\s)', '\n' + clean_content)
+                        
+                        for section in sections:
+                            section = section.strip()
+                            if not section:
+                                continue
+                            
+                            section_name = "Overview"
+                            # FIX 2: Dynamically extract the name regardless of header level
+                            if re.match(r'^#+', section):
+                                first_line = section.split('\n')[0]
+                                section_name = re.sub(r'^#+\s*', '', first_line).strip()
+                            
+                            chunk_text = f"DOCUMENTATION FOR: {page_title} > {section_name}\n\n{section}"
+                            
+                            # FIX 3: Ignore chunks that are too small to have meaning (under 50 chars)
+                            if len(chunk_text) > 50:
+                                chunks.append(chunk_text)
 
-        return chunks
-
+            return chunks
 
 
     def parse_js(self, filepath):
-        """ Split the JS file in chunks by function and its jsdoc description """
+        """ Split the JS file into chunks based on JSDoc comments """
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
 
-            chunks = []
-            current_chunk = ""
+        raw_chunks = re.split(r'(?m)^(?=\s*/\*\*)', content)
+        
+        valid_chunks = []
+        filename = os.path.basename(filepath)
+        
+        for chunk in raw_chunks:
+            chunk = chunk.strip()
             
-            brace_depth = 0
-            in_string = False
-            string_char = ''
-            in_line_comment = False
-            in_block_comment = False
-            
-            i = 0
-            length = len(content)
-            
-            while i < length:
-                c = content[i]
-                next_c = content[i+1] if i + 1 < length else ''
+            if len(chunk) > 50:
+                chunk_with_context = f"SOURCE CODE: {filename}\n\n{chunk}"
+                valid_chunks.append(chunk_with_context)
                 
-                current_chunk += c
-                
-                # 1. Handle Strings (ignore braces and comments inside quotes)
-                if not in_line_comment and not in_block_comment:
-                    if c in ('"', "'", "`"):
-                        if not in_string:
-                            in_string = True
-                            string_char = c
-                        elif string_char == c:
-                            backslashes = 0
-                            idx = i - 1
-                            while idx >= 0 and content[idx] == '\\':
-                                backslashes += 1
-                                idx -= 1
-                            if backslashes % 2 == 0:
-                                in_string = False
-                
-                # 2. Handle Comments and Braces
-                if not in_string:
-                    if not in_block_comment and not in_line_comment:
-                        if c == '/' and next_c == '/':
-                            in_line_comment = True
-                        elif c == '/' and next_c == '*':
-                            in_block_comment = True
-                        elif c == '{':
-                            brace_depth += 1
-                            if brace_depth == 1:
-                                chunks.append(current_chunk.strip())
-                                current_chunk = ""
-                        elif c == '}':
-                            brace_depth -= 1
-                            if brace_depth == 1:
-                                chunks.append(current_chunk.strip())
-                                current_chunk = ""
-                        elif c == ';':
-                            if brace_depth == 1:
-                                chunks.append(current_chunk.strip())
-                                current_chunk = ""
-                    
-                    elif in_line_comment and c == '\n':
-                        in_line_comment = False
-                    
-                    elif in_block_comment and c == '*' and next_c == '/':
-                        current_chunk += next_c
-                        i += 1
-                        in_block_comment = False
-                        
-                i += 1
-                
-            if current_chunk.strip():
-                chunks.append(current_chunk.strip())
-                
-            return [chunk for chunk in chunks if chunk]
+        return valid_chunks
 
 
 rag = RagClass()
 rag.load_dataset()
 rag.add_chunks_to_db()
 
-print("✅ The model is ready, please ask a question about p5.quadrille.js")
+print("The model is ready, please ask a question about p5.quadrille.js")
 while True:
-    q = input(f"\n\n❔ Ask {rag.LANGUAGE_MODEL}: ")
+    q = input(f"\n\n✅ Ask {rag.LANGUAGE_MODEL}: ")
     if q == "q":
         break
 

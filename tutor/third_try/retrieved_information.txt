@@ -1,70 +1,106 @@
 
 
 ---
- = {}
+ SOURCE CODE: quadrille.js
+
+/**
+ * @file Defines the Quadrille class — the core data structure of the p5.quadrille.js library.
+ * @version 3.4.13
+ * @author JP Charalambos
+ * @license GPL-3.0-only
+ *
+ * @description
+ * Grid-based teaching and rendering utility for p5.js.
+ * This module defines the Quadrille class for cell storage and manipulation.
+ * See https://objetos.github.io/docs/api/ for full usage and examples.
+ */
+
+'use strict';
+
+import p5 from 'p5';
+
+// TODOs
+// i. isPolyomino()
+// ii. perlin / simplex noise
+// iii. sort() using 'webgl' mode, requires using fbos to speed up sample() (which currently only supports 'p2d' renderer)
+// iv. screenRow and screenCol lacks webgl mode (would require p5.treegl)
+// v. Decide mouseCornerX, mouseCornerY, screenCornerX() and screenCornerY()
+class Quadrille {
 
 
 
 ---
- DOCUMENTATION FOR:  index
+ SOURCE CODE: quadrille.js
 
-Randomly [fills]({{< relref "rand_times_value" >}}) or [clears]({{< relref "rand_times" >}}) a specified number of times cells in the quadrille.
+/**
+   * Library version identifier.
+   * @type {string}
+   */
+  static VERSION = '3.4.13';
 
-{{< callout type="info" >}}
-For deterministic (repeatable) randomness, explicitly call [randomSeed(seed)](https://p5js.org/reference/p5/randomSeed/) before `rand(args)`.
-{{< /callout >}}
-
-
-
----
- DOCUMENTATION FOR:  index
-
-Fills quadrille cells in several ways: 1. Without value: as a chessboard; or, 2. With `value`: in current empty cells, a specific cell, a designated row, or a group of matching cells using [flood fill](https://en.m.wikipedia.org/wiki/Flood_fill).
-
-{{< callout type="info" >}}
-`fill` may be regarded as the sibling of `clear`, filling the quadrille with non-`null` values instead. See [clear]({{< ref "clear" >}}) for details.
-{{< /callout >}}
+  // Factory
 
 
 
 ---
- DOCUMENTATION FOR:  index
+ SOURCE CODE: quadrille.js
 
-Either replaces non empty cells with `value`, or `value1` filled cells with `value2`.
+/**
+   * Checks whether the given value is a p5.Color instance.
+   * @param {*} value
+   * @returns {boolean}
+   */
+  static isColor(value) {
+    return value instanceof p5.Color;
+  }
 
 
 
 ---
- DOCUMENTATION FOR:  index
+ SOURCE CODE: quadrille.js
 
-**Mutator methods** allow you to directly modify the state of the `quadrille` they are called upon. These transformations are persistent and update the `quadrille` instance **in-place**.
+/**
+   * Checks whether the given value is a p5.Image, p5.Graphics, MediaElement (video), or Framebuffer.
+   * @param {*} value
+   * @returns {boolean}
+   */
+  static isImage(value) {
+    return value instanceof p5.Image || (value instanceof p5.MediaElement && value.elt instanceof HTMLVideoElement) || value instanceof p5.Graphics || value instanceof p5.Framebuffer;
+  }
 
-{{< callout type="info" >}}  
-Methods in this category support [method chaining](https://en.wikipedia.org/wiki/Method_chaining), enabling multiple modifications to be applied sequentially in a concise and readable manner.  
 
-For example, the following chained call:  
-```javascript  
-quadrille.clear().fill(5, '🐁').randomize();  
-```  
-is functionally equivalent to:  
-```javascript  
-quadrille.clear();  
-quadrille.fill(5, '🐁');  
-quadrille.randomize();  
-```  
-{{< /callout >}}  
 
-## Method Overview
+---
+ DOCUMENTATION FOR: README > CDN
 
-- **[delete(row)]({{< ref "delete" >}}):** Deletes the specified `row` from the `quadrille`.  
-- **[insert(row)]({{< ref "insert" >}}):** Inserts an empty `row` into the `quadrille` at the specified position.   
-- **[shift(dRow, dCol, wrap)]({{< ref "shift" >}})**: Shifts cells in two dimensions by the row/column offset (dRow, dCol). With wrap on, offsets wrap around the edges.
-- **[randomize()]({{< ref "randomize" >}}):** Randomizes the current content of the `quadrille`, shuffling cell values.
-- **[rand(args)]({{< ref "rand" >}}):** Randomly populates or empties a specified number of cells in the quadrille.
-- **[swap(args)]({{< ref "swap" >}}):** Swaps content between two specified cells or rows as defined by `args`.  
-- **[replace(args)]({{< ref "replace" >}}):** Replaces cell values in the `quadrille`, either targeting non-empty cells or swapping one value for another.  
-- **[clear(args)]({{< ref "clear" >}}):** Clears content from the entire `quadrille` or specific cells, depending on `args`.  
-- **[fill(args)]({{< ref "fill" >}}):** Fills the entire `quadrille` or specific cells with a specified value provided in `args`.  
+## CDN
 
-**Mutator methods** offer you a flexible approach to manipulating `quadrille` instances, enabling operations such as deletion, insertion, replacement, and randomization of cell content. With support for method chaining, these transformations can be combined seamlessly to perform complex modifications in a clear and concise manner.
+Include both libraries using `<script>` tags, which run in both [global](https://github.com/processing/p5.js/wiki/Global-and-instance-mode) and [instance mode](https://github.com/processing/p5.js/wiki/Global-and-instance-mode).
+
+```html
+<!-- index.html -->
+<!-- Load p5.js first (required by p5.quadrille.js, latest version) -->
+<script src="https://cdn.jsdelivr.net/npm/p5/lib/p5.min.js"></script>
+<!-- Load p5.quadrille.js (latest stable version) -->
+<script src="https://cdn.jsdelivr.net/npm/p5.quadrille/dist/p5.quadrille.min.js"></script>
+<script>
+  let q // Step 1: Declare
+
+  function setup() {
+    createCanvas(600, 400)
+    q = createQuadrille(6, 4, 10, '🐲') // Step 2: Create
+  }
+
+  function draw() {
+    background(0)
+    drawQuadrille(q) // Step 3: Render
+  }
+
+  function mousePressed() {
+    q.randomize() // Step 4: Interact
+  }
+</script>
+```
+
+You can run the example, which uses global mode, by opening the `index.html` file in a browser, or by using [VSCodium](https://vscodium.com/) (recommended) or [Visual Studio Code](https://code.visualstudio.com/) with the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
 

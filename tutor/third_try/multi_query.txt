@@ -1,20 +1,35 @@
 
 
 --- ORIGINAL QUERY
- how to install it?
+ give me a simple example of how to use it
 
 
 
 --- 
- how to install this method?
+ Here are 5 different, highly specific versions of the "CURRENT USER QUERY" to improve document retrieval in a vector database:
 
 
 
 --- 
- how do i use the installation?
+ use p5.quadrille for grid-based rendering
 
 
 
 --- 
- what are the steps to install this method?
+ p5.quadrille examples for beginners
+
+
+
+--- 
+ how to use quadrille in p5.js setup
+
+
+
+--- 
+ setup and use p5.quadrille in a project
+
+
+
+--- 
+ p5.quadrille usage and best practices
 

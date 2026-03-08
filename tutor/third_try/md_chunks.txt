@@ -1,13 +1,18 @@
 
 
 @@@@@
- DOCUMENTATION FOR: README
+ DOCUMENTATION FOR: README > Overview
 
 [![npm version](https://img.shields.io/npm/v/p5.quadrille.svg)](https://www.npmjs.com/package/p5.quadrille)
 [![p5.js](https://img.shields.io/badge/p5.js-ED225D?logo=p5.js&logoColor=white)](https://beta.p5js.org/)
 [![p5.quadrille.js API](https://img.shields.io/badge/p5.quadrille.js_API-ED225D?logo=p5.js&logoColor=white)](https://objetos.github.io/p5.quadrille.js/)<!-- [![Book Draft](https://img.shields.io/badge/Book_Draft-228B22?logo=mdbook)](https://objetos.github.io/docs/) -->
 [![SoftwareX Paper](https://img.shields.io/badge/SoftwareX_Paper-0066CC?logo=livejournal)](https://www.sciencedirect.com/science/article/pii/S2352711024002097)
 [![Blog](https://img.shields.io/badge/Blog-0A0A0A?logo=dev.to&logoColor=white)](https://jpcharalambosh.co/tags/p5.quadrille.js/)
+
+
+
+@@@@@
+ DOCUMENTATION FOR: README > p5.quadrille.js
 
 # p5.quadrille.js
 
@@ -28,6 +33,11 @@ Welcome to the **p5.quadrille.js** source code repository. This open-source [p5.
   - [Open TODOs](#open-todos)
 - [Further Reading](#further-reading)
 
+
+
+@@@@@
+ DOCUMENTATION FOR: README > Usage
+
 # Usage
 
 Using **p5.quadrille.js** can be as minimal or as interactive as you need:
@@ -40,6 +50,11 @@ The library works in two setups:
 
 - **[CDN](#cdn)**: Use the [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) (Immediately Invoked Function Expression) format with `<script>` tags directly in the browser, along with [p5.js](https://beta.p5js.org/).
 - **[npm](#npm-esm)**: Use the [ES module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) version in modern projects with [Vite](https://vitejs.dev/) or another bundler.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: README > CDN
 
 ## CDN
 
@@ -71,6 +86,11 @@ Include both libraries using `<script>` tags, which run in both [global](https:/
 ```
 
 You can run the example, which uses global mode, by opening the `index.html` file in a browser, or by using [VSCodium](https://vscodium.com/) (recommended) or [Visual Studio Code](https://code.visualstudio.com/) with the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
+
+
+
+@@@@@
+ DOCUMENTATION FOR: README > npm (ESM)
 
 ## npm (ESM)
 
@@ -110,6 +130,11 @@ new p5(sketch)
 
 This approach gives you full modularity and clean instance isolation using modern JavaScript tooling.
 
+
+
+@@@@@
+ DOCUMENTATION FOR: README > Algorithms & Performance
+
 # Algorithms & Performance
 
 Let `n` be the total number of cells in the quadrille.
@@ -125,6 +150,11 @@ Let `n` be the total number of cells in the quadrille.
 - Produces deterministic results—identical inputs always yield the same outputs.  
 - Maintains a clear distinction between mutable and immutable methods, promoting API integrity and predictable behavior.
 
+
+
+@@@@@
+ DOCUMENTATION FOR: README > Adoption
+
 # Adoption
 
 - Tested in real-world scenarios:  
@@ -132,6 +162,11 @@ Let `n` be the total number of cells in the quadrille.
   – National and international game jams with the UNGames group.  
 - Fosters creativity and problem-solving in both classroom and jam settings.  
 - Publicly showcased at [objetos.github.io/docs/showcase](https://objetos.github.io/docs/showcase/), featuring student projects, games, and demos.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: README > Releases
 
 # Releases
 
@@ -152,6 +187,11 @@ Let `n` be the total number of cells in the quadrille.
   - [p5.quadrille.js (GitHub CDN)](https://cdn.jsdelivr.net/gh/objetos/p5.quadrille.js/p5.quadrille.js)
   - [All GitHub releases](https://github.com/objetos/p5.quadrille.js/releases)
 
+
+
+@@@@@
+ DOCUMENTATION FOR: README > System Requirements
+
 # System Requirements
 
 - **Hardware:** Any modern device—PC, phone, or tablet—with a browser supporting [ES6](https://www.w3schools.com/JS/js_es6.asp) (Firefox 54+, Chrome 51+, Safari 10+, Edge 15+, Opera 38+).  
@@ -159,13 +199,28 @@ Let `n` be the total number of cells in the quadrille.
 
 **Observation**: The library leverages [p5.js](https://beta.p5js.org/) for rendering and modern browser APIs for performance. [WebGL](https://en.wikipedia.org/wiki/WebGL) enhances 3D/GPU examples but is optional.
 
+
+
+@@@@@
+ DOCUMENTATION FOR: README > Contribute
+
 # Contribute
 
 Your contributions are welcome!
 
+
+
+@@@@@
+ DOCUMENTATION FOR: README > Support
+
 ## Support  
 
 Use the [bug report](https://github.com/objetos/p5.quadrille.js/blob/main/.github/ISSUE_TEMPLATE/bug_report.md) or [feature request](https://github.com/objetos/p5.quadrille.js/blob/main/.github/ISSUE_TEMPLATE/feature_request.md) templates to report issues or suggest new features.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: README > Open TODOs
 
 ## Open TODOs  
 
@@ -175,6 +230,11 @@ Fork the repo and submit a pull request to help with any of the following ([GitH
 2. Add `perlin()` and `simplex()` noise-based utilities  
 3. Extend `sort()` to support `'webgl'` mode — requires `Framebuffer` support for `sample()` (currently limited to the `P2D` renderer)  
 4. Add `WEBGL` support for `screenRow()` and `screenCol()` — may depend on features from [p5.treegl](https://github.com/VisualComputing/p5.treegl/)
+
+
+
+@@@@@
+ DOCUMENTATION FOR: README > Further Reading
 
 # Further Reading
 
@@ -206,9 +266,14 @@ Fork the repo and submit a pull request to help with any of the following ([GitH
 
 
 @@@@@
- DOCUMENTATION FOR: to fen
+ DOCUMENTATION FOR: toFEN() > Overview
 
 Generates a string in Forsyth–Edwards Notation ([FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation)) representing the current position of the chess board.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: toFEN() > Syntax
 
 ## Syntax
 
@@ -217,13 +282,23 @@ Generates a string in Forsyth–Edwards Notation ([FEN](https://en.wikipedia.org
 
 
 @@@@@
- DOCUMENTATION FOR: to image
+ DOCUMENTATION FOR: toImage(args) > Overview
 
 Returns a [p5.Image](https://p5js.org/reference/#/p5.Image) representation of this quadrille.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: toImage(args) > Syntax
 
 ## Syntax
 
 > `toImage(filename, [{[filter], [tileDisplay], [imageDisplay], [colorDisplay], [stringDisplay], [numberDisplay], [booleanDisplay], [bigintDisplay], [symbolDisplay], [arrayDisplay], [objectDisplay], [cellLength], [outlineWeight], [outline], [textColor], [textZoom]}])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: toImage(args) > Parameters
 
 ## Parameters
 
@@ -252,9 +327,14 @@ Returns a [p5.Image](https://p5js.org/reference/#/p5.Image) representation of th
 
 
 @@@@@
- DOCUMENTATION FOR: to array
+ DOCUMENTATION FOR: toArray() > Overview
 
 Returns a [row-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_order) array of the quadrille cells (refer to [createQuadrille()](/docs/p5-fx/create_quadrille) for all the possible cell contents). The resulting array has [width]({{< ref "width" >}}) `*` [height]({{< ref "height" >}}) dimensions.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: toArray() > Syntax
 
 ## Syntax
 
@@ -263,7 +343,7 @@ Returns a [row-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_
 
 
 @@@@@
- DOCUMENTATION FOR: to bigint
+ DOCUMENTATION FOR: toBigInt(littleEndian?) > Overview
 
 Returns a [bitboard](https://en.wikipedia.org/wiki/Bitboard)—encoded as a JavaScript [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)—that represents the filled cells of the quadrille.
 
@@ -273,9 +353,19 @@ Each `1` bit marks a filled cell and `0` an empty one. Cells are encoded in **ro
 Use `littleEndian = true` to reverse the bit order, so the top-left cell becomes the least significant bit. This is common in some chess engines and low-level systems.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: toBigInt(littleEndian?) > Syntax
+
 ## Syntax
 
 > `toBigInt([littleEndian])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: toBigInt(littleEndian?) > Parameters
 
 ## Parameters
 
@@ -286,9 +376,14 @@ Use `littleEndian = true` to reverse the bit order, so the top-left cell becomes
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: Reformatter > Overview
 
-**Reformatter methods** enable the conversion of a `quadrille` into various formats, such as [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), [images](https://p5js.org/reference/#/p5.Image), and array-based data structures. These methods ensure seamless transitions and promote interoperability between `quadrille` instances and other data representations, making it easier to integrate quadrilles into different workflows.  
+**Reformatter methods** enable the conversion of a `quadrille` into various formats, such as [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), [images](https://p5js.org/reference/#/p5.Image), and array-based data structures. These methods ensure seamless transitions and promote interoperability between `quadrille` instances and other data representations, making it easier to integrate quadrilles into different workflows.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: Reformatter > Method Overview
 
 ## Method Overview  
 
@@ -303,7 +398,7 @@ These reformatter methods provide versatile tools for exporting and working with
 
 
 @@@@@
- DOCUMENTATION FOR: filter
+ DOCUMENTATION FOR: filter(args) > Overview
 
 Apply [convolution mask](https://en.wikipedia.org/wiki/Kernel_%28image_processing%29) filter either to the whole quadrille or at specific `(row, col)` cell.
 
@@ -311,7 +406,17 @@ Apply [convolution mask](https://en.wikipedia.org/wiki/Kernel_%28image_processin
 Only pixelated quadrille images may be filtered, i.e., those created either with `createQuadrille(width, image, true)` or `createQuadrille(width, image, false)`.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: filter(args) > Examples
+
 ## Examples
+
+
+
+@@@@@
+ DOCUMENTATION FOR: filter(args) > filter(mask)
 
 ### filter(mask)
 
@@ -460,6 +565,11 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: filter(args) > filter(mask, row, col)
+
 ### filter(mask, row, col)
 
 (mouse move to apply filter locally; press **r** to reset filtered image & **s** to rescale it)  
@@ -574,9 +684,19 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: filter(args) > Syntax
+
 ## Syntax
 
 > `filter(mask, [row], [col])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: filter(args) > Parameters
 
 ## Parameters
 
@@ -589,7 +709,7 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR: colorize triangle
+ DOCUMENTATION FOR: colorizeTriangle(args) > Overview
 
 Colorize the triangle defined by vertices `vertex0 (row0, col0)`, `vertex1 (row1, col1)`, and `vertex2 (row2, col2)`, using [barycentric coordinates](https://fgiesen.wordpress.com/2013/02/06/the-barycentric-conspirac/) to interpolate `color0`, `color1` and `color2`. Implemented as:
 
@@ -613,6 +733,11 @@ colorizeTriangle(row0, col0, row1, col1, row2, col2,
 ```
  
 Refer to [rasterizeTriangle()]({{< ref "rasterize_triangle" >}}) when in need to interpolate other vertex data.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: colorizeTriangle(args) > Example
 
 ## Example
 
@@ -730,9 +855,19 @@ function randomize() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: colorizeTriangle(args) > Syntax
+
 ## Syntax
 
 > `colorizeTriangle(row0, col0, row1, col1, row2, col2, color0, [color1], [color2])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: colorizeTriangle(args) > Parameters
 
 ## Parameters
 
@@ -751,7 +886,7 @@ function randomize() {
 
 
 @@@@@
- DOCUMENTATION FOR: sample
+ DOCUMENTATION FOR: sample({options}) > Overview
 
 Sample cell as the `{r, g, b, a, total}` object literal. Used by the [sort]({{< ref "sort" >}}) algorithm. For instance `LUMA` sorting is [implemented](https://github.com/objetos/p5.quadrille.js/blob/main/p5.quadrille.js#L1017) as follows:
 
@@ -772,9 +907,19 @@ memory1D.sort((valueA, valueB) => {
 
 Use this method to implementing other sorting criteria of the `quadrille` cells.
 
+
+
+@@@@@
+ DOCUMENTATION FOR: sample({options}) > Syntax
+
 ## Syntax
 
 > `sample([{value, imageDisplay, colorDisplay, booleanDisplay, numberDisplay, bigintDisplay, stringDisplay, symbolDisplay, arrayDisplay, objectDisplay, background, cellLength, outlineWeight, outline, textColor, textZoom}])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: sample({options}) > Parameters
 
 ## Parameters
 
@@ -800,9 +945,14 @@ Use this method to implementing other sorting criteria of the `quadrille` cells.
 
 
 @@@@@
- DOCUMENTATION FOR: rasterize triangle
+ DOCUMENTATION FOR: rasterizeTriangle(args) > Overview
 
 Rasterize the triangle defined by vertices `(row0, col0)`, `(row1, col1)`, and `(row2, col2)`, using [barycentric coordinates](https://fgiesen.wordpress.com/2013/02/06/the-barycentric-conspirac/). The user provided [software rendered](https://en.wikipedia.org/wiki/Software_rendering) [(fragment) shader](https://en.wikipedia.org/wiki/Shader) is a function parameterized with the object literal `{ array: interpolated_data_array, row: i, col: j }` and that should return a [p5.Color](https://p5js.org/reference/#/p5.Color). Refer to the [colorizeTriangle()]({{< ref "colorize_triangle" >}}) method for an example.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: rasterizeTriangle(args) > Example
 
 ## Example
 
@@ -940,9 +1090,19 @@ function randomize() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: rasterizeTriangle(args) > Syntax
+
 ## Syntax
 
 > `rasterizeTriangle(row0, col0, row1, col1, row2, col2, shader, array0, [array1], [array2])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: rasterizeTriangle(args) > Parameters
 
 ## Parameters
 
@@ -962,9 +1122,14 @@ function randomize() {
 
 
 @@@@@
- DOCUMENTATION FOR: colorize
+ DOCUMENTATION FOR: colorize(args) > Overview
 
 Colorize quadrille according to upper-left corner `color0`, bottom-left corner `color1`, upper-right corner `color2`, and bottom-right corner `color3` colors. Call [colorizeTriangle()]({{< ref "colorize_triangle" >}}) on the two non-overlapping triangles entirely covering the quadrille.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: colorize(args) > Example
 
 ## Example
 
@@ -1005,9 +1170,19 @@ function draw() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: colorize(args) > Syntax
+
 ## Syntax
 
 > `colorize(color0, [color1], [color2], [color3])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: colorize(args) > Parameters
 
 ## Parameters
 
@@ -1021,9 +1196,14 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: rasterize
+ DOCUMENTATION FOR: rasterize(args) > Overview
 
 Rasterize quadrille according to upper-left corner vertex `array0`, bottom-left corner vertex `array1`, upper-right corner vertex `array2`, and bottom-right corner vertex `array3`,  using (fragment) `shader`. Call [rasterizeTriangle()]({{< ref "rasterize_triangle" >}}) on the two non-overlapping triangles entirely covering the quadrille.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: rasterize(args) > Example
 
 ## Example
 
@@ -1102,9 +1282,19 @@ function colorizeShader({ array: rgb }) {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: rasterize(args) > Syntax
+
 ## Syntax
 
 > `rasterize(shader, array0, [array1], [array2], [array3])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: rasterize(args) > Parameters
 
 ## Parameters
 
@@ -1119,9 +1309,14 @@ function colorizeShader({ array: rgb }) {
 
 
 @@@@@
- DOCUMENTATION FOR: sort
+ DOCUMENTATION FOR: sort({options}) > Overview
 
 Sort source cells according to their coloring.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: sort({options}) > Example
 
 ## Example
 
@@ -1191,9 +1386,19 @@ function draw() {
 
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: sort({options}) > Syntax
+
 ## Syntax
 
 > `sort([{[mode], [target], [ascending], [textColor], [textZoom], [background], [cellLength], [tileDisplay], [imageDisplay], [colorDisplay], [stringDisplay], [numberDisplay], [booleanDisplay], [bigintDisplay], [symbolDisplay], [arrayDisplay], [objectDisplay]}])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: sort({options}) > Parameters
 
 ## Parameters
 
@@ -1220,7 +1425,7 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: Visual Algorithms > Overview
 
 The **visual algorithms** suite comprises methods that manipulate and visually represent data within `quadrille` cells. Functions such as [filter]({{< relref "filter" >}}) for image convolutions, [rasterize]({{< relref "rasterize" >}}) for software-based barycentric interpolations, and [sort]({{< relref "sort" >}}) for arranging cells based on visual criteria enable the creation of dynamic and interactive visualizations. These methods collectively transform the quadrille into an interactive canvas for illustrating and navigating visual computing concepts, offering an intuitive way to explore algorithms for rasterization, image processing, and data sorting.
 
@@ -1237,6 +1442,11 @@ quadrille.rasterize(shader, array);
 This approach enhances readability and streamlines the application of multiple operations.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: Visual Algorithms > Method Overview
+
 ## Method Overview
 
 - **[filter(mask)]({{< relref "filter" >}}):** Applies a convolution filter to the quadrille using a specified `mask` for image processing operations.
@@ -1252,15 +1462,30 @@ The **visual algorithms** suite provides essential tools for working with raster
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: Accessors > Overview
 
 **Accessor methods** are powerful tools for extracting information or creating modified versions of a `quadrille` instance. These methods are strictly **non-mutative**, ensuring the original quadrille remains unchanged while offering detailed insights or generating derivative instances.
 
+
+
+@@@@@
+ DOCUMENTATION FOR: Accessors > **Queries**
+
 ### **Queries**  
-[Query methods]({{< relref "queries" >}}) provide computations and insights into the quadrille's structure. These include operations such as **[search(pattern, strict)]({{< relref "search" >}})** for finding cells matching specific patterns, **[magnitude(row)]({{< relref "magnitude" >}})** to calculate the number of non-empty cells in a row, and **[screenRow(pixelY, y, cellLength)]({{< relref "screen_row" >}})** or **[screenCol(pixelX, x, cellLength)]({{< relref "screen_col" >}})** for mapping pixel positions to grid indices.  
+[Query methods]({{< relref "queries" >}}) provide computations and insights into the quadrille's structure. These include operations such as **[search(pattern, strict)]({{< relref "search" >}})** for finding cells matching specific patterns, **[magnitude(row)]({{< relref "magnitude" >}})** to calculate the number of non-empty cells in a row, and **[screenRow(pixelY, y, cellLength)]({{< relref "screen_row" >}})** or **[screenCol(pixelX, x, cellLength)]({{< relref "screen_col" >}})** for mapping pixel positions to grid indices.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: Accessors > **Cell Contents**
 
 ### **Cell Contents**  
-[Cell content accessors]({{< relref "cell_contents" >}}) focus on retrieving information about the value and type of individual cells. You can use **[read(row, col)]({{< relref "read" >}})** to access a cell's content, or methods like **[isValid(row, col)]({{< relref "is_valid" >}})**, **[isEmpty(row, col)]({{< relref "is_empty" >}})**, **[isFilled(row, col)]({{< relref "is_filled" >}})**, **[isString(row, col)]({{< relref "is_string" >}})**, **[isNumber(row, col)]({{< relref "is_number" >}})**, **[isColor(row, col)]({{< relref "is_color" >}})**, **[isImage(row, col)]({{< relref "is_image" >}})**, **[isArray(row, col)]({{< relref "is_array" >}})**, **[isFunction(row, col)]({{< relref "is_function" >}})**, and **[isObject(row, col)]({{< relref "is_object" >}})** to determine the type of data in a specific cell.  
+[Cell content accessors]({{< relref "cell_contents" >}}) focus on retrieving information about the value and type of individual cells. You can use **[read(row, col)]({{< relref "read" >}})** to access a cell's content, or methods like **[isValid(row, col)]({{< relref "is_valid" >}})**, **[isEmpty(row, col)]({{< relref "is_empty" >}})**, **[isFilled(row, col)]({{< relref "is_filled" >}})**, **[isString(row, col)]({{< relref "is_string" >}})**, **[isNumber(row, col)]({{< relref "is_number" >}})**, **[isColor(row, col)]({{< relref "is_color" >}})**, **[isImage(row, col)]({{< relref "is_image" >}})**, **[isArray(row, col)]({{< relref "is_array" >}})**, **[isFunction(row, col)]({{< relref "is_function" >}})**, and **[isObject(row, col)]({{< relref "is_object" >}})** to determine the type of data in a specific cell.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: Accessors > **Instance Creators**
 
 ### **Instance Creators**  
 [Instance creator methods]({{< relref "instance_creators" >}}) generate new quadrille instances derived from the original. These include **[clone()]({{< relref "clone" >}})** to create a shallow copy, **[row(row)]({{< relref "row" >}})** to extract a specific row, **[crop(row, col, width, height, wrap)]({{< relref "crop" >}})** to extract a rectangular region, and **[ring(row, col, dimension, wrap)]({{< relref "ring" >}})** a circular subset of cells around a specified position.
@@ -1270,7 +1495,7 @@ Through these categories, accessor methods provide a comprehensive way to analyz
 
 
 @@@@@
- DOCUMENTATION FOR: crop
+ DOCUMENTATION FOR: "crop(row, col, width, height, wrap)" > Overview
 
 Returns the rectangular **region** anchored at `(row, col)` as a **new quadrille**.  
 
@@ -1278,7 +1503,12 @@ Returns the rectangular **region** anchored at `(row, col)` as a **new quadrille
 * `height > 0` grows **down**, `height < 0` grows **up`.  
 * If either `width` or `height` is `0`, nothing is cropped.  
 * If `wrap` is `true`, indices wrap toroidally at the borders; when `false` (default), out-of-bounds area is taken as empty.  
-* The result is always a quadrille of size `|width| × |height|`.  
+* The result is always a quadrille of size `|width| × |height|`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "crop(row, col, width, height, wrap)" > Example
 
 ## Example
 
@@ -1431,9 +1661,19 @@ function update() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "crop(row, col, width, height, wrap)" > Syntax
+
 ## Syntax
 
 > `crop(row, col, width, height, [wrap = false])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "crop(row, col, width, height, wrap)" > Parameters
 
 ## Parameters
 
@@ -1448,9 +1688,14 @@ function update() {
 
 
 @@@@@
- DOCUMENTATION FOR: ring
+ DOCUMENTATION FOR: "ring(row, col, dimension, wrap)" > Overview
 
 Returns a new quadrille representing the **square ring of neighboring cells** of radius `dimension` centered at `(row, col)`. When `wrap` is `true`, indices wrap toroidally across borders; when `false` (default), out-of-bounds positions are treated as empty. The result has size `(2·dimension + 1) × (2·dimension + 1)`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "ring(row, col, dimension, wrap)" > Example
 
 ## Example
 
@@ -1561,9 +1806,19 @@ function update() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "ring(row, col, dimension, wrap)" > Syntax
+
 ## Syntax
 
 > `ring(row, col, [dimension = 1], [wrap = false])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "ring(row, col, dimension, wrap)" > Parameters
 
 ## Parameters
 
@@ -1577,9 +1832,14 @@ function update() {
 
 
 @@@@@
- DOCUMENTATION FOR: clone
+ DOCUMENTATION FOR: "clone()" > Overview
 
 Returns a [shallow copy](https://en.wikipedia.org/wiki/Object_copying#Shallow_copy) of the quadrille.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "clone()" > Example
 
 ## Example
 
@@ -1651,6 +1911,11 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "clone()" > Syntax
+
 ## Syntax
 
 > `clone()`
@@ -1658,9 +1923,14 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR: row.es
+ DOCUMENTATION FOR: "row(row)" > Overview
 
 Devuelve una fila como una nueva cuadrícula.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "row(row)" > Ejemplo
 
 ## Ejemplo
 
@@ -1727,9 +1997,19 @@ function mouseMoved() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "row(row)" > Sintaxis
+
 ## Sintaxis
 
 > `row(row)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "row(row)" > Parámetros
 
 ## Parámetros
 
@@ -1740,9 +2020,14 @@ function mouseMoved() {
 
 
 @@@@@
- DOCUMENTATION FOR: row
+ DOCUMENTATION FOR: "row(row)" > Overview
 
 Returns a row as a new quadrille.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "row(row)" > Example
 
 ## Example
 
@@ -1809,10 +2094,20 @@ function mouseMoved() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "row(row)" > Syntax
+
 ## Syntax
 
 > `row(row)`
- 
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "row(row)" > Parameters
+
 ## Parameters
 
 | Param    | Description                                                                     |
@@ -1822,7 +2117,7 @@ function mouseMoved() {
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: "Instance Creators" > Overview
 
 _Instance accessors_ generate new `quadrille` instances derived from the original. These methods allow you to create modified versions while preserving the original quadrille’s state:  
 
@@ -1834,7 +2129,7 @@ _Instance accessors_ generate new `quadrille` instances derived from the origina
 
 
 @@@@@
- DOCUMENTATION FOR: is valid
+ DOCUMENTATION FOR: "isValid(row, col)" > Overview
 
 Checks if the specified cell coordinates `(row, col)` lie within quadrille bounds, i.e., returns `true` if `row` `∈` [[0..height]]({{< ref "height" >}}) and `col` `∈` [[0..width]]({{< ref "width" >}}), and `false` otherwise.
 
@@ -1842,9 +2137,19 @@ Checks if the specified cell coordinates `(row, col)` lie within quadrille bound
 To check bounds individually, you can call `quadrille.isValid(row, 0)` to test only if `row` is within bounds, or `quadrille.isValid(0, col)` to test only if `col` is within bounds.  
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "isValid(row, col)" > Syntax
+
 ## Syntax
 
 > `isValid(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isValid(row, col)" > Parameters
 
 ## Parameters
 
@@ -1856,13 +2161,23 @@ To check bounds individually, you can call `quadrille.isValid(row, 0)` to test o
 
 
 @@@@@
- DOCUMENTATION FOR: is color
+ DOCUMENTATION FOR: "isColor(row, col)" > Overview
 
 Returns `true` if the cell found at `(row, col)` is a [color](https://p5js.org/reference/#/p5.Color) and `false` otherwise.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isColor(row, col)" > Syntax
 
 ## Syntax
 
 > `isColor(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isColor(row, col)" > Parameters
 
 ## Parameters
 
@@ -1878,13 +2193,23 @@ Also available as the static method `Quadrille.isColor(value)`, which takes a `v
 
 
 @@@@@
- DOCUMENTATION FOR: is filled
+ DOCUMENTATION FOR: "isFilled(row, col)" > Overview
 
 Returns `true` if the cell found at `(row, col)` is filled and `false` otherwise. Cells not defined as `null` are considered filled.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isFilled(row, col)" > Syntax
 
 ## Syntax
 
 > `isFilled(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isFilled(row, col)" > Parameters
 
 ## Parameters
 
@@ -1900,13 +2225,23 @@ Also available as the static method `Quadrille.isFilled(value)`, which takes a `
 
 
 @@@@@
- DOCUMENTATION FOR: is string
+ DOCUMENTATION FOR: "isString(row, col)" > Overview
 
 Returns `true` if the cell found at `(row, col)` is a string and `false` otherwise.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isString(row, col)" > Syntax
 
 ## Syntax
 
 > `isString(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isString(row, col)" > Parameters
 
 ## Parameters
 
@@ -1922,13 +2257,23 @@ Also available as the static method `Quadrille.isString(value)`, which takes a `
 
 
 @@@@@
- DOCUMENTATION FOR: is empty
+ DOCUMENTATION FOR: "isEmpty(row, col)" > Overview
 
 Returns `true` if the cell found at `(row, col)` is empty and `false` otherwise. Only cells defined as `null` are considered empty.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isEmpty(row, col)" > Syntax
 
 ## Syntax
 
 > `isEmpty(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isEmpty(row, col)" > Parameters
 
 ## Parameters
 
@@ -1944,13 +2289,23 @@ Also available as the static method `Quadrille.isEmpty(value)`, which takes a `v
 
 
 @@@@@
- DOCUMENTATION FOR: read
+ DOCUMENTATION FOR: "read(row, col)" > Overview
 
 Returns the contents of the quadrille cell at `(row, col)`. Returns `undefined` if the cell doesn't exist.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "read(row, col)" > Syntax
 
 ## Syntax
 
 > `read(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "read(row, col)" > Parameters
 
 ## Parameters
 
@@ -1962,13 +2317,23 @@ Returns the contents of the quadrille cell at `(row, col)`. Returns `undefined` 
 
 
 @@@@@
- DOCUMENTATION FOR: is object
+ DOCUMENTATION FOR: "isObject(row, col)" > Overview
 
 Returns `true` if the cell at `(row, col)` contains a value that qualifies as an object, excluding specific types such as [colors]({{< relref "is_color" >}}), [images]({{< relref "is_image" >}}), [arrays]({{< relref "is_array" >}}), or [functions]({{< relref "is_function" >}}), and `false` otherwise.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isObject(row, col)" > Syntax
 
 ## Syntax
 
 > `isObject(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isObject(row, col)" > Parameters
 
 ## Parameters
 
@@ -1984,13 +2349,23 @@ Also available as the static method `Quadrille.isObject(value)`, which takes a `
 
 
 @@@@@
- DOCUMENTATION FOR: is number
+ DOCUMENTATION FOR: "isNumber(row, col)" > Overview
 
 Returns `true` if the cell found at `(row, col)` has a number and `false` otherwise.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isNumber(row, col)" > Syntax
 
 ## Syntax
 
 > `isNumber(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isNumber(row, col)" > Parameters
 
 ## Parameters
 
@@ -2006,13 +2381,23 @@ Also available as the static method `Quadrille.isNumber(value)`, which takes a `
 
 
 @@@@@
- DOCUMENTATION FOR: is array
+ DOCUMENTATION FOR: "isArray(row, col)" > Overview
 
 Returns `true` if the cell found at `(row, col)` is an array and `false` otherwise.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isArray(row, col)" > Syntax
 
 ## Syntax
 
 > `isArray(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isArray(row, col)" > Parameters
 
 ## Parameters
 
@@ -2028,13 +2413,23 @@ Also available as the static method `Quadrille.isArray(value)`, which takes a `v
 
 
 @@@@@
- DOCUMENTATION FOR: is function
+ DOCUMENTATION FOR: "isFunction(row, col)" > Overview
 
 Returns `true` if the cell found at `(row, col)` is a function and `false` otherwise.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isFunction(row, col)" > Syntax
 
 ## Syntax
 
 > `isFunction(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isFunction(row, col)" > Parameters
 
 ## Parameters
 
@@ -2050,13 +2445,23 @@ Also available as the static method `Quadrille.isFunction(value)`, which takes a
 
 
 @@@@@
- DOCUMENTATION FOR: is bigint
+ DOCUMENTATION FOR: "isBigInt(row, col)" > Overview
 
 Returns `true` if the cell at `(row, col)` contains a bigint; otherwise, returns `false`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isBigInt(row, col)" > Syntax
 
 ## Syntax
 
 > `isBigInt(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isBigInt(row, col)" > Parameters
 
 ## Parameters
 
@@ -2072,13 +2477,23 @@ Also available as the static method `Quadrille.isBigInt(value)`, which takes a `
 
 
 @@@@@
- DOCUMENTATION FOR: is image
+ DOCUMENTATION FOR: "isImage(row, col)" > Overview
 
 Returns `true` if the cell at `(row, col)` contains a valid image-related type such as an [image](https://p5js.org/reference/#/p5.Image), [graphics](https://p5js.org/reference/#/p5.Graphics), or [framebuffer](https://p5js.org/reference/#/p5.Framebuffer), or if it is a [video](https://p5js.org/reference/#/p5.MediaElement) element, and `false` otherwise.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isImage(row, col)" > Syntax
 
 ## Syntax
 
 > `isImage(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isImage(row, col)" > Parameters
 
 ## Parameters
 
@@ -2094,13 +2509,23 @@ Also available as the static method `Quadrille.isImage(value)`, which takes a `v
 
 
 @@@@@
- DOCUMENTATION FOR: is symbol
+ DOCUMENTATION FOR: "isSymbol(row, col)" > Overview
 
 Returns `true` if the cell at `(row, col)` contains a [symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol); otherwise, returns `false`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isSymbol(row, col)" > Syntax
 
 ## Syntax
 
 > `isSymbol(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isSymbol(row, col)" > Parameters
 
 ## Parameters
 
@@ -2116,7 +2541,7 @@ Also available as the static method `Quadrille.isSymbol(value)`, which takes a `
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: "Cell Contents" > Overview
 
 These methods focus on determining the **value** and **type** of cells at a specific `(row, col)` position:  
 
@@ -2133,7 +2558,12 @@ These methods focus on determining the **value** and **type** of cells at a spec
 - **[isArray(row, col)]({{< relref "is_array" >}}):** Determines if the specified cell at `row` and `col` contains an array.  
 - **[isFunction(row, col)]({{< relref "is_function" >}}):** Determines if the specified cell at `row` and `col` contains a function.  
 - **[isObject(row, col)]({{< relref "is_object" >}}):** Determines if the specified cell at `row` and `col` contains an object.  
-- **[isSymbol(row, col)]({{< relref "is_symbol" >}}):** Determines if the specified cell at `row` and `col` contains a symbol.  
+- **[isSymbol(row, col)]({{< relref "is_symbol" >}}):** Determines if the specified cell at `row` and `col` contains a symbol.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "Cell Contents" > Example
 
 ## Example
 
@@ -2303,7 +2733,13 @@ function pulse() {
 - **Interactive Features**: A checkbox toggles between displaying cell `type` or `value`, while the `pulse` function provides animated cell feedback.  
 {{< /callout >}}
 
-<!-- 
+<!--
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "Cell Contents" > Example 2: Using Class Inheritance to Implement `cellType` and `cellValue`
+
 ## Example 2: Using Class Inheritance to Implement `cellType` and `cellValue`
 
 {{< p5-global-iframe quadrille="true" width="635" height="450" >}}
@@ -2400,13 +2836,23 @@ function pulse() {
 
 
 @@@@@
- DOCUMENTATION FOR: is boolean
+ DOCUMENTATION FOR: "isBoolean(row, col)" > Overview
 
 Returns `true` if the cell at `(row, col)` contains a boolean; otherwise, returns `false`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isBoolean(row, col)" > Syntax
 
 ## Syntax
 
 > `isBoolean(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "isBoolean(row, col)" > Parameters
 
 ## Parameters
 
@@ -2422,7 +2868,7 @@ Also available as the static method `Quadrille.isBoolean(value)`, which takes a 
 
 
 @@@@@
- DOCUMENTATION FOR: search
+ DOCUMENTATION FOR: "search(pattern, strict)" > Overview
 
 Searches for `pattern` within this quadrille and returns an array of `{row, col}` matches. The array length may be 0 if no matches are found. In `strict` mode (i.e., `strict = true`), for a `pattern` to be successfully found within a `quadrille`, the values inside the `pattern` must be identical instances to those in the `quadrille`. Conversely, in non-`strict` mode (i.e., `strict = false`), only the presence of filled cells is required, without regard for their contents.
 
@@ -2457,6 +2903,11 @@ function setup() {
 }
 ```
 `quadrille` and `pattern` are using different instances of the color `'blue'`, created separately by two calls to `createColor('blue')`. Even though both instances represent the color `'blue'`, they are distinct objects in memory. Therefore, when comparing the values in `quadrille` and `pattern`, they don't match in memory reference.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "search(pattern, strict)" > Example
 
 ## Example
 
@@ -2643,9 +3094,19 @@ function update() {
 - The `update` function recalculates the matches (stored in the `hits` array) between the `pattern` and the `board` quadrilles. It also creates a `hint` quadrille, which visually highlights the current `pattern` match during navigation. Without `update`, the application would not reflect changes after editing or randomizing quadrilles.  
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "search(pattern, strict)" > Syntax
+
 ## Syntax
 
 > `search(pattern, [strict = false])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "search(pattern, strict)" > Parameters
 
 ## Parameters
 
@@ -2657,7 +3118,7 @@ function update() {
 
 
 @@@@@
- DOCUMENTATION FOR: screen row
+ DOCUMENTATION FOR: "screenRow(pixelY, y, cellLength)" > Overview
 
 Returns the quadrille row to which the screen space `pixelY` coordinate belong.
 
@@ -2666,9 +3127,19 @@ Returns the quadrille row to which the screen space `pixelY` coordinate belong.
 2. If the quadrille is currently being drawn use the [mouseRow]({{< ref "mouse_row" >}}) property instead.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "screenRow(pixelY, y, cellLength)" > Syntax
+
 ## Syntax
 
 > `screenRow(pixelY, [y], [cellLength])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "screenRow(pixelY, y, cellLength)" > Parameters
 
 ## Parameters
 
@@ -2681,7 +3152,7 @@ Returns the quadrille row to which the screen space `pixelY` coordinate belong.
 
 
 @@@@@
- DOCUMENTATION FOR: bit index
+ DOCUMENTATION FOR: "bitIndex(row, col, littleEndian?)" > Overview
 
 Returns the bit index of the cell at `(row, col)` when the quadrille is encoded into a [bitboard](https://en.wikipedia.org/wiki/Bitboard) using row-major ordering.  
 By default, the index follows **big-endian** layout, where the most significant bit (MSB) maps to the top-left cell.  
@@ -2704,9 +3175,18 @@ Example for a 2×3 quadrille:
 {{< /callout >}}
 
 
+
+@@@@@
+ DOCUMENTATION FOR: "bitIndex(row, col, littleEndian?)" > Syntax
+
 ## Syntax
 
 > `bitIndex(row, col[, littleEndian])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "bitIndex(row, col, littleEndian?)" > Parameters
 
 ## Parameters
 
@@ -2723,9 +3203,14 @@ Also available as the static method `Quadrille.bitIndex(row, col, width = 8, hei
 
 
 @@@@@
- DOCUMENTATION FOR: magnitude
+ DOCUMENTATION FOR: "magnitude(row)" > Overview
 
 Returns the number of non-empty cells of a given quadrille row.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "magnitude(row)" > Example
 
 ## Example
 
@@ -2768,10 +3253,20 @@ function draw() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "magnitude(row)" > Syntax
+
 ## Syntax
 
 > `magnitude(row)`
- 
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "magnitude(row)" > Parameters
+
 ## Parameters
 
 | Param    | Description                                                                     |
@@ -2781,7 +3276,7 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: screen col
+ DOCUMENTATION FOR: "screenCol(pixelX, x, cellLength)" > Overview
 
 Returns the quadrille col to which the screen space `pixelX` coordinate belong.
 
@@ -2790,9 +3285,19 @@ Returns the quadrille col to which the screen space `pixelX` coordinate belong.
 2. If the quadrille is currently being drawn use the [mouseCol]({{< ref "mouse_col" >}}) property instead.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "screenCol(pixelX, x, cellLength)" > Syntax
+
 ## Syntax
 
 > `screenCol(pixelX, [x], [cellLength])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "screenCol(pixelX, x, cellLength)" > Parameters
 
 ## Parameters
 
@@ -2805,7 +3310,7 @@ Returns the quadrille col to which the screen space `pixelX` coordinate belong.
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: "Queries" > Overview
 
 These non-mutative methods provide detailed information about a given `quadrille`:  
 
@@ -2817,7 +3322,7 @@ These non-mutative methods provide detailed information about a given `quadrille
 
 
 @@@@@
- DOCUMENTATION FOR: bit cell
+ DOCUMENTATION FOR: "bitCell(bitIndex, littleEndian?)" > Overview
 
 Returns the `(row, col)` coordinates of the cell corresponding to a given `bitIndex` in a [bitboard](https://en.wikipedia.org/wiki/Bitboard), assuming row-major ordering.  
 By default, the index follows **big-endian** layout, where the most significant bit (MSB) maps to the top-left cell.  
@@ -2840,9 +3345,19 @@ Example for a 2×3 quadrille:
 Calling `bitCell(4)` returns `(0,1)` in big-endian, and `(1,1)` in little-endian.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "bitCell(bitIndex, littleEndian?)" > Syntax
+
 ## Syntax
 
 > `bitCell(bitIndex[, littleEndian])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "bitCell(bitIndex, littleEndian?)" > Parameters
 
 ## Parameters
 
@@ -2858,9 +3373,14 @@ Also available as the static method `Quadrille.bitCell(bitIndex, width = 8, heig
 
 
 @@@@@
- DOCUMENTATION FOR: insert
+ DOCUMENTATION FOR: insert(row) > Overview
 
 Inserts an empty row into the quadrille.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: insert(row) > Example
 
 ## Example
 
@@ -2924,9 +3444,19 @@ function reset() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: insert(row) > Syntax
+
 ## Syntax
 
 > `insert(row)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: insert(row) > Parameters
 
 ## Parameters
 
@@ -2937,7 +3467,7 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR: shift
+ DOCUMENTATION FOR: shift(dRow, dCol, wrap) > Overview
 
 Shifts cells by a **row/column offset**. Returns this quadrille (**chainable**).
 
@@ -2948,6 +3478,11 @@ Shifts cells by a **row/column offset**. Returns this quadrille (**chainable**).
 {{< callout type="info" >}}
 For a **non-destructive static version**, call `Quadrille.shift(q, dRow, dCol, wrap)`.
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: shift(dRow, dCol, wrap) > Example
 
 ## Example
 
@@ -3092,9 +3627,19 @@ function reset() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: shift(dRow, dCol, wrap) > Syntax
+
 ## Syntax
 
 > `shift(dRow, dCol, [wrap = true])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: shift(dRow, dCol, wrap) > Parameters
 
 ## Parameters
 
@@ -3107,9 +3652,14 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR: randomize
+ DOCUMENTATION FOR: randomize() > Overview
 
 Randomly re-arranges the quadrille cells.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: randomize() > Example
 
 ## Example
 
@@ -3169,6 +3719,11 @@ function keyPressed() {
 For deterministic (repeatable) randomness, explicitly call [randomSeed(seed)](https://p5js.org/reference/p5/randomSeed/) before `randomize()`.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: randomize() > Syntax
+
 ## Syntax
 
 > `randomize()`
@@ -3176,9 +3731,14 @@ For deterministic (repeatable) randomness, explicitly call [randomSeed(seed)](ht
 
 
 @@@@@
- DOCUMENTATION FOR: delete
+ DOCUMENTATION FOR: delete(row) > Overview
 
 Deletes a row from the quadrille.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: delete(row) > Example
 
 ## Example
 
@@ -3242,9 +3802,19 @@ function reset() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: delete(row) > Syntax
+
 ## Syntax
 
 > `delete(row)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: delete(row) > Parameters
 
 ## Parameters
 
@@ -3255,7 +3825,7 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: Mutators > Overview
 
 **Mutator methods** allow you to directly modify the state of the `quadrille` they are called upon. These transformations are persistent and update the `quadrille` instance **in-place**.
 
@@ -3272,7 +3842,12 @@ quadrille.clear();
 quadrille.fill(5, '🐁');  
 quadrille.randomize();  
 ```  
-{{< /callout >}}  
+{{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: Mutators > Method Overview
 
 ## Method Overview
 
@@ -3291,9 +3866,14 @@ quadrille.randomize();
 
 
 @@@@@
- DOCUMENTATION FOR: fill row col value directions border
+ DOCUMENTATION FOR: fill(row, col, value, directions, border) > Overview
 
 Fills a specific cell and all connected cells in the quadrille with the specified `value`, based on the given `directions` and `border` options, using a [flood fill](https://en.wikipedia.org/wiki/Flood_fill) algorithm.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, col, value, directions, border) > Example
 
 ## Example
 
@@ -3399,11 +3979,21 @@ function reset() {
   quadrille.rand(100, color('lime')).rand(100, color('blue'));
 }  
 ```  
-{{% /details %}}  
+{{% /details %}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, col, value, directions, border) > Syntax
 
 ## Syntax  
 
-> `fill(row, col, value, directions, border)`  
+> `fill(row, col, value, directions, border)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, col, value, directions, border) > Parameters
 
 ## Parameters  
 
@@ -3420,9 +4010,14 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR: fill predicate value
+ DOCUMENTATION FOR: fill(predicate, value) > Overview
 
 Fills cells matching a predicate condition with the specified `value`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(predicate, value) > Example
 
 ## Example
 
@@ -3489,9 +4084,19 @@ function reset() {
 
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(predicate, value) > Syntax
+
 ## Syntax
 
 > `fill(predicate, value)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(predicate, value) > Parameters
 
 ## Parameters
 
@@ -3505,9 +4110,14 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR: fill row col value
+ DOCUMENTATION FOR: fill(row, col, value) > Overview
 
 Fills a specific cell in the quadrille with the specified `value`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, col, value) > Example
 
 ## Example
 
@@ -3573,11 +4183,21 @@ function reset() {
   quadrille.rand(100, color('lime')).rand(100, color('blue'));
 }  
 ```  
-{{% /details %}}  
+{{% /details %}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, col, value) > Syntax
 
 ## Syntax  
 
-> `fill(row, col, value)`  
+> `fill(row, col, value)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, col, value) > Parameters
 
 ## Parameters  
 
@@ -3592,13 +4212,18 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR: fill bitboard value
+ DOCUMENTATION FOR: fill(bitboard, value, littleEndian?) > Overview
 
 Fills the quadrille based on a [bitboard](https://en.wikipedia.org/wiki/Bitboard) pattern passed as a JavaScript `BigInt`. Each `1` bit in the binary representation corresponds to a filled cell with the given `value`. The bitboard is read in row-major order, using big-endian by default.
 
 {{< callout type="info" >}}  
 To use little-endian ordering instead, pass `true` as the third argument.  
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(bitboard, value, littleEndian?) > Example
 
 ## Example
 
@@ -3654,9 +4279,19 @@ function mousePressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(bitboard, value, littleEndian?) > Syntax
+
 ## Syntax
 
 > `fill(bitboard, value[, littleEndian])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(bitboard, value, littleEndian?) > Parameters
 
 ## Parameters
 
@@ -3669,9 +4304,14 @@ function mousePressed() {
 
 
 @@@@@
- DOCUMENTATION FOR: fill row col value border
+ DOCUMENTATION FOR: fill(row, col, value, border) > Overview
 
 Fills a specific cell and all connected cells in the quadrille with the specified `value` using a [flood fill](https://en.wikipedia.org/wiki/Flood_fill) algorithm. The `border` parameter determines if the fill includes the boundary of the flood fill area.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, col, value, border) > Example
 
 ## Example
 
@@ -3749,11 +4389,21 @@ function reset() {
   quadrille.rand(100, color('lime')).rand(100, color('blue'));
 }  
 ```  
-{{% /details %}}  
+{{% /details %}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, col, value, border) > Syntax
 
 ## Syntax  
 
-> `fill(row, col, value, border)`  
+> `fill(row, col, value, border)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, col, value, border) > Parameters
 
 ## Parameters  
 
@@ -3769,9 +4419,14 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR: fill noargs
+ DOCUMENTATION FOR: fill() > Overview
 
 Fills all cells in the quadrille with a chessboard pattern.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill() > Example
 
 ## Example
 
@@ -3832,9 +4487,19 @@ function draw() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: fill() > Syntax
+
 ## Syntax
 
 > `fill()`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill() > Parameters
 
 ## Parameters
 
@@ -3846,9 +4511,14 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: fill color color
+ DOCUMENTATION FOR: fill(color1, color2) > Overview
 
 Fills all cells in the quadrille with a chessboard pattern.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(color1, color2) > Example
 
 ## Example
 
@@ -3910,9 +4580,19 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(color1, color2) > Syntax
+
 ## Syntax
 
 > `fill(color1, color2)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(color1, color2) > Parameters
 
 ## Parameters
 
@@ -3924,9 +4604,14 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR: fill row value
+ DOCUMENTATION FOR: fill(row, value) > Overview
 
 Fills an entire row in the quadrille with the specified `value`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, value) > Example
 
 ## Example
 
@@ -3990,11 +4675,21 @@ function reset() {
   quadrille.rand(100, color('lime')).rand(100, color('blue'));  
 }  
 ```  
-{{% /details %}}  
+{{% /details %}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, value) > Syntax
 
 ## Syntax  
 
-> `fill(row, value)`  
+> `fill(row, value)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, value) > Parameters
 
 ## Parameters  
 
@@ -4008,9 +4703,14 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR: fill value
+ DOCUMENTATION FOR: fill(value) > Overview
 
 Fills all empty cells in the quadrille with the specified `value`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(value) > Example
 
 ## Example
 
@@ -4084,9 +4784,19 @@ function reset() {
 Empty cells appear black because the background is set to black (`background(0)`), while the fill color is white (`fill(255)`).
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(value) > Syntax
+
 ## Syntax
 
 > `fill(value)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(value) > Parameters
 
 ## Parameters
 
@@ -4099,7 +4809,7 @@ Empty cells appear black because the background is set to black (`background(0)`
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: "fill(args)" > Overview
 
 Fills quadrille cells in several ways: 1. Without value: as a chessboard; or, 2. With `value`: in current empty cells, a specific cell, a designated row, or a group of matching cells using [flood fill](https://en.m.wikipedia.org/wiki/Flood_fill).
 
@@ -4110,9 +4820,14 @@ Fills quadrille cells in several ways: 1. Without value: as a chessboard; or, 2.
 
 
 @@@@@
- DOCUMENTATION FOR: fill row col value directions
+ DOCUMENTATION FOR: fill(row, col, value, directions) > Overview
 
 Fills a specific cell and all connected cells in the quadrille with the specified `value`, based on the given `directions` using a [flood fill](https://en.wikipedia.org/wiki/Flood_fill) algorithm.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, col, value, directions) > Example
 
 ## Example
 
@@ -4190,11 +4905,21 @@ function reset() {
   quadrille.rand(100, color('lime')).rand(100, color('blue'));
 }  
 ```  
-{{% /details %}}  
+{{% /details %}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, col, value, directions) > Syntax
 
 ## Syntax  
 
-> `fill(row, col, value, directions)`  
+> `fill(row, col, value, directions)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: fill(row, col, value, directions) > Parameters
 
 ## Parameters  
 
@@ -4210,9 +4935,14 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR: swap cell1 cell2
+ DOCUMENTATION FOR: swap(row1, col1, row2, col2) > Overview
 
 Swaps the contents of the cell at `(row1, col1)` with the cell at `(row2, col2)` in the `quadrille`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: swap(row1, col1, row2, col2) > Example
 
 ## Example
 
@@ -4321,9 +5051,19 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: swap(row1, col1, row2, col2) > Syntax
+
 ## Syntax
 
 > `swap(row1, col1, row2, col2)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: swap(row1, col1, row2, col2) > Parameters
 
 ## Parameters
 
@@ -4337,9 +5077,14 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR: swap row1 row2
+ DOCUMENTATION FOR: swap(row1, row2) > Overview
 
 Swaps the contents of `row1` and `row2` in the `quadrille`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: swap(row1, row2) > Example
 
 ## Example
 
@@ -4442,9 +5187,19 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: swap(row1, row2) > Syntax
+
 ## Syntax
 
 > `swap(row1, row2)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: swap(row1, row2) > Parameters
 
 ## Parameters
 
@@ -4456,16 +5211,21 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: "swap(args)" > Overview
 
 Either swaps the contents of two cells of two rows.
 
 
 
 @@@@@
- DOCUMENTATION FOR: clear noargs
+ DOCUMENTATION FOR: clear() > Overview
 
 Clears all cells in the quadrille, setting each cell to empty (i.e., `null`).
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear() > Example
 
 ## Example
 
@@ -4537,7 +5297,12 @@ function reset() {
 
 {{< callout type="info" >}}  
 Empty cells appear black because the background is set to black (`background(0)`).  
-{{< /callout >}}  
+{{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear() > Syntax
 
 ## Syntax  
 
@@ -4546,13 +5311,18 @@ Empty cells appear black because the background is set to black (`background(0)`
 
 
 @@@@@
- DOCUMENTATION FOR: clear bitboard
+ DOCUMENTATION FOR: clear(bitboard, littleEndian?) > Overview
 
 Clears the cells of the quadrille according to a [bitboard](https://en.wikipedia.org/wiki/Bitboard) passed as a JavaScript `BigInt`. Each `1` bit in the binary representation corresponds to a cell to be cleared (set to `null`). The bitboard is read in row-major order, using big-endian by default.
 
 {{< callout type="info" >}}  
 To use little-endian ordering instead, pass `true` as the second argument.  
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(bitboard, littleEndian?) > Example
 
 ## Example
 
@@ -4611,9 +5381,19 @@ function mousePressed() {
 
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(bitboard, littleEndian?) > Syntax
+
 ## Syntax
 
 > `clear(bitboard[, littleEndian])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(bitboard, littleEndian?) > Parameters
 
 ## Parameters
 
@@ -4625,9 +5405,14 @@ function mousePressed() {
 
 
 @@@@@
- DOCUMENTATION FOR: clear predicate
+ DOCUMENTATION FOR: clear(predicate) > Overview
 
 Clears all cells that match a given condition, setting their values to `null`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(predicate) > Example
 
 ## Example
 
@@ -4692,9 +5477,19 @@ function reset() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(predicate) > Syntax
+
 ## Syntax
 
 > `clear(predicate)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(predicate) > Parameters
 
 ## Parameters
 
@@ -4707,9 +5502,14 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR: clear row col
+ DOCUMENTATION FOR: clear(row, col) > Overview
 
 Clears a specific cell in the quadrille, setting it to empty (i.e., `null`).
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row, col) > Example
 
 ## Example
 
@@ -4777,9 +5577,19 @@ function reset() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row, col) > Syntax
+
 ## Syntax
 
 > `clear(row, col)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row, col) > Parameters
 
 ## Parameters
 
@@ -4791,9 +5601,14 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR: clear row col border
+ DOCUMENTATION FOR: clear(row, col, border) > Overview
 
 Clears a specific cell and all connected cells in the quadrille using a [flood fill](https://en.wikipedia.org/wiki/Flood_fill) algorithm. The `border` parameter determines if the clearing includes the boundary of the flood fill area.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row, col, border) > Example
 
 ## Example
 
@@ -4873,9 +5688,19 @@ function reset() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row, col, border) > Syntax
+
 ## Syntax
 
 > `clear(row, col, border)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row, col, border) > Parameters
 
 ## Parameters
 
@@ -4888,9 +5713,14 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR: clear row col directions
+ DOCUMENTATION FOR: clear(row, col, directions) > Overview
 
 Clears a specific cell and all connected cells in the quadrille based on the specified `directions`, using a [flood fill](https://en.wikipedia.org/wiki/Flood_fill) algorithm.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row, col, directions) > Example
 
 ## Example
 
@@ -4970,9 +5800,19 @@ function reset() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row, col, directions) > Syntax
+
 ## Syntax
 
 > `clear(row, col, directions)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row, col, directions) > Parameters
 
 ## Parameters
 
@@ -4985,9 +5825,14 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR: clear row
+ DOCUMENTATION FOR: clear(row) > Overview
 
 Clears an entire row in the quadrille, setting each cell in the row to empty (i.e., `null`).
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row) > Example
 
 ## Example
 
@@ -5053,9 +5898,19 @@ function reset() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row) > Syntax
+
 ## Syntax
 
 > `clear(row)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row) > Parameters
 
 ## Parameters
 
@@ -5066,9 +5921,14 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR: clear row col directions border
+ DOCUMENTATION FOR: clear(row, col, directions, border) > Overview
 
 Clears a specific cell and all connected cells in the quadrille based on the specified `directions`, using a [flood fill](https://en.wikipedia.org/wiki/Flood_fill) algorithm. The `border` parameter determines if the clearing includes the boundary of the flood fill area.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row, col, directions, border) > Example
 
 ## Example
 
@@ -5176,9 +6036,19 @@ function reset() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row, col, directions, border) > Syntax
+
 ## Syntax
 
 > `clear(row, col, directions, border)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: clear(row, col, directions, border) > Parameters
 
 ## Parameters
 
@@ -5192,7 +6062,7 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: "clear(args)" > Overview
 
 Clears quadrille cells (i.e., sets cells to `null`). Either all cells, a given cell, a given `row` or a set of identical cells using [flood fill](https://en.m.wikipedia.org/wiki/Flood_fill) or all cells.
 
@@ -5203,9 +6073,14 @@ Use `clear` instead of [fill]({{< relref "fill" >}}) to set cells to `null`.
 
 
 @@@@@
- DOCUMENTATION FOR: replace value1 value2
+ DOCUMENTATION FOR: replace(value1, value2) > Overview
 
-Replaces all cells containing `value1` with `value2` in the quadrille. 
+Replaces all cells containing `value1` with `value2` in the quadrille.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: replace(value1, value2) > Example
 
 ## Example
 
@@ -5291,9 +6166,19 @@ function reset() {
 To replace `value1` with `value2`, all cells containing `value1` must share the same memory reference, see [search()]({{< ref "search" >}}).  
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: replace(value1, value2) > Syntax
+
 ## Syntax  
 
-> `replace(value1, value2)`  
+> `replace(value1, value2)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: replace(value1, value2) > Parameters
 
 ## Parameters  
 
@@ -5307,9 +6192,14 @@ To replace `value1` with `value2`, all cells containing `value1` must share the 
 
 
 @@@@@
- DOCUMENTATION FOR: replace value
+ DOCUMENTATION FOR: replace(value) > Overview
 
 Replaces all non-empty cells in the quadrille with the specified `value`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: replace(value) > Example
 
 ## Example
 
@@ -5377,11 +6267,21 @@ function reset() {
   quadrille.rand(25, color('lime')).rand(25, color('blue'));  
 }  
 ```  
-{{% /details %}}  
+{{% /details %}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: replace(value) > Syntax
 
 ## Syntax  
 
-> `replace(value)`  
+> `replace(value)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: replace(value) > Parameters
 
 ## Parameters  
 
@@ -5394,16 +6294,21 @@ function reset() {
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: "replace(args)" > Overview
 
 Either replaces non empty cells with `value`, or `value1` filled cells with `value2`.
 
 
 
 @@@@@
- DOCUMENTATION FOR: rand times
+ DOCUMENTATION FOR: rand(times) > Overview
 
 Randomly clears `times` number of cells in the quadrille. Same as [random(times, null)]({{< ref "rand_times_value" >}}).
+
+
+
+@@@@@
+ DOCUMENTATION FOR: rand(times) > Example
 
 ## Example
 
@@ -5471,9 +6376,19 @@ function keyPressed() {
 For deterministic (repeatable) randomness, explicitly call [randomSeed(seed)](https://p5js.org/reference/p5/randomSeed/) before `rand(times)`.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: rand(times) > Syntax
+
 ## Syntax  
 
-> `rand(times)`  
+> `rand(times)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: rand(times) > Parameters
 
 ## Parameters  
 
@@ -5484,9 +6399,14 @@ For deterministic (repeatable) randomness, explicitly call [randomSeed(seed)](ht
 
 
 @@@@@
- DOCUMENTATION FOR: rand times value
+ DOCUMENTATION FOR: rand(times, value) > Overview
 
 Randomly fills the quadrille with the specified `value` a given number of `times`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: rand(times, value) > Example
 
 ## Example
 
@@ -5568,9 +6488,19 @@ function keyPressed() {
 For deterministic (repeatable) randomness, explicitly call [randomSeed(seed)](https://p5js.org/reference/p5/randomSeed/) before `rand(times, value)`.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: rand(times, value) > Syntax
+
 ## Syntax  
 
-> `rand(times, value)`  
+> `rand(times, value)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: rand(times, value) > Parameters
 
 ## Parameters  
 
@@ -5584,7 +6514,7 @@ For deterministic (repeatable) randomness, explicitly call [randomSeed(seed)](ht
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: "rand(args)" > Overview
 
 Randomly [fills]({{< relref "rand_times_value" >}}) or [clears]({{< relref "rand_times" >}}) a specified number of times cells in the quadrille.
 
@@ -5595,7 +6525,7 @@ For deterministic (repeatable) randomness, explicitly call [randomSeed(seed)](ht
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: p5 Functions > Overview
 
 The [p5.js](https://p5js.org/) functions provide seamless tools to **create** and **draw** **quadrille** objects. Whether you're building board games, designing generative visuals, or managing cell-based data, these functions serve as a bridge between the p5.js canvas and the **quadrille object**—the core structure of the **p5.quadrille.js** library.
 
@@ -5608,9 +6538,14 @@ Alongside the [p5.js API](https://p5js.org/reference/), these functions allow yo
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille jagged array
+ DOCUMENTATION FOR: "createQuadrille(jagged_array)" > Overview
 
 The `createQuadrille` function creates a **quadrille** and fills its cells using items from a [jagged_array](https://en.wikipedia.org/wiki/Jagged_array). The array can contain any combination of [valid JavaScript values](https://www.w3schools.com/js/js_datatypes.asp), with `null` representing empty cells.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(jagged_array)" > Example 1: Images, Text, Colors, Numbers, and Emojis
 
 ## Example 1: Images, Text, Colors, Numbers, and Emojis
 
@@ -5675,6 +6610,11 @@ function draw() {
 **Observation about images**  
 Images are loaded in the `async` [setup](https://p5js.org/reference/p5/setup) function using `await` with [loadImage](https://p5js.org/reference/p5/loadImage) to ensure they are fully available before being used.
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(jagged_array)" > Example 2: Videos, Text, Colors, Numbers, and Emojis
 
 ## Example 2: Videos, Text, Colors, Numbers, and Emojis
 
@@ -5770,6 +6710,11 @@ function mouseClicked() {
 3. **`destino.looping` custom [property](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics):** Initially, `destino.looping` is `undefined` (a [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) value). The line `destino.looping = !destino.looping;` flips its value to `true` on the first click, and subsequently toggles it between `true` and `false`.  
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(jagged_array)" > Example 3: Functions, Images, Text, Colors and Emojis
+
 ## Example 3: Functions, Images, Text, Colors and Emojis
 
 {{< p5-global-iframe quadrille="true" width="625" height="425" >}}
@@ -5855,6 +6800,11 @@ function pulse() {
 2. **Origin in the Canvas:** In `P2D` mode, the canvas origin defaults to the **top-left corner**. To position the entire quadrille with its top-left corner at the center of the canvas, use `drawQuadrille(quadrille, { origin: CENTER })`.
 3. **Origin in Function Cells:** Likewise, within each function cell (such as `pulse`), the coordinate origin is also the top-left corner of the cell. To draw shapes centered within the cell (like `circle(center, center, radius)`), define `center = Quadrille.cellLength / 2`. Alternatively, pass `options: { origin: CENTER }` to `drawQuadrille()` to shift the coordinate system to the cell center.
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(jagged_array)" > Example 4: WEBGL Mode with Functions, Images, Text, and Colors
 
 ## Example 4: WEBGL Mode with Functions, Images, Text, and Colors
 
@@ -5956,6 +6906,11 @@ function ringTorus() {
 The **`WEBGL` mode** in **`p5.js`** has a **higher carbon footprint** due to its reliance on **GPU acceleration**, which consumes more energy. For applications that do not require 3D rendering, consider using **`PGraphics`** with **`P2D` mode** as a more **energy-efficient** and **sustainable** alternative.
 {{< /callout >}} -->
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(jagged_array)" > Example 5: p5.Graphics, Images, Text, Colors, and Emojis
+
 ## Example 5: p5.Graphics, Images, Text, Colors, and Emojis
 
 {{< p5-global-iframe quadrille="true" width="625" height="425" >}}
@@ -6050,9 +7005,19 @@ function pulse() {
 Function cells are the preferred choice in this API's examples while occasionally using `p5.Graphics`.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(jagged_array)" > Syntax
+
 ## Syntax  
 
 > `createQuadrille(jagged_array)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(jagged_array)" > Parameters
 
 ## Parameters  
 
@@ -6063,9 +7028,14 @@ Function cells are the preferred choice in this API's examples while occasionall
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille width array
+ DOCUMENTATION FOR: "createQuadrille(width, array)" > Overview
 
 The `createQuadrille(width, array)` function creates a **quadrille** with a specified number of columns (`width`) and fills its cells using items from the provided `array`. The items are arranged sequentially across the specified columns, creating one or more rows as needed. The array can contain any combination of [valid JavaScript values](https://www.w3schools.com/js/js_datatypes.asp), with `null` representing empty cells.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, array)" > Example
 
 ## Example
 
@@ -6112,9 +7082,19 @@ function draw() {
 The `createQuadrille(width, array)` function lets you specify the number of columns (`width`) while filling the quadrille with items from the provided `array`. Items are arranged sequentially into rows, and any `null` values represent empty cells. For handling the values, refer to [createQuadrille(jagged_array)]({{< relref "create_quadrille_jagged_array" >}}).  
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, array)" > Syntax
+
 ## Syntax  
 
-> `createQuadrille(width, array)`  
+> `createQuadrille(width, array)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, array)" > Parameters
 
 ## Parameters  
 
@@ -6126,7 +7106,7 @@ The `createQuadrille(width, array)` function lets you specify the number of colu
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille width bigint value
+ DOCUMENTATION FOR: "createQuadrille(width, bitboard, value, littleEndian?)" > Overview
 
 Creates a quadrille by decoding a [bitboard](https://en.wikipedia.org/wiki/Bitboard)—passed as a JavaScript `BigInt`—into a rectangular quadrille. Each bit in the bitboard determines whether a corresponding cell is filled (`1`) or empty (`0`). The number of columns is set by `width`, and rows are inferred as needed.
 
@@ -6134,6 +7114,11 @@ Creates a quadrille by decoding a [bitboard](https://en.wikipedia.org/wiki/Bitbo
 The quadrille [height]({{< relref "height" >}}) is inferred automatically as the minimum number of rows needed to fit all bits in the bitboard, using row-major, big-endian order by default.  
 To **explicitly define** the [height]({{< relref "height" >}}), call [`createQuadrille(width, height, bitboard, value[, littleEndian])`]({{< relref "create_quadrille_width_height_bigint_value" >}}).
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, bitboard, value, littleEndian?)" > Example 1 — Big-endian (default)
 
 ## Example 1 — Big-endian (default)
 
@@ -6190,6 +7175,11 @@ This example fills a quadrille using a **bitboard** (`58n` = `0b111010`) in **ro
 (0)2⁰ + (1)2¹ + (0)2² + (1)2³ + (1)2⁴ + (1)2⁵ = 58
 ```
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, bitboard, value, littleEndian?)" > Example 2 — Little-endian
 
 ## Example 2 — Little-endian
 
@@ -6253,9 +7243,19 @@ This layout is often used in chess engines such as [Stockfish](https://github.co
 To define different values in `createQuadrille(width, bigint, value)`, refer to [createQuadrille(jagged_array)]({{< relref "create_quadrille_jagged_array" >}}).
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, bitboard, value, littleEndian?)" > Syntax
+
 ## Syntax
 
 > `createQuadrille(width, bitboard, value[, littleEndian])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, bitboard, value, littleEndian?)" > Parameters
 
 ## Parameters
 
@@ -6271,9 +7271,14 @@ To define different values in `createQuadrille(width, bigint, value)`, refer to 
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille width image
+ DOCUMENTATION FOR: "createQuadrille(width, image)" > Overview
 
 Converts an `image` (a [p5.Image](https://p5js.org/reference/#/p5.Image), [p5.Graphics](https://p5js.org/reference/#/p5.Graphics)) or video [p5.MediaElement](https://p5js.org/reference/p5/p5.MediaElement/) into a quadrille with the specified number of columns (`width`), pixelating the image into cells.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, image)" > Example
 
 ## Example
 
@@ -6318,9 +7323,19 @@ function draw() {
 `createQuadrille(width, image)` converts an image into a quadrille, with each cell representing a sub-image.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, image)" > Syntax
+
 ## Syntax
 
 > `createQuadrille(width, image)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, image)" > Parameters
 
 ## Parameters
 
@@ -6332,11 +7347,16 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille width height predicate value
+ DOCUMENTATION FOR: "createQuadrille(width, height, predicate, value)" > Overview
 
 Creates a quadrille of the specified size and fills each cell **only if** the given `predicate({ row, col })` returns true. The filled cells are assigned the provided `value`.
 
 This method is ideal for generating patterns like diagonals, borders, checkerboards, or any logical layout based on cell position.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, height, predicate, value)" > Example
 
 ## Example
 
@@ -6374,9 +7394,19 @@ function draw() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, height, predicate, value)" > Syntax
+
 ## Syntax
 
 > `createQuadrille(width, height, predicate, value)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, height, predicate, value)" > Parameters
 
 ## Parameters
 
@@ -6392,9 +7422,14 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille FEN
+ DOCUMENTATION FOR: "createQuadrille(FEN)" > Overview
 
 Creates a quadrille with the chess board position described by the given [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation).
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(FEN)" > Example 1
 
 ## Example 1
 
@@ -6447,6 +7482,11 @@ This [iconic game](https://www.chessgames.com/perl/chessgame?gid=1095025), playe
 
 {{< youtube v7hc715hvVg >}}
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(FEN)" > Example 2: Custom Chess Symbols with Chess.com Colors
 
 ## Example 2: Custom Chess Symbols with Chess.com Colors
 
@@ -6543,9 +7583,19 @@ Quadrille.chessKeys.get('♔');    // 'K'
 ```
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(FEN)" > Syntax
+
 ## Syntax
 
 > `createQuadrille(FEN)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(FEN)" > Parameters
 
 ## Parameters
 
@@ -6556,9 +7606,14 @@ Quadrille.chessKeys.get('♔');    // 'K'
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille string
+ DOCUMENTATION FOR: "createQuadrille(string)" > Overview
 
 Creates a quadrille and fills its cells using the characters from the provided `string`. The number of columns in the quadrille matches the length of the string.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(string)" > Example
 
 ## Example
 
@@ -6597,9 +7652,19 @@ function draw() {
 The `createQuadrille(string)` function fills a quadrille with each character of the provided string, where each column represents one character.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(string)" > Syntax
+
 ## Syntax
 
 > `createQuadrille(string)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(string)" > Parameters
 
 ## Parameters
 
@@ -6610,9 +7675,14 @@ The `createQuadrille(string)` function fills a quadrille with each character of 
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille width image coherence
+ DOCUMENTATION FOR: "createQuadrille(width, image, coherence)" > Overview
 
 Converts an `image` (a [p5.Image](https://p5js.org/reference/#/p5.Image), [p5.Graphics](https://p5js.org/reference/#/p5.Graphics), or a video [p5.MediaElement](https://p5js.org/reference/p5/p5.MediaElement/)) into a pixelated quadrille. The `coherence` parameter **must be provided** to control spatial coherence; omitting it invokes [createQuadrille(width, image)]({{< relref "create_quadrille_width_image" >}}).
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, image, coherence)" > Example
 
 ## Example
 
@@ -6677,9 +7747,19 @@ function draw() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, image, coherence)" > Syntax
+
 ## Syntax
 
 > `createQuadrille(width, image, coherence)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, image, coherence)" > Parameters
 
 ## Parameters
 
@@ -6692,9 +7772,14 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille width height
+ DOCUMENTATION FOR: "createQuadrille(width, height)" > Overview
 
 Creates an empty quadrille having `width` number of columns and `height` number of rows.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, height)" > Example
 
 ## Example
 
@@ -6743,9 +7828,19 @@ function draw() {
 `createQuadrille(width, height)` creates an empty quadrille with the given dimensions. See [fill]({{< ref "fill" >}}) and [rand]({{< ref "rand" >}}) for ways to populating it.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, height)" > Syntax
+
 ## Syntax
 
 > `createQuadrille(width, height)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, height)" > Parameters
 
 ## Parameters
 
@@ -6757,9 +7852,14 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille width string
+ DOCUMENTATION FOR: "createQuadrille(width, string)" > Overview
 
 Creates a quadrille and fills its cells using the characters from the provided `string`. The number of columns is defined by `width`, and the characters are arranged across multiple rows if necessary.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, string)" > Example
 
 ## Example
 
@@ -6798,9 +7898,19 @@ function draw() {
 The `createQuadrille(width, string)` function allows you to control the number of columns (`width`) while filling the quadrille with the characters from the provided `string`. Characters will automatically overflow into additional rows as needed.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, string)" > Syntax
+
 ## Syntax
 
 > `createQuadrille(width, string)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, string)" > Parameters
 
 ## Parameters
 
@@ -6812,9 +7922,14 @@ The `createQuadrille(width, string)` function allows you to control the number o
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille width height order value
+ DOCUMENTATION FOR: "createQuadrille(width, height, order, value)" > Overview
 
 Creates a quadrille and fills its cells using the specified `value`, which is randomly repeated throughout the quadrille up to `order` number of times. The dimensions of the quadrille are determined by `width` and `height`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, height, order, value)" > Example
 
 ## Example
 
@@ -6853,9 +7968,19 @@ function draw() {
 To define different values in `createQuadrille(width, height, order, value)`, refer to [createQuadrille(jagged_array)]({{< relref "create_quadrille_jagged_array" >}}).
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, height, order, value)" > Syntax
+
 ## Syntax
 
 > `createQuadrille(width, height, order, value)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, height, order, value)" > Parameters
 
 ## Parameters
 
@@ -6871,9 +7996,14 @@ To define different values in `createQuadrille(width, height, order, value)`, re
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille noargs
+ DOCUMENTATION FOR: "createQuadrille()" > Overview
 
 Creates an 8x8 quadrille with a chessboard pattern.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille()" > Example
 
 ## Example
 
@@ -6941,9 +8071,19 @@ The following parameters are static fields of the `Quadrille` class, meaning the
 - [Quadrille.cellLength]({{< ref "cell_length" >}}) and [Quadrille.tileDisplay]({{< ref "display_fns" >}}) are discussed separately.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille()" > Syntax
+
 ## Syntax
 
 > `createQuadrille()`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille()" > Parameters
 
 ## Parameters
 
@@ -6955,9 +8095,14 @@ The following parameters are static fields of the `Quadrille` class, meaning the
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille array
+ DOCUMENTATION FOR: "createQuadrille(array)" > Overview
 
 The `createQuadrille` function creates a **quadrille** and fills its cells using items from the `array` as the source. The array can contain any combination of [valid JavaScript values](https://www.w3schools.com/js/js_datatypes.asp), with `null` representing empty cells.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(array)" > Example
 
 ## Example
 
@@ -7004,9 +8149,19 @@ function draw() {
 The `createQuadrille(array)` function lets you populate a quadrille with any valid JavaScript values, such as images, colors, and strings, provided in an `array`; for handling these values, see [createQuadrille(jagged_array)]({{< relref "create_quadrille_jagged_array" >}}).
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(array)" > Syntax
+
 ## Syntax
 
 > `createQuadrille(array)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(array)" > Parameters
 
 ## Parameters
 
@@ -7017,7 +8172,7 @@ The `createQuadrille(array)` function lets you populate a quadrille with any val
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: "createQuadrille(args)" > Overview
 
 The `p5.createQuadrille` method is a [polymorphic](https://en.wikipedia.org/wiki/Ad_hoc_polymorphism) function that generates a [quadrille](https://en.wikipedia.org/wiki/Square_tiling) object. Each cell in a quadrille can hold any [valid JavaScript value](https://www.w3schools.com/js/js_datatypes.asp), such as `numbers`, `strings`, `arrays`, `objects`, `functions`, or `null` (representing an empty cell), including p5-specific types like [p5.Color](https://p5js.org/reference/p5/p5.Color), [p5.Image](https://p5js.org/reference/p5/p5.Image), and [p5.Graphics](https://p5js.org/reference/p5/p5.Graphics). If a cell is created with an `undefined` value, it is automatically converted to `null` to ensure consistency.
 
@@ -7026,13 +8181,18 @@ The `p5.createQuadrille` function enforces a key [invariant](https://en.wikipedi
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille width height bigint value
+ DOCUMENTATION FOR: "createQuadrille(width, height, bitboard, value, littleEndian?)" > Overview
 
 Creates a quadrille by decoding a [bitboard](https://en.wikipedia.org/wiki/Bitboard)—passed as a JavaScript `BigInt`—into a fixed-size rectangular quadrille. Each bit in the bitboard determines whether a corresponding cell is filled (`1`) or empty (`0`). The number of columns is set by `width`, and the number of rows is explicitly set by `height`.
 
 {{< callout type="info" >}}  
 This function lets you control both `width` and `height` directly, making it useful for placing bitboard-defined patterns into specific regions of a larger quadrille.  
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, height, bitboard, value, littleEndian?)" > Example 1 — Big-endian (default)
 
 ## Example 1 — Big-endian (default)
 
@@ -7102,6 +8262,11 @@ MSB (bit 11)
 LSB (bit 0)
 ```
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, height, bitboard, value, littleEndian?)" > Example 2 — Little-endian
 
 ## Example 2 — Little-endian
 
@@ -7173,9 +8338,19 @@ This results in a **flipped L** shape:
 This layout matches **little-endian rank-file ordering** as used in engines like [Stockfish](https://github.com/official-stockfish/Stockfish).
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, height, bitboard, value, littleEndian?)" > Syntax
+
 ## Syntax
 
 > `createQuadrille(width, height, bitboard, value[, littleEndian])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(width, height, bitboard, value, littleEndian?)" > Parameters
 
 ## Parameters
 
@@ -7192,9 +8367,14 @@ This layout matches **little-endian rank-file ordering** as used in engines like
 
 
 @@@@@
- DOCUMENTATION FOR: create quadrille color color
+ DOCUMENTATION FOR: "createQuadrille(color1, color2)" > Overview
 
 Creates an 8x8 quadrille with a chessboard pattern.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(color1, color2)" > Example
 
 ## Example
 
@@ -7247,9 +8427,19 @@ function draw() {
 `createQuadrille(color1, color2)` is equivalent to `createQuadrille(8, 8).fill(color1, color2)`. See [createQuadrille(width, height)]({{< ref "create_quadrille/#createquadrillewidth-height" >}}) and [fill(color1, color2)]({{< ref "fill_color_color" >}}).
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(color1, color2)" > Syntax
+
 ## Syntax
 
 > `createQuadrille(color1, color2)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "createQuadrille(color1, color2)" > Parameters
 
 ## Parameters
 
@@ -7261,9 +8451,14 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: x y
+ DOCUMENTATION FOR: x & y > Overview
 
 The `x` and `y` parameters define the upper-left corner where the quadrille is drawn, in pixels.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: x & y > Example
 
 ## Example
 
@@ -7305,9 +8500,19 @@ function draw() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: x & y > Syntax
+
 ## Syntax
 
 > `drawQuadrille(quadrille, { x, y })`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: x & y > Parameters
 
 ## Parameters
 
@@ -7319,7 +8524,7 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: display fns
+ DOCUMENTATION FOR: display functions > Overview
 
 Display functions determine how quadrille cells are visually rendered based on their values. To disable a specific display function, assign it a value of `0` or `null`.
 
@@ -7347,6 +8552,11 @@ Here, `value` contains the cell content; `row` and `col` indicate the cell’s p
 **Object fallback rendering**  
 When no `objectDisplay` is specified, `drawQuadrille()` attempts to render objects using their `display` field, if defined. If `display` is a string, number, color, or image, the corresponding built-in renderer is used. If it is a function, it is called with the `options` object only. Arrays are excluded from this mechanism and must be handled explicitly using `arrayDisplay`.
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: display functions > Example
 
 ## Example
 
@@ -7435,9 +8645,19 @@ function draw() {
 This example overrides the default square tiling by supplying JavaScript [arrow functions](https://www.w3schools.com/js/js_arrow_function.asp) to `tileDisplay` and `colorDisplay`, causing each quadrille cell to render as a circle.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: display functions > Syntax
+
 ## Syntax
 
 > `drawQuadrille(quadrille, {tileDisplay, numberDisplay, stringDisplay, colorDisplay, imageDisplay, functionDisplay, arrayDisplay, objectDisplay})`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: display functions > Parameters
 
 ## Parameters
 
@@ -7460,9 +8680,14 @@ This example overrides the default square tiling by supplying JavaScript [arrow 
 
 
 @@@@@
- DOCUMENTATION FOR: outline
+ DOCUMENTATION FOR: outline > Overview
 
 Defines the default outline color used for drawing the quadrille cells. The default value is `Quadrille.outline`, which is `'OrangeRed'`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: outline > Example
 
 ## Example
 
@@ -7540,9 +8765,19 @@ function draw() {
 - `q2`, `q3`, and `q4` use the global `Quadrille.outline`, which can be adjusted via the global picker (`globalPicker`).
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: outline > Syntax
+
 ## Syntax
 
 > `Quadrille.outline`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: outline > Parameters
 
 ## Parameters
 
@@ -7553,9 +8788,14 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: text color
+ DOCUMENTATION FOR: textColor > Overview
 
 Defines the default text color used for drawing the quadrille cells. The default value is `Quadrille.textColor`, which is `'DodgerBlue'`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: textColor > Example
 
 ## Example
 
@@ -7629,9 +8869,19 @@ function draw() {
 - `q2`, `q3`, and `q4` use the global `Quadrille.textColor` set by the global color picker (`globalPicker`).
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: textColor > Syntax
+
 ## Syntax
 
 > `drawQuadrille(quadrille, { textColor })`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: textColor > Parameters
 
 ## Parameters
 
@@ -7642,9 +8892,14 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: cell length
+ DOCUMENTATION FOR: cellLength > Overview
 
 Defines the drawing cell length for quadrilles in pixels. The default is `Quadrille.cellLength`, which is `100`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: cellLength > Example
 
 ## Example
 
@@ -7720,9 +8975,19 @@ function draw() {
 - `q2`, `q3`, and `q4` use the global `Quadrille.cellLength` set by the global slider (`globalSlider`), which is initially `40` pixels.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: cellLength > Syntax
+
 ## Syntax
 
 > `drawQuadrille(quadrille, { cellLength })`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: cellLength > Parameters
 
 ## Parameters
 
@@ -7733,9 +8998,14 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: origin
+ DOCUMENTATION FOR: origin > Overview
 
 The `origin` parameter defines the top-left corner of the quadrille for drawing: `CORNER` positions it at the top-left corner of the canvas, the default in `P2D`; `CENTER` positions it at the center of the canvas, the default in `WEBGL`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: origin > Example
 
 ## Example
 
@@ -7795,9 +9065,19 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: origin > Syntax
+
 ## Syntax
 
 > `drawQuadrille(quadrille, { origin })`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: origin > Parameters
 
 ## Parameters
 
@@ -7808,7 +9088,7 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR: filter prop
+ DOCUMENTATION FOR: filter > Overview
 
 Filters which cells to draw from a given quadrille `q`. It accepts the following types:
 
@@ -7843,6 +9123,11 @@ You can also destructure to focus only on what you need:
 ({ value }) => brightness(value) < 50;
 ```
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: filter > Example: Filtering by Value Collection
 
 ## Example: Filtering by Value Collection
 
@@ -7931,6 +9216,11 @@ The `values` array must contain references to the exact instances used to fill t
 For example, if `q` was filled with the variable `yellow = color('lemonchiffon')`,
 then `values` must include that same variable, not a new `color('lemonchiffon')`.
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: filter > Example: Filtering by Predicate Value
 
 ## Example: Filtering by Predicate Value
 
@@ -8023,6 +9313,11 @@ for (const label in filters) {
 ```
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: filter > Example: Filtering by Predicate Value, Row, and Column
+
 ## Example: Filtering by Predicate Value, Row, and Column
 
 (click on canvas and press any key to randomize `q`)
@@ -8101,9 +9396,19 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: filter > Syntax
+
 ## Syntax
 
 > `drawQuadrille(quadrille, { filter })`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: filter > Parameters
 
 ## Parameters
 
@@ -8114,9 +9419,14 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR: row col
+ DOCUMENTATION FOR: row & col > Overview
 
 The `row` and `col` parameters define the position of the upper-left corner where the quadrille is drawn, in row and column units.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: row & col > Example
 
 ## Example
 
@@ -8162,9 +9472,19 @@ function draw() {
 The [mouseRow]({{< ref "mouse_row" >}}) and [mouseCol]({{< ref "mouse_col" >}}) Quadrille properties are used to dynamically position the `q` quadrille based on the mouse location.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: row & col > Syntax
+
 ## Syntax
 
 > `drawQuadrille(quadrille, { row, col })`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: row & col > Parameters
 
 ## Parameters
 
@@ -8176,9 +9496,14 @@ The [mouseRow]({{< ref "mouse_row" >}}) and [mouseCol]({{< ref "mouse_col" >}}) 
 
 
 @@@@@
- DOCUMENTATION FOR: graphics
+ DOCUMENTATION FOR: graphics > Overview
 
 The `graphics` parameter renders quadrilles onto a custom [p5.Graphics](https://p5js.org/reference/#/p5.Graphics) buffer, enabling flexible compositing and advanced texturing.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: graphics > Example 1
 
 ## Example 1
 
@@ -8237,6 +9562,11 @@ function draw() {
 {{< callout type="info" >}}
 This example shows how to render a quadrille onto a `p5.Graphics` object, allowing it to be used as a dynamic image ([image()](https://p5js.org/reference/p5/image/)). The rendered graphics object can be moved independently of the main canvas, enabling layering and modular manipulation.
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: graphics > Example 2
 
 ## Example 2
 
@@ -8346,9 +9676,19 @@ This [example](https://www.sciencedirect.com/science/article/pii/S23527110240020
 The **`WEBGL` mode** in **`p5.js`** has a **higher carbon footprint** due to its reliance on **GPU acceleration**, which consumes more energy. For applications that do not require 3D rendering, consider using **`PGraphics`** with **`P2D` mode** as a more **energy-efficient** and **sustainable** alternative.
 {{< /callout >}} -->
 
+
+
+@@@@@
+ DOCUMENTATION FOR: graphics > Syntax
+
 ## Syntax
 
 > `drawQuadrille(quadrille, { graphics })`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: graphics > Parameters
 
 ## Parameters
 
@@ -8359,9 +9699,14 @@ The **`WEBGL` mode** in **`p5.js`** has a **higher carbon footprint** due to its
 
 
 @@@@@
- DOCUMENTATION FOR: outline weight
+ DOCUMENTATION FOR: outlineWeight > Overview
 
 Defines the default outline weight (stroke thickness) for drawing the quadrille cells. The default value is `Quadrille.outlineWeight`, which is `2`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: outlineWeight > Example
 
 ## Example
 
@@ -8437,9 +9782,19 @@ function draw() {
 - `q2`, `q3`, and `q4` use the global `Quadrille.outlineWeight`, which can be adjusted by the global slider (`globalSlider`).
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: outlineWeight > Syntax
+
 ## Syntax
 
 > `drawQuadrille(quadrille, { outlineWeight })`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: outlineWeight > Parameters
 
 ## Parameters
 
@@ -8450,9 +9805,14 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: text zoom
+ DOCUMENTATION FOR: textZoom > Overview
 
 Defines the default text zoom level for quadrille cells. The default is `Quadrille.textZoom`, which is `0.89`.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: textZoom > Example
 
 ## Example
 
@@ -8528,9 +9888,19 @@ function draw() {
 - `q2`, `q3`, and `q4` use the global `Quadrille.textZoom` set by the global slider (`globalZoomSlider`), which is initially `0.89`.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: textZoom > Syntax
+
 ## Syntax
 
 > `drawQuadrille(quadrille, { textZoom })`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: textZoom > Parameters
 
 ## Parameters
 
@@ -8541,15 +9911,25 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: "drawQuadrille(args)" > Overview
 
 The `drawQuadrille` function is used to render a quadrille onto the canvas or a specified graphics buffer. It provides various parameters for customizing the appearance and behavior of the drawn quadrille, including cell dimensions, colors, and display styles.
 
 By default, `drawQuadrille(quadrille)` is sufficient for most cases where no custom display parameters are needed, as it uses the quadrille's default properties for rendering. For more advanced use cases, `drawQuadrille(quadrille, { options })` allows you to specify optional display parameters, such as [cellLength]({{< relref "cell_length" >}}), [outline]({{< relref "outline" >}}), [textColor]({{< relref "text_color" >}}), and more, to customize the rendering behavior.
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "drawQuadrille(args)" > Configuration
+
 ## Configuration  
 
-The `drawQuadrille` function simplifies customization by using its `{ options }` [object literal](https://www.w3schools.com/js/js_objects.asp) parameter, leveraging [JavaScript object destructuring](https://www.w3schools.com/js/js_destructuring.asp) to extract values directly. This approach makes function calls more readable, flexible, and maintainable, allowing you to configure only the parameters you need while relying on defaults for the rest.  
+The `drawQuadrille` function simplifies customization by using its `{ options }` [object literal](https://www.w3schools.com/js/js_objects.asp) parameter, leveraging [JavaScript object destructuring](https://www.w3schools.com/js/js_destructuring.asp) to extract values directly. This approach makes function calls more readable, flexible, and maintainable, allowing you to configure only the parameters you need while relying on defaults for the rest.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "drawQuadrille(args)" > Example
 
 ### Example  
 
@@ -8579,11 +9959,21 @@ The remaining parameters in the `{ options }` object use their default values, m
 2. **Flexibility**: Only the parameters you need are specified, while defaults handle the rest.  
 3. **Order Independence**: Parameters are assigned based on their names, so their order doesn’t matter.  
 4. **Extensibility**: New parameters can be added without breaking existing function calls.  
-{{< /callout >}}  
+{{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "drawQuadrille(args)" > Syntax
 
 ## Syntax
 
 > drawQuadrille(quadrille, [{[[cellLength]({{< relref "cell_length" >}})], [[outline]({{< relref "outline" >}})], [[outlineWeight]({{< relref "outline_weight" >}})], [[textColor]({{< relref "text_color" >}})], [[textZoom]({{< relref "text_zoom" >}})], [[textFont]({{< relref "text_font" >}})], [[x]({{< relref "x_y" >}})], [[y]({{< relref "x_y" >}})], [[row]({{< relref "row_col" >}})], [[col]({{< relref "row_col" >}})], [[filter]({{< relref "filter_prop" >}})], [[graphics]({{< relref "graphics" >}})], [[origin]({{< relref "origin" >}})], [[tileDisplay]({{< relref "display_fns" >}})], [[stringDisplay]({{< relref "display_fns" >}})], [[numberDisplay]({{< relref "display_fns" >}})], [[colorDisplay]({{< relref "display_fns" >}})], [[imageDisplay]({{< relref "display_fns" >}})], [[functionDisplay]({{< relref "display_fns" >}})], [[arrayDisplay]({{< relref "display_fns" >}})], [[objectDisplay]({{< relref "display_fns" >}})]}])
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "drawQuadrille(args)" > Parameters
 
 ## Parameters
 
@@ -8617,9 +10007,14 @@ The remaining parameters in the `{ options }` object use their default values, m
 
 
 @@@@@
- DOCUMENTATION FOR: text font
+ DOCUMENTATION FOR: textFont > Overview
 
 Defines the default font used for drawing the text in quadrille cells. The default is the current font set in p5.js.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: textFont > Example
 
 ## Example
 
@@ -8685,9 +10080,19 @@ function draw() {
 - `q2` uses the default font set by p5.js for rendering text in quadrille cells.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: textFont > Syntax
+
 ## Syntax
 
 > `drawQuadrille(quadrille, { textFont })`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: textFont > Parameters
 
 ## Parameters
 
@@ -8698,9 +10103,14 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: transpose
+ DOCUMENTATION FOR: transpose() > Overview
 
 [Transposes](https://en.wikipedia.org/wiki/Transpose) the quadrille cells.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: transpose() > Example
 
 ## Example
 
@@ -8758,6 +10168,11 @@ function keyPressed() {
 `transpose()` is useful for performing column transformations using row commands. For instance, `q.transpose().row(col).transpose()` clones column `col`.  
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: transpose() > Syntax
+
 ## Syntax
 
 > `transpose()`
@@ -8765,9 +10180,14 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR: reflect
+ DOCUMENTATION FOR: reflect() > Overview
 
 Horizontal reflection of the quadrille cells.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: reflect() > Example
 
 ## Example
 
@@ -8821,6 +10241,11 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: reflect() > Syntax
+
 ## Syntax
 
 > `reflect()`
@@ -8828,9 +10253,14 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR: rotate
+ DOCUMENTATION FOR: rotate() > Overview
 
 π/2 clockwise rotation of the quadrille cells.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: rotate() > Example
 
 ## Example
 
@@ -8884,6 +10314,11 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: rotate() > Syntax
+
 ## Syntax
 
 > `rotate()`
@@ -8891,7 +10326,7 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: Transforms > Overview
 
 **Transform methods** modify the geometry of a `quadrille` by altering the spatial arrangement of its cells. Operations such as [rotation]({{< relref "rotate" >}}), [reflection]({{< relref "reflect" >}}), and [transposition]({{< relref "transpose" >}}) enable precise and dynamic transformations of the quadrille’s structure.  
 
@@ -8907,7 +10342,12 @@ quadrille.reflect();
 quadrille.transpose();  
 ```  
 Method chaining improves code readability and streamlines complex transformations.  
-{{< /callout >}}  
+{{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: Transforms > Method Overview
 
 ## Method Overview  
 
@@ -8920,12 +10360,22 @@ These transformation methods provide intuitive tools for reshaping a quadrille's
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: Properties > Overview
 
 The **Quadrille** object includes a robust set of **properties** designed to facilitate both state inspection and dynamic configuration. These properties are neatly divided into **read-only** and **read/write** categories, offering intuitive control over the quadrille's behavior and layout. The read-only properties provide valuable insights, while the read/write properties enable direct modifications to shape and content.
 
+
+
+@@@@@
+ DOCUMENTATION FOR: Properties > **Read-Only Properties**
+
 ### **Read-Only Properties**  
 [Read-only properties]({{< relref "read_only" >}}) allow you to inspect the quadrille's current state without altering it. For example, **[mouseRow]({{< relref "mouse_row" >}})** and **[mouseCol]({{< relref "mouse_col" >}})** identify the cell under the mouse pointer, while **[size]({{< relref "size" >}})** and **[order]({{< relref "order" >}})** offer details on the quadrille's total and non-empty cells.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: Properties > **Read/Write Properties**
 
 ### **Read/Write Properties**  
 In contrast, [read/write properties]({{< relref "read_write" >}}) let you dynamically adjust the quadrille's configuration. For instance, **[width]({{< relref "width" >}})** and **[height]({{< relref "height" >}})** control the quadrille's dimensions, while **[memory2D]({{< relref "memory_2d" >}})** provides a complete 2D representation of its content, enabling full customization.
@@ -8935,9 +10385,14 @@ These properties can be easily accessed and manipulated using JavaScript's **dot
 
 
 @@@@@
- DOCUMENTATION FOR: width
+ DOCUMENTATION FOR: width > Overview
 
 Quadrille width read-write property.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: width > Example
 
 ## Example
 
@@ -8989,6 +10444,11 @@ function mouseMoved() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: width > Syntax
+
 ## Syntax
 
 > quadrille.width = number
@@ -8998,9 +10458,14 @@ function mouseMoved() {
 
 
 @@@@@
- DOCUMENTATION FOR: height.es
+ DOCUMENTATION FOR: "height" > Overview
 
 Propiedad de lectura y escritura de la altura de la cuadrícula.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "height" > Ejemplo
 
 # Ejemplo
 
@@ -9068,6 +10533,11 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "height" > Sintaxis
+
 # Sintaxis
 
 > quadrille.height = número
@@ -9077,9 +10547,14 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR: height
+ DOCUMENTATION FOR: "height" > Overview
 
 Quadrille height read-write property.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: "height" > Example
 
 ## Example
 
@@ -9131,6 +10606,11 @@ function mouseMoved() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: "height" > Syntax
+
 ## Syntax
 
 > quadrille.height = number
@@ -9140,7 +10620,7 @@ function mouseMoved() {
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: "Read Write" > Overview
 
 Read/write properties can be both accessed and modified, allowing dynamic control over the quadrille's dimensions and content:  
 - **[width]({{< relref "width" >}}):** The number of columns in the quadrille.  
@@ -9150,9 +10630,14 @@ Read/write properties can be both accessed and modified, allowing dynamic contro
 
 
 @@@@@
- DOCUMENTATION FOR: memory 2d
+ DOCUMENTATION FOR: memory2D > Overview
 
 Quadrille memory read-write property. Always returns a square array where empty cells are filled with `null` (even if they are filled with `undefined` when the `memory2D` is set).
+
+
+
+@@@@@
+ DOCUMENTATION FOR: memory2D > Example
 
 ## Example
 
@@ -9231,6 +10716,11 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: memory2D > Syntax
+
 ## Syntax
 
 > quadrille.memory2D = arr
@@ -9240,7 +10730,7 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR: mouse row
+ DOCUMENTATION FOR: mouseRow > Overview
 
 Read-only property that retrieves the quadrille row under the current mouse position.
 
@@ -9249,6 +10739,11 @@ Read-only property that retrieves the quadrille row under the current mouse posi
 2. If the quadrille isn't currently being drawn use [screenRow]({{< ref "screen_row" >}}) instead.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: mouseRow > Example
+
 ## Example
 
 {{< p5-global-iframe quadrille="true" width="425" height="425" >}}
@@ -9285,6 +10780,11 @@ function draw() {
 }
 ```
 {{% /details %}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: mouseRow > Syntax
 
 ## Syntax
 
@@ -9293,7 +10793,7 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: mouse col
+ DOCUMENTATION FOR: mouseCol > Overview
 
 Read-only property that retrieves the quadrille col under the current mouse position.
 
@@ -9301,6 +10801,11 @@ Read-only property that retrieves the quadrille col under the current mouse posi
 1. The `mouseCol` property isn't constrain to lie in [0..[width]({{< ref "width" >}})].
 2. If the quadrille isn't currently being drawn use [screenCol]({{< ref "screen_col" >}}) instead.
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: mouseCol > Example
 
 ## Example
 
@@ -9339,6 +10844,11 @@ function draw() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: mouseCol > Syntax
+
 ## Syntax
 
 > number = quadrille.mouseCol
@@ -9346,9 +10856,14 @@ function draw() {
 
 
 @@@@@
- DOCUMENTATION FOR: size
+ DOCUMENTATION FOR: size > Overview
 
 Read-only property that retrieves the quadrille width times the quadrille height.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: size > Example
 
 ## Example
 
@@ -9404,6 +10919,11 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: size > Syntax
+
 ## Syntax
 
 > number = quadrille.size
@@ -9411,9 +10931,14 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR: order
+ DOCUMENTATION FOR: order > Overview
 
 Read-only property that retrieves the quadrille non-empty number of cells.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: order > Example
 
 ## Example
 
@@ -9488,6 +11013,11 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: order > Syntax
+
 ## Syntax
 
 > number = quadrille.order
@@ -9495,7 +11025,7 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: "Read Only" > Overview
 
 Read-only properties provide insights into the quadrille's current state and cannot be directly modified:  
 
@@ -9507,9 +11037,14 @@ Read-only properties provide insights into the quadrille's current state and can
 
 
 @@@@@
- DOCUMENTATION FOR: diff
+ DOCUMENTATION FOR: diff(q1, q2, row, col) > Overview
 
 Returns a new quadrille with all the filled cells from the `q1` quadrille but not from the `q2` quadrille.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: diff(q1, q2, row, col) > Example
 
 ## Example
 
@@ -9595,11 +11130,21 @@ function keyPressed() {
 {{< callout type="info" >}}
 Observe that the dimensions of the resulting `q3` quadrille **span the minimum area** required to cover both `q1` and `q2`. See [merge]({{< relref "merge" >}}).
 {{< /callout >}}
+
+
+
+@@@@@
+ DOCUMENTATION FOR: diff(q1, q2, row, col) > Syntax
 
 ## Syntax
 
 > `Quadrille.diff(q1, q2, [row], [col])`
 
+
+
+@@@@@
+ DOCUMENTATION FOR: diff(q1, q2, row, col) > Parameters
+
 ## Parameters
 
 | Param | Description                                                                                   |
@@ -9615,9 +11160,14 @@ Observe that the dimensions of the resulting `q3` quadrille **span the minimum a
 
 
 @@@@@
- DOCUMENTATION FOR: xor
+ DOCUMENTATION FOR: xor(q1, q2, row, col) > Overview
 
 Returns a new quadrille containing all the filled cells from either the `q1` or `q2` quadrille, but not from both.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: xor(q1, q2, row, col) > Example
 
 ## Example
 
@@ -9704,9 +11254,19 @@ function keyPressed() {
 Observe that the dimensions of the resulting `q3` quadrille **span the minimum area** required to cover both `q1` and `q2`. See [merge]({{< relref "merge" >}}).
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: xor(q1, q2, row, col) > Syntax
+
 ## Syntax
 
 > `Quadrille.xor(q1, q2, [row], [col])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: xor(q1, q2, row, col) > Parameters
 
 ## Parameters
 
@@ -9723,9 +11283,14 @@ Observe that the dimensions of the resulting `q3` quadrille **span the minimum a
 
 
 @@@@@
- DOCUMENTATION FOR: not
+ DOCUMENTATION FOR: not(q, value) > Overview
 
 Returns a new quadrille by clearing `q` quadrille filled cells, and filling its empty cells with `value` (any data type instance but `undefined`).
+
+
+
+@@@@@
+ DOCUMENTATION FOR: not(q, value) > Example
 
 ## Example
 
@@ -9776,9 +11341,19 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: not(q, value) > Syntax
+
 ## Syntax
 
 > `Quadrille.not(quadrille, value)`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: not(q, value) > Parameters
 
 ## Parameters
 
@@ -9790,9 +11365,14 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR: and
+ DOCUMENTATION FOR: and(q1, q2, row, col) > Overview
 
 Returns a new quadrille containing all the filled cells from both `q1` and `q2` quadrilles, with `q1` cells taking precedence.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: and(q1, q2, row, col) > Example
 
 ## Example
 
@@ -9879,9 +11459,19 @@ function keyPressed() {
 Observe that the dimensions of the resulting `q3` quadrille **span the minimum area** required to cover both `q1` and `q2`. See [merge]({{< relref "merge" >}}).
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: and(q1, q2, row, col) > Syntax
+
 ## Syntax
 
 > `Quadrille.and(q1, q2, [row], [col])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: and(q1, q2, row, col) > Parameters
 
 ## Parameters
 
@@ -9898,9 +11488,14 @@ Observe that the dimensions of the resulting `q3` quadrille **span the minimum a
 
 
 @@@@@
- DOCUMENTATION FOR: merge
+ DOCUMENTATION FOR: merge(q1, q2, operator, row, col) > Overview
 
 Static method that computes a new quadrille by applying a specified logical `operator` to each corresponding cell of two given quadrilles. This method serves as the foundation for higher-level logical operations, such as [or]({{< ref "or" >}}), [xor]({{< ref "xor" >}}), [and]({{< ref "and" >}}), and [diff]({{< ref "diff" >}}).
+
+
+
+@@@@@
+ DOCUMENTATION FOR: merge(q1, q2, operator, row, col) > Example 1: `and` operator
 
 ## Example 1: `and` operator
 
@@ -9914,6 +11509,11 @@ static and(q1, q2, row, col) {
 ```
 
 In this example, the `and` function checks each cell of `q1` and `q2`. If both cells are non-empty (i.e., non `null`), the result will contain the cell value from `q1`. If either cell is empty (i.e., `null`), the merged cell will also be empty.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: merge(q1, q2, operator, row, col) > Example 2: `null` operator
 
 ## Example 2: `null` operator
 
@@ -10015,9 +11615,19 @@ function keyPressed() {
 ```
 {{% /details %}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: merge(q1, q2, operator, row, col) > Syntax
+
 ## Syntax
 
 > `Quadrille.merge(q1, q2, operator, [row], [col])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: merge(q1, q2, operator, row, col) > Parameters
 
 ## Parameters
 
@@ -10036,9 +11646,14 @@ function keyPressed() {
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: Algebra > Overview
 
-The **quadrille algebra** provides a suite of [static methods](https://developer.mozilla.org/en-US/docs/Glossary/Static_method) for applying logical operations to `quadrille` instances. Inspired by [constructive solid geometry](https://en.wikipedia.org/wiki/Constructive_solid_geometry) and [boolean algebra](https://en.wikipedia.org/wiki/Boolean_algebra), these methods combine and manipulate quadrilles, leading to **new quadrilles** as an aggregation of others.  
+The **quadrille algebra** provides a suite of [static methods](https://developer.mozilla.org/en-US/docs/Glossary/Static_method) for applying logical operations to `quadrille` instances. Inspired by [constructive solid geometry](https://en.wikipedia.org/wiki/Constructive_solid_geometry) and [boolean algebra](https://en.wikipedia.org/wiki/Boolean_algebra), these methods combine and manipulate quadrilles, leading to **new quadrilles** as an aggregation of others.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: Algebra > Method Overview
 
 ## Method Overview  
 
@@ -10061,9 +11676,14 @@ All algebra methods also have **destructive, chainable instance** forms: they mu
 
 
 @@@@@
- DOCUMENTATION FOR: or
+ DOCUMENTATION FOR: or(q1, q2, row, col) > Overview
 
 Returns a new quadrille containing all the filled cells from the `q1` quadrille or `q2` quadrille, or both, with `q1` cells taking precedence.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: or(q1, q2, row, col) > Example
 
 ## Example
 
@@ -10150,9 +11770,19 @@ function keyPressed() {
 Observe that the dimensions of the resulting `q3` quadrille **span the minimum area** required to cover both `q1` and `q2`. See [merge]({{< relref "merge" >}}).
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: or(q1, q2, row, col) > Syntax
+
 ## Syntax
 
 > `Quadrille.or(q1, q2, [row], [col])`
+
+
+
+@@@@@
+ DOCUMENTATION FOR: or(q1, q2, row, col) > Parameters
 
 ## Parameters
 
@@ -10169,9 +11799,14 @@ Observe that the dimensions of the resulting `q3` quadrille **span the minimum a
 
 
 @@@@@
- DOCUMENTATION FOR: visit collection
+ DOCUMENTATION FOR: visit(callback, collection) > Overview
 
 Iterates cells in **row-major** order and calls `callback({ row, col, value })` for each cell whose value is contained in `collection` (`Array` or `Set`). Reading and mutating the grid inside the callback is allowed.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: visit(callback, collection) > Example
 
 ## Example
 
@@ -10251,11 +11886,21 @@ function highlight() {
 * The second loop visits only monkey cells, marking them in a separate quadrille.
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: visit(callback, collection) > Syntax
+
 ## Syntax
 
 ```js
 visit(callback, collection)
 ```
+
+
+
+@@@@@
+ DOCUMENTATION FOR: visit(callback, collection) > Parameters
 
 ## Parameters
 
@@ -10267,9 +11912,14 @@ visit(callback, collection)
 
 
 @@@@@
- DOCUMENTATION FOR: visit
+ DOCUMENTATION FOR: visit(callback) > Overview
 
 Iterates **all cells** in row-major order and calls `callback({ row, col, value })` for each. Reading and mutating the grid inside the callback is allowed.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: visit(callback) > Example
 
 ## Example
 
@@ -10333,11 +11983,21 @@ function update() {
 * The `callback` decides what to do with each cell (e.g., refill with a random emoji).
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: visit(callback) > Syntax
+
 ## Syntax
 
 ```js
 visit(callback)
 ```
+
+
+
+@@@@@
+ DOCUMENTATION FOR: visit(callback) > Parameters
 
 ## Parameters
 
@@ -10348,9 +12008,14 @@ visit(callback)
 
 
 @@@@@
- DOCUMENTATION FOR: visit predicate
+ DOCUMENTATION FOR: visit(callback, predicate) > Overview
 
 Iterates cells in **row-major** order and calls `callback({ row, col, value })` for each cell where `predicate({ row, col, value })` returns `true`. Reading and mutating the grid inside the callback is allowed.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: visit(callback, predicate) > Example
 
 ## Example
 
@@ -10432,11 +12097,21 @@ function highlight() {
 * The `callback` defines **what to do** with those visited cells (e.g., fill them with semi-transparent color).
 {{< /callout >}}
 
+
+
+@@@@@
+ DOCUMENTATION FOR: visit(callback, predicate) > Syntax
+
 ## Syntax
 
 ```js
 visit(callback, predicate)
 ```
+
+
+
+@@@@@
+ DOCUMENTATION FOR: visit(callback, predicate) > Parameters
 
 ## Parameters
 
@@ -10448,9 +12123,14 @@ visit(callback, predicate)
 
 
 @@@@@
- DOCUMENTATION FOR:  index
+ DOCUMENTATION FOR: Iterators > Overview
 
 The `visit` method provides a single high-level mechanism to traverse a quadrille in **row-major** order (rows `0..height-1`, within each row columns `0..width-1`). The callback is invoked with `{ row, col, value }`, may read or mutate cells, and iteration **stops early** if the callback returns `false`. Traversal can apply to **all cells**, or be restricted by a **collection** of allowed values or a **predicate** function, encouraging a [declarative programming](https://en.wikipedia.org/wiki/Declarative_programming) approach.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: Iterators > Manual Iteration Using Nested Loops
 
 ## Manual Iteration Using Nested Loops
 
@@ -10470,6 +12150,11 @@ for (let row = 0; row < quadrille.height; row++) {
 ```
 
 While straightforward and likely familiar, this pattern is prone to [off-by-one](https://en.wikipedia.org/wiki/Off-by-one_error) and [indexing errors](https://en.wikipedia.org/wiki/Array_data_structure#Indexing), and requires additional logic for filtering. It remains a useful fallback, but the iterator methods are typically cleaner and safer.
+
+
+
+@@@@@
+ DOCUMENTATION FOR: Iterators > Method Overview
 
 ## Method Overview
 

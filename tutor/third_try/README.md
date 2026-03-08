@@ -48,6 +48,10 @@ With the next md indexing I got a small issue. The biggest chunk is about 4k tok
 
 I tried [`qwen3-embedding:0.6b`](https://ollama.com/library/qwen3-embedding) for embedding as it has a 32k context window, but the retrieval results are awful: for a very simple query like `How to install it?` it can't find any information and returns `I cannot find that information in the provided documentation`. Will investigate
 
+#### Update 5.3
+
+I've got the RAG to a stable version now, and it is decent again!! I changed the embedding model to [`Embeddinggemma`](https://ollama.com/library/embeddinggemma) from Google. I changed the .md parsing to split the docs by header and also improved the js parsing, as it was choping the functions. The `multi query` step was also improved with new instructions when there is no conversation history
+
 ### TO DO
 
 - ~~Include the .md docs into the RAG knowledge (not it only have the quadrille.js)~~

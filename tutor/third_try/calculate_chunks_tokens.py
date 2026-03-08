@@ -33,10 +33,10 @@ def analyze_chunks(file_path):
     print(f"Token Count:   {biggest['tokens']} tokens")
     print(f"Character Count: {len(biggest['text'])} chars")
     
-    if biggest['tokens'] > 8192:
-        print("\n⚠️ WARNING: This chunk exceeds the 8k limit!")
+    if biggest['tokens'] > 2048:
+        print("\n⚠️ WARNING: This chunk exceeds the 2k limit!")
     else:
-        print("\n✅ This chunk fits within the 8k context window.")
+        print("\n✅ This chunk fits within the 2k context window.")
 
 
 analyze_chunks('md_chunks.txt')

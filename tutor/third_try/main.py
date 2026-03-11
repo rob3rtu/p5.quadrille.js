@@ -13,6 +13,7 @@ class RagClass:
         2. Use the JavaScript source code to verify exact method names, parameter types, and internal logic.
         3. If you provide code examples, format them clearly using Markdown code blocks.
         4. Synthesize the information naturally. Do not just blindly repeat the chunks.
+        5. When providing code examples, NEVER truncate them with comments like "// Your code goes here". Always provide the complete, working code block exactly as it appears in the Context.
         
         If the Context does not contain the information needed to answer the request, you must state exactly: 'I cannot find that information in the provided documentation.' 
         Do not make up any new information.
@@ -77,7 +78,7 @@ class RagClass:
             for m in self.CONVERSATION_HISTORY:
                 f.write(f'\n\n---\n role: {m["role"]}\n content: {m["content"]}')
 
-    def compute_multy_query(self, query, k=5):
+    def compute_multy_query(self, query, k=4):
         """ Given a query, reformulate that in k other similar queries. This takes into account conversation history """
         queries = [query]
        
@@ -92,21 +93,24 @@ class RagClass:
         You are an expert at query expansion for a RAG assistant of the 'p5.quadrille.js' library.
         
         TASK:
-        Generate {k} different, highly specific versions of the "CURRENT USER QUERY" to improve document retrieval in a vector database.
+        Generate {k} different queries based on the "CURRENT USER QUERY" to improve document retrieval in a vector database. 
+        The first {k-1} queries should be highly specific, and the final query MUST be a "step-back" conceptual query.
         
         RULES:
-        1. If the user uses "it", "this", or "that", replace it with the specific method or concept from the CONVERSATION HISTORY.
-        2. If there is NO history, ALWAYS assume "it" refers to the "p5.quadrille.js" library itself.
-        3. Use different technical keywords for each version (e.g., "install" -> "setup", "npm", "import").
+        1. If the user uses "it", "this", or "that", replace it with the specific method or concept from the CONVERSATION HISTORY. If there is no history, ALWAYS assume the user refers to the "p5.quadrille.js" library.
+        2. For the specific queries, use different technical keywords for each version (e.g., "install" -> "setup", "npm", "import").
+        3. The very last query MUST be a broader, higher-level conceptual question that addresses the fundamental principles, overarching mechanics, or architecture behind the user's specific query.
         4. Output ONLY the {k} queries, one per line. No quotes, no numbering, no text of any kind added by you, like "Here are the queries", just the text of the query.
 
         EXAMPLES:
-        User Query: "how to install it?"
+        User Query: "why does read(5, 5) return undefined?"
         History: No prior conversation history.
         Output:
-        how to setup p5.quadrille.js
-        npm install p5.quadrille dependencies
-        importing p5.quadrille in my project
+        quadrille read method syntax and return values
+        undefined return from p5.quadrille read function
+        arguments for read()
+        accessing out of bounds elements quadrille
+        how do the coordinate system and array bounds work in p5.quadrille.js?
 
         User Query: "what parameters does it take?"
         History: user: how do I use the insert() method?
@@ -114,6 +118,8 @@ class RagClass:
         arguments for the insert method in p5.quadrille
         parameters accepted by insert()
         insert row method syntax
+        p5.quadrille insert function signature
+        what are the core structural methods for modifying a grid in p5.quadrille.js?
 
         ---
         
@@ -140,12 +146,12 @@ class RagClass:
         # debug and analysis
         with open("multi_query.txt", "w") as f:
             for i, q in enumerate(queries):
-                f.write(f'\n\n--- {"ORIGINAL QUERY" if i == 0 else ""}\n {q}\n\n')
+                f.write(f'\n--- {"ORIGINAL QUERY" if i == 0 else ""}\n {q}\n\n')
 
         return queries
 
     
-    def retrieve(self, multi_query, k=5):
+    def retrieve(self, multi_query, k=10):
         """ Retrieve top K from each DB, filtering best matches using RRF(Reciprocal Rank Fusion) """
         rrf_scores = {}
         multi_query_embedding = [ollama.embed(model=self.EMBEDDING_MODEL, input=query)['embeddings'][0] for query in multi_query]
@@ -169,7 +175,7 @@ class RagClass:
         final_results.sort(key=lambda x: x[1], reverse=True)
         return final_results[:k]
     
-    def get_top_results(self, db, query_embedding, top_k=3, threshold=0.0):
+    def get_top_results(self, db, query_embedding, top_k=4, threshold=0.0):
         similarities = []
         for chunk, chunk_embedding in db:
             similarity = self.cosine_similarity(query_embedding, chunk_embedding)

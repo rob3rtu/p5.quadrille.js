@@ -52,6 +52,10 @@ I tried [`qwen3-embedding:0.6b`](https://ollama.com/library/qwen3-embedding) for
 
 I've got the RAG to a stable version now, and it is decent again!! I changed the embedding model to [`Embeddinggemma`](https://ollama.com/library/embeddinggemma) from Google. I changed the .md parsing to split the docs by header and also improved the js parsing, as it was choping the functions. The `multi query` step was also improved with new instructions when there is no conversation history
 
+## Update 6
+
+I managed to improve the retrieval by adjusting the prompt for the multi query step in order to include a `Step Back` query and adjusting the params regarding the number of chunk to be used. While the first prompt result is better than before, a follow up question may be less accurate. Considering this issue, next I will focus on improving the usage of the conversation history and already retrieved chunks. CUrrently the model only sees the last 6 messages(3 questions from user and 3 answers from model), but the chunks related to them are forgotten, and they may not be retrieved again for the follow up which will make the next answers worse.
+
 ### TO DO
 
 - ~~Include the .md docs into the RAG knowledge (not it only have the quadrille.js)~~

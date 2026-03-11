@@ -1,35 +1,24 @@
 
-
 --- ORIGINAL QUERY
- give me a simple example of how to use it
-
-
-
---- 
- Here are 5 different, highly specific versions of the "CURRENT USER QUERY" to improve document retrieval in a vector database:
-
+ after install with npm, how to create a simple quadrille?
 
 
 --- 
- use p5.quadrille for grid-based rendering
-
-
-
---- 
- p5.quadrille examples for beginners
-
+ create a quadrille in p5
 
 
 --- 
- how to use quadrille in p5.js setup
-
-
-
---- 
- setup and use p5.quadrille in a project
-
+ p5 quadrille setup and creation
 
 
 --- 
- p5.quadrille usage and best practices
+ quadrille parameters and options
+
+
+--- 
+ create a simple quadrille after npm install
+
+
+--- 
+ what are the fundamental design principles of p5.quadrille.js for creating quadrilles?
 

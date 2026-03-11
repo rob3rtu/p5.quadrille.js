@@ -6,90 +6,111 @@
 
 ---
  role: assistant
- content: According to the provided Context, installing `p5.quadrille.js` can be done through npm (Node Package Manager). Here's how:
+ content: According to the Context, you can install **p5.quadrille.js** using npm (ESM) or CDN (IIFE) methods. Here are the steps:
 
-1. Open your terminal or command prompt.
-2. Type the following command: `npm install p5.quadrille`
-3. Press Enter to execute the command.
+**npm (ESM) Method:**
 
-This will download and install the latest version of `p5.quadrille.js` in your project's `node_modules` directory.
+1. Install both `p5` and `p5.quadrille` as dependencies using npm:
+   ```
+   npm i p5 p5.quadrille
+   ```
+2. Import them in your project's entry file (e.g., `main.js`) using a modern bundler like Vite, which runs in instance mode only:
+   ```
+   // main.js
+   import p5 from 'p5'
+   import Quadrille from 'p5.quadrille'
 
-Alternatively, you can also install a specific version of `p5.quadrille.js` by specifying the version number. For example, to install version 3.4.13, you would run the following command:
+   const sketch = p => {
+     // Your sketch code...
+   }
 
-`npm install p5.quadrille@3.4.13`
+   new p5(sketch)
+   ```
 
-This will install the specified version of `p5.quadrille.js` in your project's `node_modules` directory.
+**CDN (IIFE) Method:**
 
-Once installed, you can import `p5.quadrille.js` in your JavaScript file using the following code:
+1. Include both libraries using `<script>` tags in your HTML file:
+   ```
+   <!-- index.html -->
+   <script src="https://cdn.jsdelivr.net/npm/p5/lib/p5.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/p5.quadrille/dist/p5.quadrille.min.js"></script>
+   <script>
+     let q // Step 1: Declare
 
-```javascript
-import p5 from 'p5';
-import { Quadrille } from 'p5.quadrille';
-```
+     function setup() {
+       createCanvas(600, 400)
+       q = createQuadrille(6, 4, 10, '🐲') // Step 2: Create
+     }
 
-Note that `p5.quadrille.js` is a library that provides a grid-based teaching and rendering utility for p5.js. It's designed to be used in conjunction with the p5.js library, so make sure you have both libraries installed and imported correctly in your project.
+     function draw() {
+       background(0)
+       drawQuadrille(q) // Step 3: Render
+     }
+
+     function mousePressed() {
+       q.randomize() // Step 4: Interact
+     }
+   </script>
+   ```
+
+Remember to use the latest version of **p5.quadrille.js** and **p5.js** to ensure compatibility and optimal performance.
 
 ---
  role: user
- content: give me a simple example of how to use it
+ content: after install with npm, how to create a simple quadrille?
 
 ---
  role: assistant
- content: Based on the provided Context, here's a simple example of how to use `p5.quadrille.js`:
+ content: Based on the provided Context, to create a simple quadrille after installing `p5.quadrille.js` with npm, you can follow these steps:
 
-**Step 1: Declare**
-```javascript
-let q; // Declare a Quadrille object
-```
+1. **Import `p5` and `Quadrille`**: In your project's entry file (e.g., `main.js`), use the following code:
+   ```javascript
+   import p5 from 'p5';
+   import Quadrille from 'p5.quadrille';
+   ```
 
-**Step 2: Create**
+2. **Set the cell length**: For a simple quadrille, you can set the cell length to a fixed value. Let's say you want each cell to be 50 pixels wide:
+   ```javascript
+   Quadrille.cellLength = 50;
+   ```
+
+3. **Create the quadrille**: Using the `createQuadrille` method, generate a new 8x8 quadrille with a chessboard pattern:
+   ```javascript
+   let q = createQuadrille(8, 8, ({ row, col }) => row === col || row + col === 7, '🌀');
+   ```
+
+4. **Set up the canvas**: In the `setup` function, create a canvas with the desired size (in this case, 8 times the cell length):
+   ```javascript
+   function setup() {
+     createCanvas(8 * Quadrille.cellLength, 8 * Quadrille.cellLength);
+     // ...
+   }
+   ```
+
+5. **Draw the quadrille**: In the `draw` function, clear the background and draw the quadrille:
+   ```javascript
+   function draw() {
+     background('beige');
+     drawQuadrille(q);
+   }
+   ```
+
+Here's the complete code example:
 ```javascript
+import p5 from 'p5';
+import Quadrille from 'p5.quadrille';
+
+Quadrille.cellLength = 50;
+let q;
+
 function setup() {
-  createCanvas(600, 400)
-  q = createQuadrille(6, 4, 10, '🐲') // Create a Quadrille object with 6 rows, 4 columns, 10 cells, and a symbol '🐲'
+  createCanvas(8 * Quadrille.cellLength, 8 * Quadrille.cellLength);
+  q = createQuadrille(8, 8, ({ row, col }) => row === col || row + col === 7, '🌀');
 }
-```
 
-**Step 3: Render**
-```javascript
 function draw() {
-  background(0) // Set the background color to black
-  drawQuadrille(q) // Render the Quadrille object
+  background('beige');
+  drawQuadrille(q);
 }
 ```
-
-**Step 4: Interact**
-```javascript
-function mousePressed() {
-  q.randomize() // Randomize the Quadrille object
-}
-```
-
-Here's the complete code:
-
-```html
-<!-- index.html -->
-<!-- Load p5.js first (required by p5.quadrille.js, latest version) -->
-<script src="https://cdn.jsdelivr.net/npm/p5/lib/p5.min.js"></script>
-<!-- Load p5.quadrille.js (latest stable version) -->
-<script src="https://cdn.jsdelivr.net/npm/p5.quadrille/dist/p5.quadrille.min.js"></script>
-<script>
-  let q // Step 1: Declare
-
-  function setup() {
-    createCanvas(600, 400)
-    q = createQuadrille(6, 4, 10, '🐲') // Step 2: Create
-  }
-
-  function draw() {
-    background(0) // Step 3: Render
-    drawQuadrille(q)
-  }
-
-  function mousePressed() {
-    q.randomize() // Step 4: Interact
-  }
-</script>
-```
-
-You can run the example by opening the `index.html` file in a browser, or by using [VSCodium](https://vscodium.com/) (recommended) or [Visual Studio Code](https://code.visualstudio.com/) with the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
+This code creates a simple 8x8 quadrille with a chessboard pattern, where each cell is filled with the '🌀' symbol. You can modify the `createQuadrille` method to suit your specific needs.

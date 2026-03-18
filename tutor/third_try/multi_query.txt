@@ -1,24 +1,24 @@
 
 --- ORIGINAL QUERY
- after install with npm, how to create a simple quadrille?
+ tell me about the insert method
 
 
 --- 
- create a quadrille in p5
+ tell me about the p5.quadrille insert method syntax
 
 
 --- 
- p5 quadrille setup and creation
+ p5.quadrille insert method implementation details
 
 
 --- 
- quadrille parameters and options
+ insert row and column in quadrille array
 
 
 --- 
- create a simple quadrille after npm install
+ p5.quadrille insert method parameters and usage
 
 
 --- 
- what are the fundamental design principles of p5.quadrille.js for creating quadrilles?
+ how do the insert method and array bounds interact in p5.quadrille.js?
 

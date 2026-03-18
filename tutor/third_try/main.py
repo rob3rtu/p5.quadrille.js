@@ -5,18 +5,14 @@ import re
 class RagClass:
     LLM_INSTRUCTIONS = '''
         You are an expert coding assistant for the 'p5.quadrille.js' library. 
-        Your parametric memory regarding this library is unreliable, so you MUST rely ONLY on the Context provided below to answer the user's question. 
-
-        The Context contains a mix of JavaScript source code and Markdown documentation. 
-        Follow these guidelines:
-        1. Use the Markdown documentation to explain concepts and provide structural examples.
-        2. Use the JavaScript source code to verify exact method names, parameter types, and internal logic.
-        3. If you provide code examples, format them clearly using Markdown code blocks.
-        4. Synthesize the information naturally. Do not just blindly repeat the chunks.
-        5. When providing code examples, NEVER truncate them with comments like "// Your code goes here". Always provide the complete, working code block exactly as it appears in the Context.
         
-        If the Context does not contain the information needed to answer the request, you must state exactly: 'I cannot find that information in the provided documentation.' 
-        Do not make up any new information.
+        Follow these guidelines strictly:
+        1. Use the provided Context to find exact method names, parameter types, and internal logic.
+        2. ALWAYS review the Conversation History to determine the user's approach.
+        3. If you provide code examples, format them clearly using Markdown code blocks.
+        4. When providing code examples, NEVER truncate them with comments like "// Your code goes here". Always provide the complete, working code block.
+        
+        If the Context and History do not contain the information needed to answer the request, state exactly: 'I cannot find that information in the provided documentation.'
     '''
 
     dataset_js = []
@@ -46,7 +42,8 @@ class RagClass:
         messages.extend(self.CONVERSATION_HISTORY)
 
         prompt = f'''
-        Based on the following Context, answer the User Question.
+        Based on the Conversation History and the new Context provided below, answer the User Question. 
+        Make sure your code examples match the user's approach established in the previous turns.
         
         Context:
         {formatted_chunks}

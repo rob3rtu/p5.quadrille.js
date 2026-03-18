@@ -2,115 +2,22 @@
 
 ---
  role: user
- content: how to install it?
+ content: tell me about the insert method
 
 ---
  role: assistant
- content: According to the Context, you can install **p5.quadrille.js** using npm (ESM) or CDN (IIFE) methods. Here are the steps:
+ content: Based on the provided context and documentation, the `insert(row)` method is used to insert an empty row at the given index in the quadrille. 
 
-**npm (ESM) Method:**
+The method `insert(row)` takes one parameter, `row`, which is the index at which the new row should be inserted. The method returns the modified quadrille for chaining.
 
-1. Install both `p5` and `p5.quadrille` as dependencies using npm:
-   ```
-   npm i p5 p5.quadrille
-   ```
-2. Import them in your project's entry file (e.g., `main.js`) using a modern bundler like Vite, which runs in instance mode only:
-   ```
-   // main.js
-   import p5 from 'p5'
-   import Quadrille from 'p5.quadrille'
+Here's a code example:
 
-   const sketch = p => {
-     // Your sketch code...
-   }
-
-   new p5(sketch)
-   ```
-
-**CDN (IIFE) Method:**
-
-1. Include both libraries using `<script>` tags in your HTML file:
-   ```
-   <!-- index.html -->
-   <script src="https://cdn.jsdelivr.net/npm/p5/lib/p5.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/p5.quadrille/dist/p5.quadrille.min.js"></script>
-   <script>
-     let q // Step 1: Declare
-
-     function setup() {
-       createCanvas(600, 400)
-       q = createQuadrille(6, 4, 10, '🐲') // Step 2: Create
-     }
-
-     function draw() {
-       background(0)
-       drawQuadrille(q) // Step 3: Render
-     }
-
-     function mousePressed() {
-       q.randomize() // Step 4: Interact
-     }
-   </script>
-   ```
-
-Remember to use the latest version of **p5.quadrille.js** and **p5.js** to ensure compatibility and optimal performance.
-
----
- role: user
- content: after install with npm, how to create a simple quadrille?
-
----
- role: assistant
- content: Based on the provided Context, to create a simple quadrille after installing `p5.quadrille.js` with npm, you can follow these steps:
-
-1. **Import `p5` and `Quadrille`**: In your project's entry file (e.g., `main.js`), use the following code:
-   ```javascript
-   import p5 from 'p5';
-   import Quadrille from 'p5.quadrille';
-   ```
-
-2. **Set the cell length**: For a simple quadrille, you can set the cell length to a fixed value. Let's say you want each cell to be 50 pixels wide:
-   ```javascript
-   Quadrille.cellLength = 50;
-   ```
-
-3. **Create the quadrille**: Using the `createQuadrille` method, generate a new 8x8 quadrille with a chessboard pattern:
-   ```javascript
-   let q = createQuadrille(8, 8, ({ row, col }) => row === col || row + col === 7, '🌀');
-   ```
-
-4. **Set up the canvas**: In the `setup` function, create a canvas with the desired size (in this case, 8 times the cell length):
-   ```javascript
-   function setup() {
-     createCanvas(8 * Quadrille.cellLength, 8 * Quadrille.cellLength);
-     // ...
-   }
-   ```
-
-5. **Draw the quadrille**: In the `draw` function, clear the background and draw the quadrille:
-   ```javascript
-   function draw() {
-     background('beige');
-     drawQuadrille(q);
-   }
-   ```
-
-Here's the complete code example:
-```javascript
-import p5 from 'p5';
-import Quadrille from 'p5.quadrille';
-
-Quadrille.cellLength = 50;
-let q;
-
+```js
 function setup() {
-  createCanvas(8 * Quadrille.cellLength, 8 * Quadrille.cellLength);
-  q = createQuadrille(8, 8, ({ row, col }) => row === col || row + col === 7, '🌀');
-}
-
-function draw() {
-  background('beige');
-  drawQuadrille(q);
+  createCanvas(400, 400);
+  let quadrille = createQuadrille(20, 10, 50, color('red'));
+  quadrille.insert(5); // Insert a new row at index 5
 }
 ```
-This code creates a simple 8x8 quadrille with a chessboard pattern, where each cell is filled with the '🌀' symbol. You can modify the `createQuadrille` method to suit your specific needs.
+
+In this example, the `insert(5)` method is called, which inserts a new row at index 5 in the quadrille.

@@ -1,6 +1,133 @@
 
 
 ---
+ DOCUMENTATION FOR: insert(row) > Example
+
+## Example
+
+(click any row; press any key to reset)\
+{{< p5-global-iframe quadrille="true" width="425" height="425" >}}
+'use strict';
+Quadrille.cellLength = 20;
+let quadrille;
+
+function setup() {
+  createCanvas(400, 400);
+  reset();
+}
+
+function draw() {
+  background('black');
+  drawQuadrille(quadrille);
+}
+
+function mouseClicked() {
+  quadrille.insert(quadrille.mouseRow);
+}
+
+function keyPressed() {
+  reset();
+}
+
+function reset() {
+  quadrille = createQuadrille(20, 10, 50, color('red'));
+  quadrille.rand(50, color('lime')).rand(50, color('blue'));
+}
+{{< /p5-global-iframe >}}
+
+{{% details title="code" open=true %}}
+```js
+Quadrille.cellLength = 20;
+let quadrille;
+
+function setup() {
+  createCanvas(400, 400);
+  reset();
+}
+
+function draw() {
+  background('black');
+  drawQuadrille(quadrille);
+}
+
+function mouseClicked() {
+  quadrille.insert(quadrille.mouseRow);
+}
+
+function keyPressed() {
+  reset();
+}
+
+function reset() {
+  quadrille = createQuadrille(20, 10, 50, color('red'));
+  quadrille.rand(50, color('lime')).rand(50, color('blue'));
+}
+```
+{{% /details %}}
+
+
+
+---
+ SOURCE CODE: quadrille.js
+
+/**
+   * Inserts an empty row at the given index.
+   * @param {number} row - Index to insert the new row.
+   * @returns {Quadrille} The modified quadrille (for chaining).
+   */
+  insert(row) {
+    this._memory2D.splice(row, 0, Array(this.width).fill(null));
+    return this;
+  }
+
+
+
+---
+ SOURCE CODE: quadrille.js
+
+/**
+   * Sets quadrille height (number of rows).
+   * Resizes by inserting or deleting rows.
+   * @param {number} height
+   */
+  set height(height) {
+    height = Math.max(1, Math.abs(height));
+    const rows = height - this.height;
+    while (this.height !== height) {
+      rows > 0 ? this.insert(this.height) : this.delete(this.height - 1);
+    }
+  }
+
+
+
+---
+ DOCUMENTATION FOR: insert(row) > Overview
+
+Inserts an empty row into the quadrille.
+
+
+
+---
+ DOCUMENTATION FOR: insert(row) > Parameters
+
+## Parameters
+
+| Param     | Description                                                                     |
+|-----------|---------------------------------------------------------------------------------|
+| `row`     | Number: number of the row to be inserted [[0..height]]({{< ref "height" >}})] |
+
+
+
+---
+ DOCUMENTATION FOR: insert(row) > Syntax
+
+## Syntax
+
+> `insert(row)`
+
+
+
+---
  SOURCE CODE: quadrille.js
 
 /**
@@ -43,114 +170,16 @@ class Quadrille {
 
 
 ---
- DOCUMENTATION FOR: "createQuadrille(width, image)" > Parameters
+ SOURCE CODE: quadrille.js
 
-## Parameters
-
-| Param  | Description                                                                                         |
-|--------|-----------------------------------------------------------------------------------------------------|
-| `width`  | Number: The total number of columns for the quadrille                                               |
-| `image`  | [p5.Image](https://p5js.org/reference/#/p5.Image), [p5.Graphics](https://p5js.org/reference/#/p5.Graphics) or video [p5.MediaElement](https://p5js.org/reference/p5/p5.MediaElement/): The image to be pixelated into the quadrille |
-
-
-
----
- DOCUMENTATION FOR: "createQuadrille(args)" > Overview
-
-The `p5.createQuadrille` method is a [polymorphic](https://en.wikipedia.org/wiki/Ad_hoc_polymorphism) function that generates a [quadrille](https://en.wikipedia.org/wiki/Square_tiling) object. Each cell in a quadrille can hold any [valid JavaScript value](https://www.w3schools.com/js/js_datatypes.asp), such as `numbers`, `strings`, `arrays`, `objects`, `functions`, or `null` (representing an empty cell), including p5-specific types like [p5.Color](https://p5js.org/reference/p5/p5.Color), [p5.Image](https://p5js.org/reference/p5/p5.Image), and [p5.Graphics](https://p5js.org/reference/p5/p5.Graphics). If a cell is created with an `undefined` value, it is automatically converted to `null` to ensure consistency.
-
-The `p5.createQuadrille` function enforces a key [invariant](https://en.wikipedia.org/wiki/Invariant_(mathematics)#Invariants_in_computer_science): the created quadrille remains a square, matrix-like structure where all rows have the same number of columns, and empty cells are consistently represented as `null`. Drawing a quadrille will be covered separately in [another chapter]({{< relref "draw_quadrille" >}}).
-
-
-
----
- DOCUMENTATION FOR: README > Usage
-
-# Usage
-
-Using **p5.quadrille.js** can be as minimal or as interactive as you need:
-
-* **2 steps** — storage only: declare and create the quadrille.
-* **3 steps** — add rendering: use `drawQuadrille()` in `draw()`.
-* **4 steps** — add interactivity: call a mutator method (e.g. `fill()`, `clear()`, `replace()`) inside an event like `keyPressed()` or `mousePressed()`.
-
-The library works in two setups:
-
-- **[CDN](#cdn)**: Use the [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) (Immediately Invoked Function Expression) format with `<script>` tags directly in the browser, along with [p5.js](https://beta.p5js.org/).
-- **[npm](#npm-esm)**: Use the [ES module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) version in modern projects with [Vite](https://vitejs.dev/) or another bundler.
-
-
-
----
- DOCUMENTATION FOR: p5 Functions > Overview
-
-The [p5.js](https://p5js.org/) functions provide seamless tools to **create** and **draw** **quadrille** objects. Whether you're building board games, designing generative visuals, or managing cell-based data, these functions serve as a bridge between the p5.js canvas and the **quadrille object**—the core structure of the **p5.quadrille.js** library.
-
-- **[createQuadrille(args)]({{< ref "create_quadrille" >}}):** Creates a **quadrille** with flexible initialization options. You can populate it with an valid JavaScript value, including [colors](https://p5js.org/reference/p5/p5.Color/), numbers, strings, [images](https://p5js.org/reference/p5/p5.Image/) & [videos](https://p5js.org/reference/p5/p5.MediaElement/), [p5.Graphics](https://p5js.org/reference/p5/p5.Graphics/), (drawing) functions, or custom objects.
-
-- **[drawQuadrille(args)]({{< ref "draw_quadrille" >}}):** Renders the quadrille onto the p5.js canvas with options for visual customization. Styles are applied globally to all quadrille cells, allowing you to display content, apply color, and enhance visuals—well-suited to displaying board game states, dynamic patterns, or data visualizations.    
- 
-Alongside the [p5.js API](https://p5js.org/reference/), these functions allow you to start developing immersive board games, organizing data collections, creating dynamic visual art, and building creative projects based on structured, cell-based content.
-
-
-
----
- DOCUMENTATION FOR: "createQuadrille()" > Parameters
-
-## Parameters
-
-| Param                 | Description                                                                                             |
-|-----------------------|---------------------------------------------------------------------------------------------------------|
-| `Quadrille.lightSquare` | String \| [p5.Color](https://p5js.org/reference/#/p5.Color): The global color used for the light squares of the chessboard pattern. Can be an HTML color string (e.g., `'red'`, `'#ff0000'`, `'rgb(255,0,0)'`) or a `p5.Color` instance. Default is `#FDCDAA` |
-| `Quadrille.darkSquare`  | String \| [p5.Color](https://p5js.org/reference/#/p5.Color): The global color used for the dark squares of the chessboard pattern. Can be an HTML color string or a `p5.Color` instance. Default is `#D28C45` |
-
-
-
----
- DOCUMENTATION FOR: "createQuadrille()" > Overview
-
-Creates an 8x8 quadrille with a chessboard pattern.
-
-
-
----
- DOCUMENTATION FOR: "createQuadrille(width, height, predicate, value)" > Example
-
-## Example
-
-(fill the two diagonals with 🌀 symbols)  
-{{< p5-global-iframe quadrille="true" width="425" height="425" >}}
-'use strict';
-Quadrille.cellLength = 50;
-let q;
-
-function setup() {
-  createCanvas(8 * Quadrille.cellLength, 8 * Quadrille.cellLength);
-  q = createQuadrille(8, 8, ({ row, col }) => row === col || row + col === 7, '🌀');
-}
-
-function draw() {
-  background('beige');
-  drawQuadrille(q);
-}
-{{< /p5-global-iframe >}}
-
-{{% details title="code" open=true %}}
-```js
-Quadrille.cellLength = 50;
-let q;
-
-function setup() {
-  createCanvas(8 * Quadrille.cellLength, 8 * Quadrille.cellLength);
-  q = createQuadrille(8, 8, ({ row, col }) => row === col || row + col === 7, '🌀');
-}
-
-function draw() {
-  background('beige');
-  drawQuadrille(q);
-}
-```
-{{% /details %}}
+/**
+   * Checks whether the given value is a p5.Image, p5.Graphics, MediaElement (video), or Framebuffer.
+   * @param {*} value
+   * @returns {boolean}
+   */
+  static isImage(value) {
+    return value instanceof p5.Image || (value instanceof p5.MediaElement && value.elt instanceof HTMLVideoElement) || value instanceof p5.Graphics || value instanceof p5.Framebuffer;
+  }
 
 
 

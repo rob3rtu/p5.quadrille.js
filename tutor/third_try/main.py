@@ -1,6 +1,8 @@
 import ollama
 import os
 import re
+import tree_sitter_javascript as tsjavascript
+from tree_sitter import Language, Parser
 
 class RagClass:
     LLM_INSTRUCTIONS = '''
@@ -220,7 +222,7 @@ class RagClass:
         return dot_product / (norm_a * norm_b)
     
     def parse_md(self, folder_path):
-            """ Split the MD file by headers and inject the page title into each chunk """
+            """  Split the MD file into chunks """
             chunks = []
 
             for root, _, files in os.walk(folder_path):
@@ -260,22 +262,47 @@ class RagClass:
 
 
     def parse_js(self, filepath):
-        """ Split the JS file into chunks based on JSDoc comments """
+        """ Split the JS file into chunks """
+        JS_LANGUAGE = Language(tsjavascript.language())
+        parser = Parser(JS_LANGUAGE)
+
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
 
-        raw_chunks = re.split(r'(?m)^(?=\s*/\*\*)', content)
-        
+        source_bytes = bytes(content, 'utf8')
+        tree = parser.parse(source_bytes)
+
         valid_chunks = []
         filename = os.path.basename(filepath)
         
-        for chunk in raw_chunks:
-            chunk = chunk.strip()
-            
-            if len(chunk) > 50:
-                chunk_with_context = f"SOURCE CODE: {filename}\n\n{chunk}"
-                valid_chunks.append(chunk_with_context)
+        target_types = ['method_definition', 'public_field_definition']
+
+        def walk_tree(node):
+            if node.type in target_types:
+                comments = []
+                prev = node.prev_named_sibling
+                while prev and prev.type == 'comment':
+                    comments.insert(0, source_bytes[prev.start_byte:prev.end_byte].decode('utf8'))
+                    prev = prev.prev_named_sibling
                 
+                doc_string = "\n".join(comments)
+                code_snippet = source_bytes[node.start_byte:node.end_byte].decode('utf8')
+                
+                if len(code_snippet) > 50 or doc_string:
+                    context_path = f"SOURCE CODE: {filename} > Class: Quadrille"
+                    name_node = node.child_by_field_name('name')
+                    if name_node and node.type != 'class_declaration':
+                        element_name = source_bytes[name_node.start_byte:name_node.end_byte].decode('utf8')
+                        context_path += f" > {element_name}"
+                    
+                    chunk_text = f"{context_path}\n\n{doc_string}\n{code_snippet}".strip()
+                    valid_chunks.append(chunk_text)
+            
+            for child in node.children:
+                walk_tree(child)
+
+        walk_tree(tree.root_node)
+
         return valid_chunks
 
 

@@ -2,22 +2,150 @@
 
 ---
  role: user
- content: tell me about the insert method
+ content: how to install the library?
 
 ---
  role: assistant
- content: Based on the provided context and documentation, the `insert(row)` method is used to insert an empty row at the given index in the quadrille. 
+ content: Ok sir boss!
 
-The method `insert(row)` takes one parameter, `row`, which is the index at which the new row should be inserted. The method returns the modified quadrille for chaining.
+To install the **p5.quadrille.js** library, you can follow these steps:
 
-Here's a code example:
+**CDN (Content Delivery Network) Installation**
 
-```js
+1. In your HTML file, add the following script tags:
+
+```html
+<!-- index.html -->
+<!-- Load p5.js first (required by p5.quadrille.js, latest version) -->
+<script src="https://cdn.jsdelivr.net/npm/p5/lib/p5.min.js"></script>
+<!-- Load p5.quadrille.js (latest stable version) -->
+<script src="https://cdn.jsdelivr.net/npm/p5.quadrille/dist/p5.quadrille.min.js"></script>
+```
+
+2. Open your HTML file in a browser or use a local development environment like VSCodium or Visual Studio Code with the Live Server extension.
+
+**npm (Node Package Manager) Installation**
+
+1. Run the following command in your terminal:
+
+```bash
+npm i p5 p5.quadrille
+```
+
+2. In your JavaScript file, import both libraries:
+
+```javascript
+// main.js
+import p5 from 'p5'
+import Quadrille from 'p5.quadrille'
+
+const sketch = () => {
+  // Your code here...
+}
+
+new p5(sketch);
+```
+
+That's it! You should now have the **p5.quadrille.js** library installed and ready to use in your projects.
+
+---
+ role: user
+ content: and how to create a simple quadrille?
+
+---
+ role: assistant
+ content: Ok sir boss!
+
+To create a simple quadrille using the `p5.quadrille.js` library, you can use the `createQuadrille()` method. Here's an example:
+
+```javascript
+// Create a 10x10 quadrille with a random image in each cell
 function setup() {
-  createCanvas(400, 400);
-  let quadrille = createQuadrille(20, 10, 50, color('red'));
-  quadrille.insert(5); // Insert a new row at index 5
+  let img = createImage(10, 10);
+  for (let i = 0; i < 100; i++) {
+    let x = floor(random(10));
+    let y = floor(random(10));
+    let c = color(random(255), random(255), random(255));
+    img.set(x, y, c);
+  }
+  createQuadrille(10, img);
+}
+
+// Draw the quadrille
+function draw() {
+  background(0);
+  noStroke();
+  for (let row = 0; row < height; row++) {
+    for (let col = 0; col < width; col++) {
+      let val = getCellValue(col, row);
+      fill(val);
+      rect(col * 10, row * 10, 10, 10);
+    }
+  }
 }
 ```
 
-In this example, the `insert(5)` method is called, which inserts a new row at index 5 in the quadrille.
+In this example, we create a 10x10 image and set the color of each cell randomly. Then, we use the `createQuadrille()` method to generate a quadrille with the random image in each cell.
+
+The `draw()` function draws the quadrille onto the canvas by iterating over each cell and drawing it as a rectangle filled with its corresponding color value.
+
+This is just a simple example of creating a quadrille. You can customize the creation process, draw styles, and visualizations to suit your needs.
+
+Remember, the `p5.quadrille.js` library provides various algorithms for sorting, filtering, and transforming quadrille cells, which you can explore in more detail using the documentation.
+
+---
+ role: user
+ content: give a complete example which include also imports
+
+---
+ role: assistant
+ content: Here is an example that includes imports and uses some of the methods provided by `p5.quadrille.js`:
+
+```javascript
+// Import p5 and quadrille libraries
+import { Quadrille } from 'p5-quadrille';
+import p5 from 'p5';
+
+// Initialize a new quadrille with 10 rows and 10 columns
+let q = new Quadrille(10, 10);
+
+function setup() {
+  // Create a canvas for our quadrille
+  createCanvas(400, 400);
+}
+
+function draw() {
+  // Clear the background
+  background(255);
+
+  // Draw the quadrille on the canvas
+  q.display();
+}
+```
+
+In this example, we are creating a new `Quadrille` object with 10 rows and 10 columns. In the `setup()` function, we create a new `p5` canvas for our quadrille. In the `draw()` function, we clear the background, draw the quadrille on the canvas using the `display()` method provided by `p5.quadrille.js`, and update the display.
+
+Please note that this is just an example to illustrate how you can use `p5-quadrille` in your own project. For a more complete example, I would suggest looking at the documentation for `p5.quadrille.js` or creating a new project using their starter code.
+
+Also, please remember that this is not my original work and I am just providing an example based on the library's documentation and usage.
+
+---
+ role: user
+ content: why do you need p5?
+
+---
+ role: assistant
+ content: Ok sir boss!
+
+The `p5.quadrille.js` library provides a seamless integration with the `p5.js` library, which is a JavaScript library for creative coding. The `p5.js` library allows you to create and manipulate graphics, animations, and interactive projects in the browser.
+
+In the context of quadrilles, the `p5.js` library provides a canvas where you can render your quadrille object. The `p5.quadrille.js` library builds upon this foundation by providing functions for creating, rendering, and interacting with quadrille objects.
+
+Here are some reasons why you might need `p5.js`:
+
+1. **Interactive graphics**: If you want to create interactive graphics or animations that respond to user input, such as mouse movements or keyboard presses, then `p5.js` is a great choice.
+2. **Canvas manipulation**: If you want to manipulate the canvas directly, such as drawing shapes, lines, or text, then `p5.js` provides a range of functions for doing so.
+3. **Event handling**: If you want to handle events such as mouse clicks, key presses, or touch gestures, then `p5.js` provides a robust event handling system.
+4. **Animation and simulation**: If you want to create animations or simulations that involve complex interactions between objects, then `p5.js` is well-suited for this task.
+
+By combining the capabilities of `p5.js` with the quadrille library, you can create rich and interactive projects that involve complex spatial relationships and patterns.

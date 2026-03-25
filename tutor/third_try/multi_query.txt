@@ -1,24 +1,32 @@
 
 --- ORIGINAL QUERY
- tell me about the insert method
+ why do you need p5?
 
 
 --- 
- tell me about the p5.quadrille insert method syntax
+ why does p5 quadrille require a specific setup for proper functionality
 
 
 --- 
- p5.quadrille insert method implementation details
+ what technical requirements must be met to successfully use p5 quadrille
 
 
 --- 
- insert row and column in quadrille array
+ p5 quadrille library setup prerequisites
 
 
 --- 
- p5.quadrille insert method parameters and usage
+ setting up p5 quadrille for optimal performance
 
 
 --- 
- how do the insert method and array bounds interact in p5.quadrille.js?
+ how do the underlying mechanics of p5 quadrille rely on its setup
+
+
+--- 
+ and finally:
+
+
+--- 
+ what are the fundamental principles guiding the design and implementation of the p5 quadrille.js library
 

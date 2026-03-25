@@ -60,13 +60,17 @@ I managed to improve the retrieval by adjusting the prompt for the multi query s
 
 Adjust the prompts to improve the usage of the conversation history. This includes making sure the model uses the full code examples he gets from the retrieved document to be able to use them later from the history.
 
+## Update 8
+
+Improved the `parse_js` function by using the [tree-sitter](https://tree-sitter.github.io/tree-sitter/) library to better parse the code. Before it was based on regex which was not 100% accurate in parsing the codebase. Using this library now all the functions are clearly separated into chunks
+
 ### TO DO
 
 - ~~Include the .md docs into the RAG knowledge (not it only have the quadrille.js)~~
 - ~~Add current conversation to the context as it goes on~~
 - Research better approach for the VectorDB
 - Research a better alternative to cossine similarity function
-- Research different models for embedding and LLM
+- ~~Research different models for embedding and LLM~~
 - ~~Improve demo experience: make it feel more like a chat by listening for the user prompt in a loop~~
 
 ## RAG output for the following prompt: "How can I invert filled and empty cells?"

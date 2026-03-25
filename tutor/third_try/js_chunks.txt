@@ -1,50 +1,9 @@
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > factory
 
-/**
- * @file Defines the Quadrille class — the core data structure of the p5.quadrille.js library.
- * @version 3.4.13
- * @author JP Charalambos
- * @license GPL-3.0-only
- *
- * @description
- * Grid-based teaching and rendering utility for p5.js.
- * This module defines the Quadrille class for cell storage and manipulation.
- * See https://objetos.github.io/docs/api/ for full usage and examples.
- */
-
-'use strict';
-
-import p5 from 'p5';
-
-// TODOs
-// i. isPolyomino()
-// ii. perlin / simplex noise
-// iii. sort() using 'webgl' mode, requires using fbos to speed up sample() (which currently only supports 'p2d' renderer)
-// iv. screenRow and screenCol lacks webgl mode (would require p5.treegl)
-// v. Decide mouseCornerX, mouseCornerY, screenCornerX() and screenCornerY()
-class Quadrille {
-
-
-
-@@@@@
- SOURCE CODE: quadrille.js
-
-/**
-   * Library version identifier.
-   * @type {string}
-   */
-  static VERSION = '3.4.13';
-
-  // Factory
-
-
-
-@@@@@
- SOURCE CODE: quadrille.js
-
+// Factory
 /**
    * Tags a function as a factory, meaning it should be executed during `fill`.
    * The function will be called with `{ row, col }` and must return a value
@@ -53,7 +12,7 @@ class Quadrille {
    * @param {*} fn - A function returning a value to fill cells with, or a direct value.
    * @returns {Function|*} The same function tagged with `._isFactory = true`, or the value itself.
    */
-  static factory(fn) {
+static factory(fn) {
     this.isFunction(fn) && (fn._isFactory = true);
     return fn;
   }
@@ -61,7 +20,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > singleton
 
 /**
    * Declares that a value is a shared singleton to be reused across cells. 
@@ -76,352 +35,247 @@ class Quadrille {
    * @param {*} value - A literal or object to share across multiple cells.
    * @returns {*} The same value, unmodified.
    */
-  static singleton(value) {
+static singleton(value) {
     return value;
   }
 
-  // STYLE
-
-
-
-@@@@@
- SOURCE CODE: quadrille.js
-
-/**
-   * Default text color.
-   * @type {string}
-   */
-  static _textColor = 'DodgerBlue';
-
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > textColor
 
 /**
    * Gets the current text color.
    * @returns {string}
    */
-  static get textColor() {
+static get textColor() {
     return this._textColor;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > textColor
 
 /**
    * Sets the text color used when rendering values.
    * Accepts any valid CSS string or p5 color.
    * @param {string|*} value
    */
-  static set textColor(value) {
+static set textColor(value) {
     this._textColor = typeof value === 'string' || this.isColor(value) ? value : this._textColor;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
-
-/**
-   * Default text drawing zoom.
-   * @type {number}
-   */
-  static _textZoom = 0.78;
-
-
-
-@@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > textZoom
 
 /**
    * Gets the current text zoom scale.
    * @returns {number}
    */
-  static get textZoom() {
+static get textZoom() {
     return this._textZoom;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > textZoom
 
 /**
    * Sets the text zoom scale. Must be a positive number.
    * @param {number} value
    */
-  static set textZoom(value) {
+static set textZoom(value) {
     this._textZoom = (typeof value === 'number' && value > 0) ? value : this._textZoom;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
-
-/**
-   * Default drawing outline.
-   * @type {string}
-   */
-  static _outline = 'OrangeRed';
-
-
-
-@@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > outline
 
 /**
    * Gets the current outline color.
    * @returns {string}
    */
-  static get outline() {
+static get outline() {
     return this._outline;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > outline
 
 /**
    * Sets the outline color used to draw cells.
    * Accepts any valid CSS string or p5 color.
    * @param {string|*} value
    */
-  static set outline(value) {
+static set outline(value) {
     this._outline = typeof value === 'string' || this.isColor(value) ? value : this._outline;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
-
-/**
-   * Default drawing outline weight.
-   * @type {number}
-   */
-  static _outlineWeight = 2;
-
-
-
-@@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > outlineWeight
 
 /**
    * Gets the current outline stroke weight.
    * @returns {number}
    */
-  static get outlineWeight() {
+static get outlineWeight() {
     return this._outlineWeight;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > outlineWeight
 
 /**
    * Sets the outline stroke weight. Must be a non-negative number.
    * @param {number} value
    */
-  static set outlineWeight(value) {
+static set outlineWeight(value) {
     this._outlineWeight = (typeof value === 'number' && value >= 0) ? value : this._outlineWeight;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
-
-/**
-   * Default drawing cell length.
-   * @type {number}
-   */
-  static _cellLength = 100;
-
-
-
-@@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > cellLength
 
 /**
    * Gets the current cell size in pixels.
    * @returns {number}
    */
-  static get cellLength() {
+static get cellLength() {
     return this._cellLength;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > cellLength
 
 /**
    * Sets the cell size in pixels. Must be a positive number.
    * @param {number} value
    */
-  static set cellLength(value) {
+static set cellLength(value) {
     this._cellLength = (typeof value === 'number' && value > 0) ? value : this._cellLength;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
-
-/**
-   * Default background used in sort.
-   * @type {string}
-   */
-  static _background = 'white';
-
-
-
-@@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > background
 
 /**
    * Gets the background color used in sort().
    * @returns {string}
    */
-  static get background() {
+static get background() {
     return this._background;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > background
 
 /**
    * Sets the background color used in sort().
    * Accepts any valid CSS string or p5 color.
    * @param {string|*} value
    */
-  static set background(value) {
+static set background(value) {
     this._background = typeof value === 'string' || this.isColor(value) ? value : this._background;
   }
 
-  // CHESS
-
-
-
-@@@@@
- SOURCE CODE: quadrille.js
-
-/**
-   * Default chess dark squares.
-   * @type {string}
-   */
-  static _darkSquare = '#D28C45'; // Wikipedia; '#769555' // chess.com
-
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > darkSquare
 
+// Wikipedia; '#769555' // chess.com
 /**
    * Gets the color for dark chessboard squares.
    * @returns {string}
    */
-  static get darkSquare() {
+static get darkSquare() {
     return this._darkSquare;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > darkSquare
 
 /**
    * Sets the color for dark chessboard squares.
    * @param {string|*} value
    */
-  static set darkSquare(value) {
+static set darkSquare(value) {
     this._darkSquare = typeof value === 'string' || this.isColor(value) ? value : this._darkSquare;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > lightSquare
 
-/**
-   * Default chess light squares.
-   * @type {string}
-   */
-  static _lightSquare = '#FDCDAA'; // Wikipedia; '#EBECCF' // chess.com
-
-
-
-@@@@@
- SOURCE CODE: quadrille.js
-
+// Wikipedia; '#EBECCF' // chess.com
 /**
    * Gets the color for light chessboard squares.
    * @returns {string}
    */
-  static get lightSquare() {
+static get lightSquare() {
     return this._lightSquare;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > lightSquare
 
 /**
    * Sets the color for light chessboard squares.
    * @param {string|*} value
    */
-  static set lightSquare(value) {
+static set lightSquare(value) {
     this._lightSquare = typeof value === 'string' || this.isColor(value) ? value : this._lightSquare;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
-
-/**
-   * Internal FEN → symbol map (Unicode, emoji, image, etc.).
-   * @type {Map<string, *>}
-   * @private
-   */
-  static _chessSymbols = new Map([
-    ['K', '♔'], ['Q', '♕'], ['R', '♖'], ['B', '♗'], ['N', '♘'], ['P', '♙'],
-    ['k', '♚'], ['q', '♛'], ['r', '♜'], ['b', '♝'], ['n', '♞'], ['p', '♟']
-  ]);
-
-
-
-@@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > chessSymbols
 
 /**
    * Gets a copy of the FEN → symbol map.
    * @returns {Map<string, *>} Copy of internal chessSymbols map.
    */
-  static get chessSymbols() {
+static get chessSymbols() {
     return new Map(this._chessSymbols);
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > chessSymbols
 
 /**
    * Updates entries in the FEN → symbol mapping.
    * Accepts either a plain object or a Map. Merges into the current map to support partial updates.
    * @param {Object<string, *>|Map<string, *>} symbols - Entries to merge into the FEN → symbol map.
    */
-  static set chessSymbols(symbols) {
+static set chessSymbols(symbols) {
     if (symbols instanceof Map) {
       for (const [k, v] of symbols) this._chessSymbols.set(k, v);
     } else {
@@ -432,20 +286,20 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > chessKeys
 
 /**
    * Gets a reverse map from symbol to FEN key.
    * @returns {Map<*, string>} New reverse map (symbol → FEN)
    */
-  static get chessKeys() {
+static get chessKeys() {
     return new Map([...this._chessSymbols].map(([k, v]) => [v, k]));
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > bitIndex
 
 /**
    * Returns the bit index (row-major).
@@ -458,7 +312,7 @@ class Quadrille {
    * @param {boolean} [littleEndian=false]
    * @returns {number|undefined} The bit index, or undefined if out of bounds.
    */
-  static bitIndex(row, col, width = 8, height = 8, littleEndian = false) {
+static bitIndex(row, col, width = 8, height = 8, littleEndian = false) {
     if (row < 0 || row >= height || col < 0 || col >= width) {
       const suggestions = [];
       row < 0 && suggestions.push(`height ≥ ${height - row}`);
@@ -478,7 +332,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > bitCell
 
 /**
    * Returns the cell position corresponding to a bit index.
@@ -490,7 +344,7 @@ class Quadrille {
    * @param {boolean} [littleEndian=false] - Whether to use little-endian ordering.
    * @returns {{row: number, col: number}|undefined} The cell position, or undefined if out of bounds.
    */
-  static bitCell(bitIndex, width = 8, height = 8, littleEndian = false) {
+static bitCell(bitIndex, width = 8, height = 8, littleEndian = false) {
     const maxIndex = width * height - 1;
     const raw = Number(bitIndex);
     if (raw < 0 || raw > maxIndex) {
@@ -504,13 +358,12 @@ class Quadrille {
     };
   }
 
-  // ALGEBRA
-
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > and
 
+// ALGEBRA
 /**
    * Logical AND between two quadrilles.
    * @param {Quadrille} q1 First quadrille
@@ -519,7 +372,7 @@ class Quadrille {
    * @param {number} col Relative column offset from q1
    * @returns {Quadrille} A new quadrille containing only cells filled in both q1 and q2
    */
-  static and(q1, q2, row, col) {
+static and(q1, q2, row, col) {
     return this.merge(q1, q2, (a, b) => {
       if (this.isFilled(a) && this.isFilled(b)) {
         return a;
@@ -530,7 +383,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > or
 
 /**
    * Logical OR between two quadrilles.
@@ -540,7 +393,7 @@ class Quadrille {
    * @param {number} col Relative column offset from q1
    * @returns {Quadrille} A new quadrille containing cells filled in either q1 or q2
    */
-  static or(q1, q2, row, col) {
+static or(q1, q2, row, col) {
     return this.merge(q1, q2, (a, b) => {
       if (this.isFilled(a)) {
         return a;
@@ -554,7 +407,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > xor
 
 /**
    * Logical XOR between two quadrilles.
@@ -564,7 +417,7 @@ class Quadrille {
    * @param {number} col Relative column offset from q1
    * @returns {Quadrille} A new quadrille containing cells filled in one, but not both, of q1 and q2
    */
-  static xor(q1, q2, row, col) {
+static xor(q1, q2, row, col) {
     return this.merge(q1, q2, (a, b) => {
       if (this.isFilled(a) && this.isEmpty(b)) {
         return a;
@@ -578,7 +431,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > diff
 
 /**
    * Logical difference (q1 minus q2) between two quadrilles.
@@ -588,7 +441,7 @@ class Quadrille {
    * @param {number} col Relative column offset from q1
    * @returns {Quadrille} A new quadrille with cells filled in q1 but not in q2
    */
-  static diff(q1, q2, row, col) {
+static diff(q1, q2, row, col) {
     return this.merge(q1, q2, (a, b) => {
       if (this.isFilled(a) && this.isEmpty(b)) {
         return a;
@@ -599,7 +452,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > merge
 
 /**
    * Merges two quadrilles by applying a binary operator to their overlapping cells.
@@ -611,7 +464,7 @@ class Quadrille {
    * @param {number} [col]
    * @returns {Quadrille}
    */
-  static merge(q1, q2, operator, row, col) {
+static merge(q1, q2, operator, row, col) {
     const sameOrigin = q1._row !== undefined && q2._row !== undefined &&
       q1._cellLength !== undefined && q1._cellLength === q2._cellLength;
     row ??= sameOrigin ? q2._row - q1._row : 0;
@@ -638,7 +491,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > _allocNullMemory
 
 /**
    * Allocates a height×width 2D array filled with nulls (never undefined).
@@ -646,7 +499,7 @@ class Quadrille {
    * @param {number} w
    * @returns {Array<Array<*>>}
    */
-  static _allocNullMemory(h, w) {
+static _allocNullMemory(h, w) {
     const mem = new Array(h);
     for (let i = 0; i < h; i++) {
       const row = new Array(w);
@@ -659,7 +512,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > _allocQ
 
 /**
    * Allocates a Quadrille *without* calling the constructor, mirroring the
@@ -679,7 +532,7 @@ class Quadrille {
    * @param {number} [w]
    * @returns {Quadrille}
    */
-  static _allocQ(from, hOrMem, w) {
+static _allocQ(from, hOrMem, w) {
     const ctor = from.constructor;
     const mem = Array.isArray(hOrMem) ? hOrMem : this._allocNullMemory(hOrMem, w);
     const q = Object.create(ctor.prototype);
@@ -696,7 +549,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > not
 
 /**
    * Logical NOT of a quadrille (non-destructive).
@@ -705,14 +558,14 @@ class Quadrille {
    * @param {*} target Value to fill where the quadrille is empty
    * @returns {Quadrille} A new quadrille with inverted filled/empty status
    */
-  static not(q, target) {
+static not(q, target) {
     return q.clone().not(target);
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > shift
 
 /**
    * Returns a shifted copy of the given Quadrille.
@@ -728,14 +581,14 @@ class Quadrille {
    * @param {boolean} [wrap=true] - Whether to wrap around the edges.
    * @returns {Quadrille} A new shifted Quadrille.
    */
-  static shift(q, dRow, dCol, wrap = true) {
+static shift(q, dRow, dCol, wrap = true) {
     return q.clone().shift(dRow, dCol, wrap);
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > constructor
 
 /**
    * Constructs a new Quadrille instance with multiple supported initialization modes:
@@ -756,7 +609,7 @@ class Quadrille {
    * @param {p5} p - The p5 instance.
    * @param {...any} args - Arguments to select construction mode.
    */
-  constructor(p, ...args) {
+constructor(p, ...args) {
     this._p = p;
     this._cellLength = this.constructor.cellLength;
     this._x = 0;
@@ -866,7 +719,13 @@ class Quadrille {
     }
   }
 
-  _init1D(memory1D, width = memory1D.length) {
+
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > _init1D
+
+
+_init1D(memory1D, width = memory1D.length) {
     const height = Math.ceil(memory1D.length / width);
     this._memory2D = Array.from({ length: height }, (_, i) => {
       const start = i * width;
@@ -874,14 +733,26 @@ class Quadrille {
     });
   }
 
-  _format(memory1D, size) {
+
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > _format
+
+
+_format(memory1D, size) {
     const cleaned = memory1D.map(v => v === undefined ? null : v);
     return cleaned.length < size
       ? cleaned.concat(new Array(size - cleaned.length).fill(null))
       : cleaned;
   }
 
-  _fromFEN(...args) {
+
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > _fromFEN
+
+
+_fromFEN(...args) {
     if (typeof args[0] === 'string') {
       if (args[0].split('/').length - 1 === 7) {
         const [placement] = args[0].split(' ');
@@ -902,7 +773,13 @@ class Quadrille {
     }
   }
 
-  _fromImage(...args) {
+
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > _fromImage
+
+
+_fromImage(...args) {
     if (this.constructor.isImage(args[0])) {
       let src = args[0] instanceof p5.Framebuffer ? args[0].get() : args[0];
       if (src instanceof p5.MediaElement && src.elt instanceof HTMLVideoElement) {
@@ -920,7 +797,13 @@ class Quadrille {
     }
   }
 
-  _pixelator1(image) {
+
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > _pixelator1
+
+
+_pixelator1(image) {
     image.resize(this.width, this.height);
     image.loadPixels();
     for (let i = 0; i < image.pixels.length / 4; i++) {
@@ -933,7 +816,13 @@ class Quadrille {
     }
   }
 
-  _pixelator2(image) {
+
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > _pixelator2
+
+
+_pixelator2(image) {
     image.loadPixels();
     const r = Array(this.height).fill().map(() => Array(this.width).fill(0));
     const g = Array(this.height).fill().map(() => Array(this.width).fill(0));
@@ -960,24 +849,42 @@ class Quadrille {
     });
   }
 
-  _images(image) {
+
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > _images
+
+
+_images(image) {
     const cellWidth = image.width / this.width;
     const cellHeight = image.height / this.height;
     this.visit(({ row, col }) => this.fill(row, col, image.get(col * cellWidth, row * cellHeight, cellWidth, cellHeight)));
   }
 
-  _fromIndex(index, width = this.width) {
+
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > _fromIndex
+
+
+_fromIndex(index, width = this.width) {
     return { row: (index / width) | 0, col: index % width };
   }
 
-  _toIndex(row, col, width = this.width) {
+
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > _toIndex
+
+
+_toIndex(row, col, width = this.width) {
     return row * width + col;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > bitIndex
 
 /**
    * Returns the bit index of the given cell using the instance’s width and height.
@@ -987,14 +894,14 @@ class Quadrille {
    * @param {boolean} [littleEndian=false] - Whether to use little-endian ordering.
    * @returns {number|undefined} The bit index, or undefined if out of bounds.
    */
-  bitIndex(row, col, littleEndian = false) {
+bitIndex(row, col, littleEndian = false) {
     return this.constructor.bitIndex(row, col, this.width, this.height, littleEndian);
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > bitCell
 
 /**
    * Returns the cell position for a given bit index using the instance’s dimensions.
@@ -1003,17 +910,16 @@ class Quadrille {
    * @param {boolean} [littleEndian=false] - Whether to use little-endian ordering.
    * @returns {{row: number, col: number}|undefined} The cell position, or undefined if out of bounds.
    */
-  bitCell(bitIndex, littleEndian = false) {
+bitCell(bitIndex, littleEndian = false) {
     return this.constructor.bitCell(bitIndex, this.width, this.height, littleEndian);
   }
-
-  // ITERATOR
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > visit
 
+// ITERATOR
 /**
    * Iterates over cells and calls the given function with each matching cell object,
    * in row-major order (row 0..height-1, within each row col 0..width-1).
@@ -1027,7 +933,7 @@ class Quadrille {
    * @param {Array|Set|Function|*|null} [filter]
    * @returns {void}
    */
-  visit(callback, filter) {
+visit(callback, filter) {
     const memory2D = this._memory2D;
     const height = this.height;
     const width = this.width;
@@ -1081,19 +987,18 @@ class Quadrille {
     }
   }
 
-  // PROPERTIES
-
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > memory2D
 
+// PROPERTIES
 /**
    * Sets quadrille from 2D memory internal array representation.
    * Accepts either a 2D array, 1D array, FEN string, or flat string.
    * @param {Array|String} memory - Array or string used to set the internal memory.
    */
-  set memory2D(memory) {
+set memory2D(memory) {
     // Case: FEN or flat string
     if (typeof memory === 'string') {
       const isFEN = memory.split('/').length - 1 === 7;
@@ -1121,27 +1026,27 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > memory2D
 
 /**
    * Gets the internal 2D array representation of the quadrille.
    * @returns {Array<Array<*>>}
    */
-  get memory2D() {
+get memory2D() {
     return this.clone()._memory2D;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > width
 
 /**
    * Sets quadrille width (number of columns).
    * Triggers transposition hack to simulate column resizing.
    * @param {number} width
    */
-  set width(width) {
+set width(width) {
     this.transpose();
     this.height = width;
     this.transpose();
@@ -1150,27 +1055,27 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > width
 
 /**
    * Gets quadrille width.
    * @returns {number} Number of columns.
    */
-  get width() {
+get width() {
     return this._memory2D[0].length;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > height
 
 /**
    * Sets quadrille height (number of rows).
    * Resizes by inserting or deleting rows.
    * @param {number} height
    */
-  set height(height) {
+set height(height) {
     height = Math.max(1, Math.abs(height));
     const rows = height - this.height;
     while (this.height !== height) {
@@ -1181,39 +1086,39 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > height
 
 /**
    * Gets quadrille height.
    * @returns {number} Number of rows.
    */
-  get height() {
+get height() {
     return this._memory2D.length;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > size
 
 /**
    * Gets total number of cells (width × height).
    * @returns {number}
    */
-  get size() {
+get size() {
     return this.width * this.height;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > order
 
 /**
    * Gets number of filled cells in the quadrille.
    * @returns {number}
    */
-  get order() {
+get order() {
     let result = 0;
     this.visit(() => result++, ({ value }) => this.constructor.isFilled(value));
     return result;
@@ -1224,40 +1129,40 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > mouseRow
 
 /**
    * Gets the row index under the mouse.
    * @returns {number}
    */
-  get mouseRow() {
+get mouseRow() {
     return this.screenRow(this._p.mouseY);
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > mouseCol
 
 /**
    * Gets the column index under the mouse.
    * @returns {number}
    */
-  get mouseCol() {
+get mouseCol() {
     return this.screenCol(this._p.mouseX);
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > span
 
 /**
    * Gets the minimal axis-aligned span of filled cells.
    * Returns undefined if the quadrille has no filled cells.
    * @returns {{row:number, col:number, width:number, height:number}|undefined}
    */
-  get span() {
+get span() {
     let minRow = this.height, maxRow = -1, minCol = this.width, maxCol = -1;
     this.visit(
       ({ row, col }) => {
@@ -1277,7 +1182,12 @@ class Quadrille {
     };
   }
 
-  /*
+
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > magnitude
+
+/*
   get mouseCornerX() {
     return this.screenCornerX(this._p.mouseX);
   }
@@ -1294,20 +1204,13 @@ class Quadrille {
     return this.screenRow(pixelY, y, cellLength) * cellLength + (this._origin === 'center' ? this._p.height / 2 : y);
   }
   // */
-
-  // QUERIES
-
-
-
-@@@@@
- SOURCE CODE: quadrille.js
-
+// QUERIES
 /**
    * Counts the number of non-empty cells in the specified row.
    * @param {number} row - Row index.
    * @returns {number} Number of filled cells in the row.
    */
-  magnitude(row) {
+magnitude(row) {
     let result = 0;
     if (this.isValid(row, 0)) {
       for (let j = 0; j < this.width; j++) {
@@ -1320,7 +1223,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > search
 
 /**
    * Searches the quadrille for matches to a given pattern quadrille.
@@ -1328,7 +1231,7 @@ class Quadrille {
    * @param {boolean} [strict=false] - Whether values must match exactly, not just be filled.
    * @returns {Array<{ row: number, col: number }>} An array of match locations. Empty if no match.
    */
-  search(pattern, strict = false) {
+search(pattern, strict = false) {
     const hits = [];
     this.visit(({ row, col }) =>
       this.constructor.merge(pattern, this, (q1, q2) => {
@@ -1342,7 +1245,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > screenRow
 
 /**
    * Converts a pixel Y coordinate to a quadrille row index.
@@ -1351,14 +1254,14 @@ class Quadrille {
    * @param {number} [cellLength=this._cellLength || this.constructor.cellLength] - Length of each cell.
    * @returns {number} The row index corresponding to the pixel Y-coordinate.
    */
-  screenRow(pixelY, y = this._y || 0, cellLength = this._cellLength || this.constructor.cellLength) {
+screenRow(pixelY, y = this._y || 0, cellLength = this._cellLength || this.constructor.cellLength) {
     return this._p.floor((pixelY - (this._origin === 'center' ? this._p.height / 2 : y)) / cellLength);
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > screenCol
 
 /**
    * Converts a screen X-coordinate to a quadrille column index.
@@ -1367,214 +1270,211 @@ class Quadrille {
    * @param {number} [cellLength=this._cellLength || this.constructor.cellLength] - Length of each cell.
    * @returns {number} - The corresponding quadrille column.
    */
-  screenCol(pixelX, x = this._x || 0, cellLength = this._cellLength || this.constructor.cellLength) {
+screenCol(pixelX, x = this._x || 0, cellLength = this._cellLength || this.constructor.cellLength) {
     return this._p.floor((pixelX - (this._origin === 'center' ? this._p.width / 2 : x)) / cellLength);
   }
-
-  // CELL CONTENTS
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > read
 
+// CELL CONTENTS
 /**
    * Reads the value at the specified row and column.
    * @param {number} row
    * @param {number} col
    * @returns {*} Quadrille entry at (row, col), or `undefined` if out of bounds.
    */
-  read(row, col) {
+read(row, col) {
     if (this.isValid(row, col)) {
       return this._memory2D[row][col];
     }
   }
 
-  // Static "protected" methods
-
-  // Although undefined is disallowed, isEmpty and isFilled use it for querying cells outside
-  // quadrille bounds, also isFilled is logically equivalent to !isEmpty for consistency.
-
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isValid
 
+// Static "protected" methods
+// Although undefined is disallowed, isEmpty and isFilled use it for querying cells outside
+// quadrille bounds, also isFilled is logically equivalent to !isEmpty for consistency.
 /**
    * Checks if a given cell position is valid.
    * @param {number} row
    * @param {number} col
    * @returns {boolean} True if the cell is within bounds.
    */
-  isValid(row, col) {
+isValid(row, col) {
     return row >= 0 && row < this.height && col >= 0 && col < this.width;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isEmpty
 
 /**
    * Determines whether a value is considered empty.
    * @param {*} value
    * @returns {boolean}
    */
-  static isEmpty(value) {
+static isEmpty(value) {
     return value == null;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isFilled
 
 /**
    * Determines whether a value is considered filled.
    * @param {*} value
    * @returns {boolean}
    */
-  static isFilled(value) {
+static isFilled(value) {
     return value != null;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isBoolean
 
 /**
    * Checks whether the given value is a boolean.
    * @param {*} value
    * @returns {boolean}
    */
-  static isBoolean(value) {
+static isBoolean(value) {
     return typeof value === 'boolean';
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isSymbol
 
 /**
    * Checks whether the given value is a symbol.
    * @param {*} value
    * @returns {boolean}
    */
-  static isSymbol(value) {
+static isSymbol(value) {
     return typeof value === 'symbol';
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isNumber
 
 /**
    * Checks whether the given value is a number.
    * @param {*} value
    * @returns {boolean}
    */
-  static isNumber(value) {
+static isNumber(value) {
     return typeof value === 'number';
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isBigInt
 
 /**
    * Checks whether the given value is a BigInt.
    * @param {*} value
    * @returns {boolean}
    */
-  static isBigInt(value) {
+static isBigInt(value) {
     return typeof value === 'bigint';
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isString
 
 /**
    * Checks whether the given value is a string.
    * @param {*} value
    * @returns {boolean}
    */
-  static isString(value) {
+static isString(value) {
     return typeof value === 'string';
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isColor
 
 /**
    * Checks whether the given value is a p5.Color instance.
    * @param {*} value
    * @returns {boolean}
    */
-  static isColor(value) {
+static isColor(value) {
     return value instanceof p5.Color;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isFunction
 
 /**
    * Checks whether the given value is a function.
    * @param {*} value
    * @returns {boolean}
    */
-  static isFunction(value) {
+static isFunction(value) {
     return typeof value === 'function';
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isImage
 
 /**
    * Checks whether the given value is a p5.Image, p5.Graphics, MediaElement (video), or Framebuffer.
    * @param {*} value
    * @returns {boolean}
    */
-  static isImage(value) {
+static isImage(value) {
     return value instanceof p5.Image || (value instanceof p5.MediaElement && value.elt instanceof HTMLVideoElement) || value instanceof p5.Graphics || value instanceof p5.Framebuffer;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isArray
 
 /**
    * Checks whether the given value is an array.
    * @param {*} value
    * @returns {boolean}
    */
-  static isArray(value) {
+static isArray(value) {
     return Array.isArray(value);
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isObject
 
 /**
    * Checks whether the given value is a generic object (not a color, image, function, or array).
    * @param {*} value
    * @returns {boolean}
    */
-  static isObject(value) {
+static isObject(value) {
     return this.isFilled(value) &&
       !this.isColor(value) &&
       !this.isImage(value) &&
@@ -1583,27 +1483,26 @@ class Quadrille {
       typeof value === 'object';
   }
 
-  // Instance methods
-
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isEmpty
 
+// Instance methods
 /**
    * Checks whether the cell at (row, col) is empty.
    * @param {number} row
    * @param {number} col
    * @returns {boolean}
    */
-  isEmpty(row, col) {
+isEmpty(row, col) {
     return this.constructor.isEmpty(this.read(row, col));
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isFilled
 
 /**
    * Checks whether the cell at (row, col) is filled.
@@ -1611,14 +1510,14 @@ class Quadrille {
    * @param {number} col
    * @returns {boolean}
    */
-  isFilled(row, col) {
+isFilled(row, col) {
     return this.constructor.isFilled(this.read(row, col));
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isBoolean
 
 /**
    * Checks whether the cell at (row, col) contains a boolean.
@@ -1626,14 +1525,14 @@ class Quadrille {
    * @param {number} col
    * @returns {boolean}
    */
-  isBoolean(row, col) {
+isBoolean(row, col) {
     return this.constructor.isBoolean(this.read(row, col));
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isSymbol
 
 /**
    * Checks whether the cell at (row, col) contains a symbol.
@@ -1641,14 +1540,14 @@ class Quadrille {
    * @param {number} col
    * @returns {boolean}
    */
-  isSymbol(row, col) {
+isSymbol(row, col) {
     return this.constructor.isSymbol(this.read(row, col));
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isNumber
 
 /**
    * Checks whether the cell at (row, col) contains a number.
@@ -1656,14 +1555,14 @@ class Quadrille {
    * @param {number} col
    * @returns {boolean}
    */
-  isNumber(row, col) {
+isNumber(row, col) {
     return this.constructor.isNumber(this.read(row, col));
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isBigInt
 
 /**
    * Checks whether the cell at (row, col) contains a BigInt.
@@ -1671,14 +1570,14 @@ class Quadrille {
    * @param {number} col
    * @returns {boolean}
    */
-  isBigInt(row, col) {
+isBigInt(row, col) {
     return this.constructor.isBigInt(this.read(row, col));
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isString
 
 /**
    * Checks whether the cell at (row, col) contains a string.
@@ -1686,14 +1585,14 @@ class Quadrille {
    * @param {number} col
    * @returns {boolean}
    */
-  isString(row, col) {
+isString(row, col) {
     return this.constructor.isString(this.read(row, col));
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isColor
 
 /**
    * Checks whether the cell at (row, col) contains a color.
@@ -1701,14 +1600,14 @@ class Quadrille {
    * @param {number} col
    * @returns {boolean}
    */
-  isColor(row, col) {
+isColor(row, col) {
     return this.constructor.isColor(this.read(row, col));
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isArray
 
 /**
    * Checks whether the cell at (row, col) contains an array.
@@ -1716,14 +1615,14 @@ class Quadrille {
    * @param {number} col
    * @returns {boolean}
    */
-  isArray(row, col) {
+isArray(row, col) {
     return this.constructor.isArray(this.read(row, col));
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isObject
 
 /**
    * Checks whether the cell at (row, col) contains an object.
@@ -1731,14 +1630,14 @@ class Quadrille {
    * @param {number} col
    * @returns {boolean}
    */
-  isObject(row, col) {
+isObject(row, col) {
     return this.constructor.isObject(this.read(row, col));
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isImage
 
 /**
    * Checks whether the cell at (row, col) contains an image or graphics object.
@@ -1746,14 +1645,14 @@ class Quadrille {
    * @param {number} col
    * @returns {boolean}
    */
-  isImage(row, col) {
+isImage(row, col) {
     return this.constructor.isImage(this.read(row, col));
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > isFunction
 
 /**
    * Checks whether the cell at (row, col) contains a function.
@@ -1761,17 +1660,16 @@ class Quadrille {
    * @param {number} col
    * @returns {boolean}
    */
-  isFunction(row, col) {
+isFunction(row, col) {
     return this.constructor.isFunction(this.read(row, col));
   }
-
-  // MUTATORS
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > replace
 
+// MUTATORS
 /**
    * Replaces cell values.
    * 1. `replace(value)` — replaces all filled cells with `value`.
@@ -1779,7 +1677,7 @@ class Quadrille {
    * @param {...*} args
    * @returns {Quadrille} The modified quadrille (for chaining).
    */
-  replace(...args) {
+replace(...args) {
     args.length === 1 && this.visit(({ row, col }) => this.fill(row, col, args[0]), ({ value }) => this.constructor.isFilled(value));
     args.length === 2 && this.visit(({ row, col }) => this.fill(row, col, args[1]), ({ value }) => value === args[0]);
     return this;
@@ -1788,7 +1686,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > clear
 
 /**
    * Clears cell values in various ways:
@@ -1803,7 +1701,7 @@ class Quadrille {
    * @param {...*} args
    * @returns {Quadrille} The modified quadrille (for chaining).
    */
-  clear(...args) {
+clear(...args) {
     if (args.length === 0) {
       this._memory2D = this._memory2D.map(row => row.map(cell => this._clearCell(cell)));
     }
@@ -1867,7 +1765,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > fill
 
 /**
    * Fills the quadrille using a variety of modes:
@@ -1884,7 +1782,7 @@ class Quadrille {
    * @param {...*} args - Arguments as described above.
    * @returns {Quadrille} This quadrille (for chaining).
    */
-  fill(...args) {
+fill(...args) {
     if (args.length === 0) {
       this.visit(({ row, col }) => {
         this._memory2D[row][col] = this._clearCell(this._memory2D[row][col]);
@@ -1984,7 +1882,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > _parseFn
 
 /**
    * Internal helper to evaluate a value for a given cell.
@@ -1995,14 +1893,14 @@ class Quadrille {
    * @param {number} col - Column index of the cell.
    * @returns {*} Evaluated cell content.
    */
-  _parseFn(value, row, col) {
+_parseFn(value, row, col) {
     return typeof value === 'function' && value._isFactory ? value({ row, col }) : value;
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > _clearCell
 
 /**
    * Clears a cell value before writing a new one into the grid.
@@ -2013,7 +1911,7 @@ class Quadrille {
    * @param {*} value - The current cell value to be cleared.
    * @returns {null} Always returns null as the cleared cell value.
    */
-  _clearCell(value) {
+_clearCell(value) {
     if (this.constructor.isFunction(value) || this.constructor.isObject(value)) {
       value.fbo?.remove();
       value.fbo = undefined;
@@ -2024,14 +1922,14 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > _flood
 
 /**
    * Recursive flood fill using value1 → value2 replacement.
    * Supports 4- or 8-directional movement and optional border fill.
    * @private
    */
-  _flood(row, col, value1, value2, directions = 4, border = false) {
+_flood(row, col, value1, value2, directions = 4, border = false) {
     if (directions !== 4 && directions !== 8) {
       console.warn(`flood fill is using 4 directions instead of ${directions}, see: https://en.m.wikipedia.org/wiki/Flood_fill`);
       directions = 4;
@@ -2061,7 +1959,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > rand
 
 /**
    * Randomly clears or fills cells in the quadrille.
@@ -2072,7 +1970,7 @@ class Quadrille {
    * @param {*} [value=null] - Value to fill, or `null` to clear cells.
    * @returns {Quadrille} The modified quadrille (for chaining).
    */
-  rand(times, value = null) {
+rand(times, value = null) {
     times = this._p.abs(times);
     const isFilling = this.constructor.isFilled(value);
     const max = isFilling ? this.size - this.order : this.order;
@@ -2093,14 +1991,14 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > randomize
 
 /**
    * Randomly rearranges filled cells in the quadrille.
    * Note: For deterministic behavior, call `randomSeed(seed)` explicitly before this method.
    * @returns {Quadrille} The modified quadrille (for chaining).
    */
-  randomize() {
+randomize() {
     const clone = this.clone();
     this.clear();
     clone.visit(({ value }) => {
@@ -2117,14 +2015,14 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > insert
 
 /**
    * Inserts an empty row at the given index.
    * @param {number} row - Index to insert the new row.
    * @returns {Quadrille} The modified quadrille (for chaining).
    */
-  insert(row) {
+insert(row) {
     this._memory2D.splice(row, 0, Array(this.width).fill(null));
     return this;
   }
@@ -2132,14 +2030,14 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > delete
 
 /**
    * Deletes the row at the given index.
    * @param {number} row - Index of the row to delete.
    * @returns {Quadrille} The modified quadrille (for chaining).
    */
-  delete(row) {
+delete(row) {
     if (this.height > 1 && this.isValid(row, 0)) {
       this._memory2D.splice(row, 1);
     }
@@ -2149,7 +2047,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > swap
 
 /**
    * Swaps two rows or two cells in the quadrille.
@@ -2158,7 +2056,7 @@ class Quadrille {
    * @param {...number} args - Either 2 or 4 integers.
    * @returns {Quadrille} The modified quadrille (for chaining).
    */
-  swap(...args) {
+swap(...args) {
     const isInteger = Number.isInteger;
     if (args.length === 2) {
       if (args.every(isInteger) && this.isValid(args[0], 0) && this.isValid(args[1], 0)) {
@@ -2179,7 +2077,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > shift
 
 /**
    * Shifts all filled cells by (dRow, dCol) across the grid.
@@ -2191,7 +2089,7 @@ class Quadrille {
    * @param {boolean} [wrap=true]
    * @returns {Quadrille} this
    */
-  shift(dRow, dCol, wrap = true) {
+shift(dRow, dCol, wrap = true) {
     if (this.order === 0) return this;
     const w = this.width;
     const h = this.height;
@@ -2234,7 +2132,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > not
 
 /**
    * Inverts filled/empty status in-place.
@@ -2243,7 +2141,7 @@ class Quadrille {
    * @param {*} target Value to place into previously-empty cells
    * @returns {Quadrille} this
    */
-  not(target) {
+not(target) {
     this.visit(({ row, col, value }) =>
       this.constructor.isFilled(value)
         ? this.clear(row, col)
@@ -2255,7 +2153,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > and
 
 /**
    * Logical AND between this quadrille and another.
@@ -2264,7 +2162,7 @@ class Quadrille {
    * @param {number} col Relative column offset from this
    * @returns {Quadrille} This quadrille containing only cells filled in both
    */
-  and(q, row, col) {
+and(q, row, col) {
     return this.merge(q, (a, b) => {
       if (this.constructor.isFilled(a) && this.constructor.isFilled(b)) {
         return a;
@@ -2275,7 +2173,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > or
 
 /**
    * Logical OR between this quadrille and another.
@@ -2284,7 +2182,7 @@ class Quadrille {
    * @param {number} col Relative column offset from this
    * @returns {Quadrille} This quadrille containing cells filled in either
    */
-  or(q, row, col) {
+or(q, row, col) {
     return this.merge(q, (a, b) => {
       if (this.constructor.isFilled(a)) {
         return a;
@@ -2298,7 +2196,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > xor
 
 /**
    * Logical XOR between this quadrille and another.
@@ -2307,7 +2205,7 @@ class Quadrille {
    * @param {number} col Relative column offset from this
    * @returns {Quadrille} This quadrille containing cells filled in one, but not both
    */
-  xor(q, row, col) {
+xor(q, row, col) {
     return this.merge(q, (a, b) => {
       if (this.constructor.isFilled(a) && this.constructor.isEmpty(b)) {
         return a;
@@ -2321,7 +2219,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > diff
 
 /**
    * Logical difference (this minus q) between two quadrilles.
@@ -2330,7 +2228,7 @@ class Quadrille {
    * @param {number} col Relative column offset from this
    * @returns {Quadrille} This quadrille with cells filled in this but not in q
    */
-  diff(q, row, col) {
+diff(q, row, col) {
     return this.merge(q, (a, b) => {
       if (this.constructor.isFilled(a) && this.constructor.isEmpty(b)) {
         return a;
@@ -2341,7 +2239,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > merge
 
 /**
    * Merges another quadrille into this one by applying a binary operator.
@@ -2352,7 +2250,7 @@ class Quadrille {
    * @param {number} [col]
    * @returns {Quadrille} this
    */
-  merge(q, operator, row, col) {
+merge(q, operator, row, col) {
     const sameOrigin = this._row !== undefined && q._row !== undefined &&
       this._cellLength !== undefined && this._cellLength === q._cellLength;
     row ??= sameOrigin ? q._row - this._row : 0;
@@ -2402,19 +2300,18 @@ class Quadrille {
     return this;
   }
 
-  // TRANSFORMS
-
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > reflect
 
+// TRANSFORMS
 /**
    * Horizontal reflection.
    * Reverses the order of the rows.
    * @returns {Quadrille} The modified quadrille (for chaining).
    */
-  reflect() {
+reflect() {
     this._memory2D.reverse();
     return this;
   }
@@ -2422,13 +2319,13 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > transpose
 
 /**
    * Transposes the quadrille matrix (rows become columns).
    * @returns {Quadrille} The modified quadrille (for chaining).
    */
-  transpose() {
+transpose() {
     // credit goes to Fawad Ghafoorwho wrote about it here:
     // https://stackoverflow.com/questions/17428587/transposing-a-2d-array-in-javascript
     this._memory2D = this._memory2D[0].map((_, i) => this._memory2D.map(row => row[i]));
@@ -2438,26 +2335,25 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > rotate
 
 /**
    * Rotates the quadrille 90 degrees clockwise.
    * @returns {Quadrille} The modified quadrille (for chaining).
    */
-  rotate() {
+rotate() {
     // credit goes to Nitin Jadhav: https://github.com/nitinja who wrote about it here:
     // https://stackoverflow.com/questions/15170942/how-to-rotate-a-matrix-in-an-array-in-javascript/58668351#58668351
     this._memory2D = this._memory2D[0].map((_, i) => this._memory2D.map(row => row[i]).reverse());
     return this;
   }
 
-  // REFORMATTER
-
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > toBigInt
 
+// REFORMATTER
 /**
    * Returns a bitboard representation of the quadrille.
    * Only filled cells are considered.
@@ -2467,7 +2363,7 @@ class Quadrille {
    * @param {boolean} [littleEndian=false] - If true, encodes using little-endian order.
    * @returns {bigint} Binary representation of the filled pattern.
    */
-  toBigInt(littleEndian = false) {
+toBigInt(littleEndian = false) {
     let result = 0n;
     const length = this.width * this.height;
     let index = 0;
@@ -2482,20 +2378,20 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > toArray
 
 /**
    * Returns a flattened array representation of the quadrille.
    * @returns {Array<*>}
    */
-  toArray() {
+toArray() {
     return this._memory2D.flat();
   }
 
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > toImage
 
 /**
    * Saves a rendered image of the quadrille using the specified drawing parameters.
@@ -2522,7 +2418,7 @@ class Quadrille {
    * @param {string|*} [params.textColor] - Text fill color.
    * @param {number} [params.textZoom] - Scale factor for text rendering.
    */
-  toImage(filename, {
+toImage(filename, {
     filter,
     textFont,
     origin = 'corner',
@@ -2557,7 +2453,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > toFEN
 
 /**
    * Returns a FEN (Forsyth–Edwards Notation) string of the quadrille.
@@ -2565,7 +2461,7 @@ class Quadrille {
    * Symbols not found in the chess map are replaced with '?'.
    * @returns {string|undefined}
    */
-  toFEN() {
+toFEN() {
     if (this.width !== 8 || this.height !== 8) {
       console.warn('toFEN() only works on 8x8 chess boards');
       return;
@@ -2590,18 +2486,17 @@ class Quadrille {
     return fen;
   }
 
-  // INSTANCE CREATORS
-
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > clone
 
+// INSTANCE CREATORS
 /**
    * Returns a shallow copy of this quadrille.
    * @returns {Quadrille} A new Quadrille with the same content.
    */
-  clone() {
+clone() {
     const H = this.height;
     const src = this._memory2D;
     const mem = new Array(H);
@@ -2621,7 +2516,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > crop
 
 /**
    * Crops a rectangular region. Positive/negative width/height control direction.
@@ -2633,7 +2528,7 @@ class Quadrille {
    * @param {boolean} [wrap=false]
    * @returns {Quadrille|undefined}
    */
-  crop(row, col, width, height, wrap = false) {
+crop(row, col, width, height, wrap = false) {
     if (!Number.isFinite(width) || !Number.isFinite(height) || width === 0 || height === 0) {
       console.warn('Quadrille.crop skipped: width/height must be finite and non-zero');
       return;
@@ -2669,14 +2564,14 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > trim
 
 /**
    * Returns a new quadrille trimmed to its minimal span of filled cells.
    * Returns undefined if the quadrille has no filled cells.
    * @returns {Quadrille|undefined}
    */
-  trim() {
+trim() {
     const s = this.span;
     return s ? this.crop(s.row, s.col, s.width, s.height) : undefined;
   }
@@ -2684,7 +2579,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > ring
 
 /**
    * Creates a new square quadrille centered at (row, col) with side = 2*dimension+1.
@@ -2694,7 +2589,7 @@ class Quadrille {
    * @param {boolean} [wrap=false] When true, indices wrap around grid bounds.
    * @returns {Quadrille|undefined}
    */
-  ring(row, col, ...args) {
+ring(row, col, ...args) {
     const [a, b] = args;
     const dimension = (typeof b === 'number') ? b : (typeof a === 'number' ? a : 1);
     const wrap = (typeof b === 'boolean') ? b : (typeof a === 'boolean' ? a : false);
@@ -2709,26 +2604,25 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > row
 
 /**
    * Extracts a single row as a new 1×W Quadrille.
    * @param {number} row
    * @returns {Quadrille|undefined}
    */
-  row(row) {
+row(row) {
     if (!this.isValid(row, 0)) return;
     const srcRow = this._memory2D[row];
     return this.constructor._allocQ(this, [srcRow.slice()]);
   }
 
-  // VISUAL ALGORITHMS
-
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > filter
 
+// VISUAL ALGORITHMS
 /**
    * Applies convolution using a quadrille kernel mask.
    * 1. `filter(mask)` — convolves entire quadrille.
@@ -2739,7 +2633,7 @@ class Quadrille {
    * @param {number} [col] - Column index to apply convolution.
    * @returns {Quadrille} The modified quadrille (for chaining).
    */
-  filter(mask, row, col) {
+filter(mask, row, col) {
     if (mask.size % 2 === 1 && mask.width === mask.height && this.size >= mask.size) {
       const half_size = (mask.width - 1) / 2;
       if (row === undefined || col === undefined) {
@@ -2758,7 +2652,13 @@ class Quadrille {
     return this;
   }
 
-  _conv(mask, row, col, cache_half_size = (mask.width - 1) / 2, source = this) {
+
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > _conv
+
+
+_conv(mask, row, col, cache_half_size = (mask.width - 1) / 2, source = this) {
     let r = 0;
     let g = 0;
     let b = 0;
@@ -2791,7 +2691,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > colorizeTriangle
 
 /**
    * Colorizes a triangle defined by three corners using barycentric interpolation.
@@ -2805,7 +2705,7 @@ class Quadrille {
    * @param {*} [color1=color0] - Color for vertex 1.
    * @param {*} [color2=color0] - Color for vertex 2.
    */
-  colorizeTriangle(row0, col0, row1, col1, row2, col2, color0, color1 = color0, color2 = color0) {
+colorizeTriangle(row0, col0, row1, col1, row2, col2, color0, color1 = color0, color2 = color0) {
     this.rasterizeTriangle(row0, col0, row1, col1, row2, col2,
       ({ array: xyza }) => this._p.color(xyza),
       [this._p.red(color0), this._p.green(color0), this._p.blue(color0), this._p.alpha(color0)],
@@ -2817,7 +2717,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > colorize
 
 /**
    * Colorizes the quadrille using four corner colors, interpolated over two triangles.
@@ -2826,7 +2726,7 @@ class Quadrille {
    * @param {*} [color2=color0] - Upper-right corner color.
    * @param {*} [color3=color0] - Bottom-right corner color.
    */
-  colorize(color0, color1 = color0, color2 = color0, color3 = color0) {
+colorize(color0, color1 = color0, color2 = color0, color3 = color0) {
     this.colorizeTriangle(0, 0, this.height - 1, 0, 0, this.width - 1, color0, color1, color2);
     this.colorizeTriangle(this.height - 1, 0, 0, this.width - 1, this.height - 1, this.width - 1, color1, color2, color3);
   }
@@ -2834,7 +2734,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > rasterizeTriangle
 
 /**
    * Rasterizes a triangle using attribute interpolation and a fragment shader function.
@@ -2850,7 +2750,7 @@ class Quadrille {
    * @param {Array<number>} [array2=array0] - Attribute data for vertex 2.
    * @returns {Quadrille} The modified quadrille (for chaining).
    */
-  rasterizeTriangle(row0, col0, row1, col1, row2, col2, shader, array0, array1 = array0, array2 = array0) {
+rasterizeTriangle(row0, col0, row1, col1, row2, col2, shader, array0, array1 = array0, array2 = array0) {
     if (Array.isArray(array0) && Array.isArray(array1) && Array.isArray(array2)) {
       this.visit(({ row, col }) => {
         const coords = this._barycentric_coords(row, col, row0, col0, row1, col1, row2, col2);
@@ -2872,7 +2772,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > rasterize
 
 /**
    * Rasterizes the quadrille using four corner attribute arrays and a shader function.
@@ -2882,22 +2782,40 @@ class Quadrille {
    * @param {Array<number>} [array2=array0] - Upper-right corner attributes.
    * @param {Array<number>} [array3=array0] - Bottom-right corner attributes.
    */
-  rasterize(shader, array0, array1 = array0, array2 = array0, array3 = array0) {
+rasterize(shader, array0, array1 = array0, array2 = array0, array3 = array0) {
     this.rasterizeTriangle(0, 0, this.height - 1, 0, 0, this.width - 1, shader, array0, array1, array2);
     this.rasterizeTriangle(this.height - 1, 0, 0, this.width - 1, this.height - 1, this.width - 1, shader, array1, array2, array3);
   }
 
-  _barycentric_coords(row, col, row0, col0, row1, col1, row2, col2) {
+
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > _barycentric_coords
+
+
+_barycentric_coords(row, col, row0, col0, row1, col1, row2, col2) {
     const edges = this._edge_functions(row, col, row0, col0, row1, col1, row2, col2);
     const area = this._parallelogram_area(row0, col0, row1, col1, row2, col2);
     return { w0: edges.e12 / area, w1: edges.e20 / area, w2: edges.e01 / area };
   }
 
-  _parallelogram_area(row0, col0, row1, col1, row2, col2) {
+
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > _parallelogram_area
+
+
+_parallelogram_area(row0, col0, row1, col1, row2, col2) {
     return (col1 - col0) * (row2 - row0) - (col2 - col0) * (row1 - row0);
   }
 
-  _edge_functions(row, col, row0, col0, row1, col1, row2, col2) {
+
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > _edge_functions
+
+
+_edge_functions(row, col, row0, col0, row1, col1, row2, col2) {
     const e01 = (row0 - row1) * col + (col1 - col0) * row + (col0 * row1 - row0 * col1);
     const e12 = (row1 - row2) * col + (col2 - col1) * row + (col1 * row2 - row1 * col2);
     const e20 = (row2 - row0) * col + (col0 - col2) * row + (col2 * row0 - row2 * col0);
@@ -2907,7 +2825,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > sort
 
 /**
    * Sorts cells by color values.
@@ -2941,7 +2859,7 @@ class Quadrille {
    * @param {Function} [params.tileDisplay]
    * @returns {Quadrille} The sorted quadrille (for chaining).
    */
-  sort({
+sort({
     mode = 'LUMA',
     target = this.constructor.outline,
     ascending = true,
@@ -3021,7 +2939,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > sample
 
 /**
    * Renders a cell and returns its average RGBA values as a literal object.
@@ -3050,7 +2968,7 @@ class Quadrille {
    * @param {number} [params.textZoom]
    * @returns {{ r: number, g: number, b: number, a: number, total: number }} Average color channels and sample size.
    */
-  static sample({
+static sample({
     value,
     textFont,
     origin = 'corner',
@@ -3095,9 +3013,13 @@ class Quadrille {
     return { r, g, b, a, total };
   }
 
-  // HELPER RENDER FUNCTIONS
 
-  static _display(params) {
+
+@@@@@
+ SOURCE CODE: quadrille.js > Class: Quadrille > _display
+
+// HELPER RENDER FUNCTIONS
+static _display(params) {
     const { value, objectDisplay } = params;
     if (this.isObject(value) && objectDisplay === undefined && 'display' in value) {
       params._this = value;
@@ -3129,7 +3051,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > numberDisplay
 
 /**
    * Renders a number value using its color equivalent.
@@ -3138,7 +3060,7 @@ class Quadrille {
    * @param {number} params.value - Numeric value to draw.
    * @param {number} [params.cellLength=this.cellLength] - Cell size in pixels.
    */
-  static numberDisplay({
+static numberDisplay({
     graphics,
     value,
     cellLength = this.cellLength
@@ -3149,7 +3071,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > bigintDisplay
 
 /**
    * Renders a BigInt value using numberDisplay after converting to Number.
@@ -3160,7 +3082,7 @@ class Quadrille {
    * @param {*} [params.textColor=this.textColor] - Fill color for text.
    * @param {number} [params.textZoom=this.textZoom] - Text size scaling factor.
    */
-  static bigintDisplay({
+static bigintDisplay({
     graphics,
     value,
     cellLength = this.cellLength
@@ -3175,7 +3097,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > colorDisplay
 
 /**
    * Renders a color value by filling the cell.
@@ -3184,7 +3106,7 @@ class Quadrille {
    * @param {*} params.value - Fill color.
    * @param {number} [params.cellLength=this.cellLength] - Cell size in pixels.
    */
-  static colorDisplay({
+static colorDisplay({
     graphics,
     value,
     cellLength = this.cellLength
@@ -3197,7 +3119,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > functionDisplay
 
 /**
    * Renders a function-based cell using an internal framebuffer in WEBGL mode.
@@ -3213,7 +3135,7 @@ class Quadrille {
    * @param {Function} params.value - Function that draws into the framebuffer.
    * @param {number} [params.cellLength=this.cellLength] - Cell size in pixels.
    */
-  static functionDisplay({
+static functionDisplay({
     mode,
     graphics,
     options,
@@ -3243,7 +3165,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > imageDisplay
 
 /**
    * Renders an image or framebuffer value.
@@ -3252,7 +3174,7 @@ class Quadrille {
    * @param {*} params.value - Image, p5.Graphics, or Framebuffer.
    * @param {number} [params.cellLength=this.cellLength] - Cell size in pixels.
    */
-  static imageDisplay({
+static imageDisplay({
     graphics,
     value,
     cellLength = this.cellLength
@@ -3269,7 +3191,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > booleanDisplay
 
 /**
    * Renders a boolean value centered in the cell using `stringDisplay`.
@@ -3282,7 +3204,7 @@ class Quadrille {
    * @param {*} [params.textColor=this.textColor] - Fill color for text.
    * @param {number} [params.textZoom=this.textZoom] - Text size scaling factor.
    */
-  static booleanDisplay({
+static booleanDisplay({
     graphics,
     value,
     textFont,
@@ -3303,7 +3225,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > stringDisplay
 
 /**
    * Renders a string value centered in the cell.
@@ -3315,7 +3237,7 @@ class Quadrille {
    * @param {*} [params.textColor=this.textColor] - Fill color for text.
    * @param {number} [params.textZoom=this.textZoom] - Text size scaling factor.
    */
-  static stringDisplay({
+static stringDisplay({
     graphics,
     value,
     textFont,
@@ -3334,7 +3256,7 @@ class Quadrille {
 
 
 @@@@@
- SOURCE CODE: quadrille.js
+ SOURCE CODE: quadrille.js > Class: Quadrille > tileDisplay
 
 /**
    * Draws the outline (tile) for a cell.
@@ -3344,7 +3266,7 @@ class Quadrille {
    * @param {*} [params.outline=this.outline] - Outline color.
    * @param {number} [params.outlineWeight=this.outlineWeight] - Stroke weight.
    */
-  static tileDisplay({
+static tileDisplay({
     graphics,
     cellLength = this.cellLength,
     outline = this.outline,
@@ -3357,8 +3279,4 @@ class Quadrille {
       graphics.quad(0, 0, cellLength, 0, cellLength, cellLength, 0, cellLength);
     }
   }
-}
-
-// Export the Quadrille class as the default export
-export default Quadrille;
 

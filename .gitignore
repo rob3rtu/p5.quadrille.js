@@ -1,8 +1,3 @@
-# looks like hugo stuff
-public/
-resources/
-themes/
-
 # Node dependencies
 node_modules/
 package-lock.json
@@ -32,10 +27,23 @@ coverage/
 # REPL / temp
 .node_repl_history
 
-# hugo
-public/
+
 resources/
 themes/
 .hugo*
 
 .env
+/resources/_gen/
+# Backup Files
+*.md~
+# Logs
+*.log
+.hugo_build.lock
+# Node dependencies
+package-lock.json
+# Build output
+dist/
+# Dependency directories
+node_modules/
+# pdf script
+*/.playwright*

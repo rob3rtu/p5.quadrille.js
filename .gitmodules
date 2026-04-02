@@ -1,0 +1,31 @@
+[submodule "themes/book"]
+	path = themes/book
+	url = https://github.com/alex-shpak/hugo-book
+[submodule "content/docs/p5_functions"]
+	path = content/docs/p5_functions
+	url = git@github.com:objetos/q_p5fx.git
+[submodule "content/docs/properties"]
+	path = content/docs/properties
+	url = git@github.com:objetos/q_props.git
+[submodule "content/docs/boolean_operators"]
+	path = content/docs/algebra
+	url = git@github.com:objetos/q_bool.git
+[submodule "content/docs/geometry_transformations"]
+	path = content/docs/transforms
+	url = git@github.com:objetos/q_geom.git
+[submodule "content/docs/immutable"]
+	path = content/docs/accessors
+	url = git@github.com:objetos/q_immutable.git
+[submodule "content/docs/mutable"]
+	path = content/docs/mutators
+	url = git@github.com:objetos/q_mutable.git
+[submodule "content/docs/visual_computing"]
+	path = content/docs/visual_algorithms
+	url = git@github.com:objetos/q_visual.git
+[submodule "content/docs/conversion_methods"]
+	path = content/docs/reformatter
+	url = git@github.com:objetos/q_conversion.git
+[submodule "content/docs/iterators"]
+	path = content/docs/iterators
+	url = git@github.com:objetos/q_iterators.git
+	branch = main

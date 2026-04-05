@@ -11,8 +11,7 @@ class RagClass:
         Follow these guidelines strictly:
         1. Use the provided Context to find exact method names, parameter types, and internal logic.
         2. ALWAYS review the Conversation History to determine the user's approach.
-        3. If you provide code examples, format them clearly using Markdown code blocks.
-        4. When providing code examples, NEVER truncate them with comments like "// Your code goes here". Always provide the complete, working code block.
+        3. When providing code examples, NEVER truncate them with comments like "// Your code goes here". Always provide the complete, working code block.
         
         If the Context and History do not contain the information needed to answer the request, state exactly: 'I cannot find that information in the provided documentation.'
     '''
@@ -67,7 +66,8 @@ class RagClass:
         for chunk in stream:
             content = chunk['message']['content']
             response += content
-            print(content, end='', flush=True)
+            # print(content, end='', flush=True)
+            yield(content)
 
         self.CONVERSATION_HISTORY.append({'role': 'user', 'content': query})
         self.CONVERSATION_HISTORY.append({'role': 'assistant', 'content': response})
@@ -310,10 +310,10 @@ rag = RagClass()
 rag.load_dataset()
 rag.add_chunks_to_db()
 
-print("The model is ready, please ask a question about p5.quadrille.js")
-while True:
-    q = input(f"\n\n✅ Ask {rag.LANGUAGE_MODEL}: ")
-    if q == "q":
-        break
+print("✅The model is ready, please ask a question about p5.quadrille.js")
+# while True:
+#     q = input(f"\n\n✅ Ask {rag.LANGUAGE_MODEL}: ")
+#     if q == "q":
+#         break
 
-    rag.ask(q)
+#     rag.ask(q)

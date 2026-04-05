@@ -1,283 +1,128 @@
 
 
 ---
- DOCUMENTATION FOR: p5 Functions > Overview
+ SOURCE CODE: quadrille.js > Class: Quadrille > _edge_functions
 
-The [p5.js](https://p5js.org/) functions provide seamless tools to **create** and **draw** **quadrille** objects. Whether you're building board games, designing generative visuals, or managing cell-based data, these functions serve as a bridge between the p5.js canvas and the **quadrille object**—the core structure of the **p5.quadrille.js** library.
 
-- **[createQuadrille(args)]({{< ref "create_quadrille" >}}):** Creates a **quadrille** with flexible initialization options. You can populate it with an valid JavaScript value, including [colors](https://p5js.org/reference/p5/p5.Color/), numbers, strings, [images](https://p5js.org/reference/p5/p5.Image/) & [videos](https://p5js.org/reference/p5/p5.MediaElement/), [p5.Graphics](https://p5js.org/reference/p5/p5.Graphics/), (drawing) functions, or custom objects.
-
-- **[drawQuadrille(args)]({{< ref "draw_quadrille" >}}):** Renders the quadrille onto the p5.js canvas with options for visual customization. Styles are applied globally to all quadrille cells, allowing you to display content, apply color, and enhance visuals—well-suited to displaying board game states, dynamic patterns, or data visualizations.    
- 
-Alongside the [p5.js API](https://p5js.org/reference/), these functions allow you to start developing immersive board games, organizing data collections, creating dynamic visual art, and building creative projects based on structured, cell-based content.
+_edge_functions(row, col, row0, col0, row1, col1, row2, col2) {
+    const e01 = (row0 - row1) * col + (col1 - col0) * row + (col0 * row1 - row0 * col1);
+    const e12 = (row1 - row2) * col + (col2 - col1) * row + (col1 * row2 - row1 * col2);
+    const e20 = (row2 - row0) * col + (col0 - col2) * row + (col2 * row0 - row2 * col0);
+    return { e01, e12, e20 };
+  }
 
 
 
 ---
- SOURCE CODE: quadrille.js > Class: Quadrille > isImage
+ DOCUMENTATION FOR: Transforms > Overview
+
+**Transform methods** modify the geometry of a `quadrille` by altering the spatial arrangement of its cells. Operations such as [rotation]({{< relref "rotate" >}}), [reflection]({{< relref "reflect" >}}), and [transposition]({{< relref "transpose" >}}) enable precise and dynamic transformations of the quadrille’s structure.  
+
+{{< callout type="info" >}}  
+Transformation methods support [method chaining](https://en.wikipedia.org/wiki/Method_chaining), allowing multiple modifications to be applied sequentially in a single statement. For example:  
+```js  
+quadrille.rotate().reflect().transpose();  
+```  
+is functionally equivalent to:  
+```js  
+quadrille.rotate();  
+quadrille.reflect();  
+quadrille.transpose();  
+```  
+Method chaining improves code readability and streamlines complex transformations.  
+{{< /callout >}}
+
+
+
+---
+ DOCUMENTATION FOR: Transforms > Method Overview
+
+## Method Overview  
+
+- **[reflect()]({{< relref "reflect" >}}):** Reflects the `quadrille` across the horizontal axis.
+- **[rotate()]({{< relref "rotate" >}}):** Rotates the `quadrille` 90 degrees clockwise.  
+- **[transpose()]({{< relref "transpose" >}}):** Swaps the rows and columns of the `quadrille`, producing its [transposed](https://en.wikipedia.org/wiki/Transpose) version.  
+
+These transformation methods provide intuitive tools for reshaping a quadrille's layout. Whether you need to rotate, flip, or transpose cells, these operations allow for flexible and efficient geometric modifications.
+
+
+
+---
+ SOURCE CODE: quadrille.js > Class: Quadrille > _barycentric_coords
+
+
+_barycentric_coords(row, col, row0, col0, row1, col1, row2, col2) {
+    const edges = this._edge_functions(row, col, row0, col0, row1, col1, row2, col2);
+    const area = this._parallelogram_area(row0, col0, row1, col1, row2, col2);
+    return { w0: edges.e12 / area, w1: edges.e20 / area, w2: edges.e01 / area };
+  }
+
+
+
+---
+ DOCUMENTATION FOR: rotate() > Overview
+
+π/2 clockwise rotation of the quadrille cells.
+
+
+
+---
+ DOCUMENTATION FOR: Reformatter > Overview
+
+**Reformatter methods** enable the conversion of a `quadrille` into various formats, such as [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), [images](https://p5js.org/reference/#/p5.Image), and array-based data structures. These methods ensure seamless transitions and promote interoperability between `quadrille` instances and other data representations, making it easier to integrate quadrilles into different workflows.
+
+
+
+---
+ DOCUMENTATION FOR: transpose() > Overview
+
+[Transposes](https://en.wikipedia.org/wiki/Transpose) the quadrille cells.
+
+
+
+---
+ SOURCE CODE: quadrille.js > Class: Quadrille > reflect
+
+// TRANSFORMS
+/**
+   * Horizontal reflection.
+   * Reverses the order of the rows.
+   * @returns {Quadrille} The modified quadrille (for chaining).
+   */
+reflect() {
+    this._memory2D.reverse();
+    return this;
+  }
+
+
+
+---
+ SOURCE CODE: quadrille.js > Class: Quadrille > rotate
 
 /**
-   * Checks whether the given value is a p5.Image, p5.Graphics, MediaElement (video), or Framebuffer.
-   * @param {*} value
-   * @returns {boolean}
+   * Rotates the quadrille 90 degrees clockwise.
+   * @returns {Quadrille} The modified quadrille (for chaining).
    */
-static isImage(value) {
-    return value instanceof p5.Image || (value instanceof p5.MediaElement && value.elt instanceof HTMLVideoElement) || value instanceof p5.Graphics || value instanceof p5.Framebuffer;
+rotate() {
+    // credit goes to Nitin Jadhav: https://github.com/nitinja who wrote about it here:
+    // https://stackoverflow.com/questions/15170942/how-to-rotate-a-matrix-in-an-array-in-javascript/58668351#58668351
+    this._memory2D = this._memory2D[0].map((_, i) => this._memory2D.map(row => row[i]).reverse());
+    return this;
   }
 
 
 
 ---
- SOURCE CODE: quadrille.js > Class: Quadrille > background
+ SOURCE CODE: quadrille.js > Class: Quadrille > transpose
 
 /**
-   * Sets the background color used in sort().
-   * Accepts any valid CSS string or p5 color.
-   * @param {string|*} value
+   * Transposes the quadrille matrix (rows become columns).
+   * @returns {Quadrille} The modified quadrille (for chaining).
    */
-static set background(value) {
-    this._background = typeof value === 'string' || this.isColor(value) ? value : this._background;
+transpose() {
+    // credit goes to Fawad Ghafoorwho wrote about it here:
+    // https://stackoverflow.com/questions/17428587/transposing-a-2d-array-in-javascript
+    this._memory2D = this._memory2D[0].map((_, i) => this._memory2D.map(row => row[i]));
+    return this;
   }
-
-
-
----
- DOCUMENTATION FOR: graphics > Overview
-
-The `graphics` parameter renders quadrilles onto a custom [p5.Graphics](https://p5js.org/reference/#/p5.Graphics) buffer, enabling flexible compositing and advanced texturing.
-
-
-
----
- SOURCE CODE: quadrille.js > Class: Quadrille > outline
-
-/**
-   * Sets the outline color used to draw cells.
-   * Accepts any valid CSS string or p5 color.
-   * @param {string|*} value
-   */
-static set outline(value) {
-    this._outline = typeof value === 'string' || this.isColor(value) ? value : this._outline;
-  }
-
-
-
----
- DOCUMENTATION FOR: README > npm (ESM)
-
-## npm (ESM)
-
-Install both [`p5`](https://www.npmjs.com/package/p5) and [`p5.quadrille`](https://www.npmjs.com/package/p5.quadrille) as dependencies:
-
-```bash
-npm i p5 p5.quadrille
-```
-
-Then import them in your project's entry file (e.g., `main.js`) using a modern bundler like [Vite](https://vitejs.dev/), which runs in [instance mode](https://github.com/processing/p5.js/wiki/Global-and-instance-mode) only:
-
-```js
-// main.js
-import p5 from 'p5'
-import Quadrille from 'p5.quadrille'
-
-const sketch = p => {
-  let q // Step 1: Declare
-
-  p.setup = () => {
-    p.createCanvas(600, 400)
-    q = p.createQuadrille(6, 4, 10, '🐲') // Step 2: Create
-  }
-
-  p.draw = () => {
-    p.background(0)
-    p.drawQuadrille(q) // Step 3: Render
-  }
-
-  p.mousePressed = () => {
-    q.randomize() // Step 4: Interact
-  }
-}
-
-new p5(sketch)
-```
-
-This approach gives you full modularity and clean instance isolation using modern JavaScript tooling.
-
-
-
----
- SOURCE CODE: quadrille.js > Class: Quadrille > isColor
-
-/**
-   * Checks whether the given value is a p5.Color instance.
-   * @param {*} value
-   * @returns {boolean}
-   */
-static isColor(value) {
-    return value instanceof p5.Color;
-  }
-
-
-
----
- SOURCE CODE: quadrille.js > Class: Quadrille > constructor
-
-/**
-   * Constructs a new Quadrille instance with multiple supported initialization modes:
-   * 1. No arguments → 8×8 chessboard with default colors.
-   * 2. width, height → empty quadrille of given dimensions.
-   * 3. two colors → 8×8 chessboard with custom light/dark colors.
-   * 4. jagged or flat array → quadrille from array contents.
-   * 5. width + array → array reshaped into rows.
-   * 6. string → single-row from characters.
-   * 7. width + string → reshaped string.
-   * 8. width + image → visual content from image.
-   * 9. width + image + boolean → image pixelation.
-   * 10. width + height + predicate + value → fill by predicate.
-   * 11. width + height + order + value → filled by order (random).
-   * 12. width + bitboard + value [+ littleEndian] → bitboard pattern (auto height).
-   * 13. width + height + bitboard + value [+ littleEndian] → bitboard pattern (explicit size).
-   * Used internally by `p5.prototype.createQuadrille`.
-   * @param {p5} p - The p5 instance.
-   * @param {...any} args - Arguments to select construction mode.
-   */
-constructor(p, ...args) {
-    this._p = p;
-    this._cellLength = this.constructor.cellLength;
-    this._x = 0;
-    this._y = 0;
-    this._origin = 'corner';
-    if (args.length === 0) {
-      this._memory2D = Array(8).fill().map(() => Array(8).fill(null));
-      this.visit(({ row, col }) => {
-        const fill = (row + col) % 2 === 0
-          ? this.constructor.lightSquare
-          : this.constructor.darkSquare;
-        this._memory2D[row][col] = this._p.color(fill);
-      });
-      return;
-    }
-    if (args.length === 1) {
-      this.memory2D = args[0];
-      return;
-    }
-    if (args.length === 2 &&
-      (this.constructor.isColor(args[0]) || typeof args[0] === 'string') &&
-      (this.constructor.isColor(args[1]) || typeof args[1] === 'string')) {
-      this._memory2D = Array(8).fill().map(() => Array(8).fill(null));
-      this.visit(({ row, col }) => {
-        const fill = (row + col) % 2 === 0 ? args[0] : args[1];
-        this._memory2D[row][col] = this._p.color(fill);
-      });
-      return;
-    }
-    if (args.length === 2 && typeof args[0] === 'number') {
-      if (typeof args[1] === 'string') {
-        this._init1D([...args[1]], args[0]);
-        return;
-      }
-      if (Array.isArray(args[1])) {
-        this._init1D(args[1], args[0]);
-        return;
-      }
-    }
-    if (args.length === 2 && typeof args[0] === 'number' && typeof args[1] === 'number') {
-      this._memory2D = Array(args[1]).fill().map(() => Array(args[0]).fill(null));
-      return;
-    }
-    if (args.length === 2 && typeof args[0] === 'number' && typeof args[1] !== 'number') {
-      this._memory2D = Array(Math.round(args[0] * args[1].height / args[1].width))
-        .fill().map(() => Array(args[0]).fill(null));
-      this._fromImage(args[1]);
-      return;
-    }
-    // Handle bigint cases early to avoid ambiguity with boolean third argument
-    if (args.length === 3 &&
-      typeof args[0] === 'number' &&
-      typeof args[1] === 'bigint') {
-      const bitLength = args[1].toString(2).length;
-      const rows = Math.ceil(bitLength / args[0]);
-      this._memory2D = Array(rows).fill().map(() => Array(args[0]).fill(null));
-      this.fill(args[1], args[2]);
-      return;
-    }
-    if (args.length === 4 &&
-      typeof args[0] === 'number' &&
-      typeof args[1] === 'bigint' &&
-      typeof args[3] === 'boolean') {
-      const bitLength = args[1].toString(2).length;
-      const rows = Math.ceil(bitLength / args[0]);
-      this._memory2D = Array(rows).fill().map(() => Array(args[0]).fill(null));
-      this.fill(args[1], args[2], args[3]);
-      return;
-    }
-    if (args.length === 3 && typeof args[0] === 'number' && typeof args[1] !== 'number' && typeof args[2] === 'boolean') {
-      this._memory2D = Array(Math.round(args[0] * args[1].height / args[1].width))
-        .fill().map(() => Array(args[0]).fill(null));
-      this._fromImage(args[1], args[2]);
-      return;
-    }
-    if (args.length === 4 &&
-      typeof args[0] === 'number' && typeof args[1] === 'number' && typeof args[2] === 'function') {
-      this._memory2D = Array(args[1]).fill().map(() => Array(args[0]).fill(null));
-      this.fill(args[2], args[3]);
-      return;
-    }
-    if (args.length === 4 &&
-      typeof args[0] === 'number' &&
-      typeof args[1] === 'number' &&
-      typeof args[2] === 'number') {
-      this._memory2D = Array(args[1]).fill().map(() => Array(args[0]).fill(null));
-      this.rand(args[2], args[3]);
-      return;
-    }
-    // Case: width + height + bitboard + value [+ littleEndian]
-    if (args.length === 4 &&
-      typeof args[0] === 'number' &&
-      typeof args[1] === 'number' &&
-      typeof args[2] === 'bigint') {
-      this._memory2D = Array(args[1]).fill().map(() => Array(args[0]).fill(null));
-      this.fill(args[2], args[3]);
-      return;
-    }
-    if (args.length === 5 &&
-      typeof args[0] === 'number' &&
-      typeof args[1] === 'number' &&
-      typeof args[2] === 'bigint' &&
-      typeof args[4] === 'boolean') {
-      this._memory2D = Array(args[1]).fill().map(() => Array(args[0]).fill(null));
-      this.fill(args[2], args[3], args[4]);
-      return;
-    }
-  }
-
-
-
----
- DOCUMENTATION FOR: README > Usage
-
-# Usage
-
-Using **p5.quadrille.js** can be as minimal or as interactive as you need:
-
-* **2 steps** — storage only: declare and create the quadrille.
-* **3 steps** — add rendering: use `drawQuadrille()` in `draw()`.
-* **4 steps** — add interactivity: call a mutator method (e.g. `fill()`, `clear()`, `replace()`) inside an event like `keyPressed()` or `mousePressed()`.
-
-The library works in two setups:
-
-- **[CDN](#cdn)**: Use the [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) (Immediately Invoked Function Expression) format with `<script>` tags directly in the browser, along with [p5.js](https://beta.p5js.org/).
-- **[npm](#npm-esm)**: Use the [ES module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) version in modern projects with [Vite](https://vitejs.dev/) or another bundler.
-
-
-
----
- DOCUMENTATION FOR: "createQuadrille(width, image)" > Parameters
-
-## Parameters
-
-| Param  | Description                                                                                         |
-|--------|-----------------------------------------------------------------------------------------------------|
-| `width`  | Number: The total number of columns for the quadrille                                               |
-| `image`  | [p5.Image](https://p5js.org/reference/#/p5.Image), [p5.Graphics](https://p5js.org/reference/#/p5.Graphics) or video [p5.MediaElement](https://p5js.org/reference/p5/p5.MediaElement/): The image to be pixelated into the quadrille |
 

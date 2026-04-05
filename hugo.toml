@@ -1,4 +1,4 @@
-baseURL = "https://objetos.github.io/p5.quadrille.js/"
+baseURL = "http://localhost:5000/"
 languageCode = "en-us"
 title = "p5.quadrille.js"
 theme = 'book'

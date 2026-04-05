@@ -64,6 +64,10 @@ Adjust the prompts to improve the usage of the conversation history. This includ
 
 Improved the `parse_js` function by using the [tree-sitter](https://tree-sitter.github.io/tree-sitter/) library to better parse the code. Before it was based on regex which was not 100% accurate in parsing the codebase. Using this library now all the functions are clearly separated into chunks
 
+## Update 9
+
+Implement a simple interface using Flask in order to combine the static pages created by Hugo and the RAG Class into a dynamic web application, in order to simulate the final user's interaction with the model.
+
 ### TO DO
 
 - ~~Include the .md docs into the RAG knowledge (not it only have the quadrille.js)~~

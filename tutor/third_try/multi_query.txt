@@ -1,32 +1,24 @@
 
 --- ORIGINAL QUERY
- why do you need p5?
+ (User is currently viewing documentation for /docs/transforms/rotate/) what did i asked you last time?
 
 
 --- 
- why does p5 quadrille require a specific setup for proper functionality
+ quadrille method usage and syntax
 
 
 --- 
- what technical requirements must be met to successfully use p5 quadrille
+ p5.quadrille transformation functions overview
 
 
 --- 
- p5 quadrille library setup prerequisites
+ reflect and rotate quadrille transformation methods
 
 
 --- 
- setting up p5 quadrille for optimal performance
+ how does the quadrille class manage its internal state during transformations
 
 
 --- 
- how do the underlying mechanics of p5 quadrille rely on its setup
-
-
---- 
- and finally:
-
-
---- 
- what are the fundamental principles guiding the design and implementation of the p5 quadrille.js library
+ what are the fundamental principles of p5.quadrille.js that allow it to perform these transformations?
 

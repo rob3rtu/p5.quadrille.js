@@ -3,6 +3,7 @@ import os
 import re
 import tree_sitter_javascript as tsjavascript
 from tree_sitter import Language, Parser
+import time
 
 class RagClass:
     LLM_INSTRUCTIONS = '''
@@ -306,10 +307,14 @@ class RagClass:
         return valid_chunks
 
 
+start_time = time.time()
 rag = RagClass()
 rag.load_dataset()
 rag.add_chunks_to_db()
+end_time = time.time()
+elapsed_time = end_time - start_time
 
+print(f"Indexing ended after {elapsed_time:.2f} seconds.")
 print("✅The model is ready, please ask a question about p5.quadrille.js")
 # while True:
 #     q = input(f"\n\n✅ Ask {rag.LANGUAGE_MODEL}: ")

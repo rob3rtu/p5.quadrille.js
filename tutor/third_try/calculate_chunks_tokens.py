@@ -32,11 +32,8 @@ def analyze_chunks(file_path):
     print(f"Biggest Chunk: #{biggest['id']} ({biggest['title']}...)")
     print(f"Token Count:   {biggest['tokens']} tokens")
     print(f"Character Count: {len(biggest['text'])} chars")
-    
-    if biggest['tokens'] > 2048:
-        print("\n⚠️ WARNING: This chunk exceeds the 2k limit!")
-    else:
-        print("\n✅ This chunk fits within the 2k context window.")
 
 
 analyze_chunks('md_chunks.txt')
+print("")
+analyze_chunks('js_chunks.txt')

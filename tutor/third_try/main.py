@@ -248,14 +248,12 @@ class RagClass:
                                 continue
                             
                             section_name = "Overview"
-                            # FIX 2: Dynamically extract the name regardless of header level
                             if re.match(r'^#+', section):
                                 first_line = section.split('\n')[0]
                                 section_name = re.sub(r'^#+\s*', '', first_line).strip()
                             
                             chunk_text = f"DOCUMENTATION FOR: {page_title} > {section_name}\n\n{section}"
                             
-                            # FIX 3: Ignore chunks that are too small to have meaning (under 50 chars)
                             if len(chunk_text) > 50:
                                 chunks.append(chunk_text)
 

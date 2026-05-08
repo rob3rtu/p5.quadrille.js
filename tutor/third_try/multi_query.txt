@@ -1,24 +1,28 @@
 
 --- ORIGINAL QUERY
- (User is currently viewing documentation for /docs/transforms/rotate/) what did i asked you last time?
+ (User is currently viewing documentation for /docs/mutators/rand/rand_times_value/) what this method do?
 
 
 --- 
- quadrille method usage and syntax
+ Here are the 4 queries:
 
 
 --- 
- p5.quadrille transformation functions overview
+ p5.quadrille rand times value mutation
 
 
 --- 
- reflect and rotate quadrille transformation methods
+ rand_times_value mutator explanation
 
 
 --- 
- how does the quadrille class manage its internal state during transformations
+ mutating grid values with p5 quadrille rand_times_value
 
 
 --- 
- what are the fundamental principles of p5.quadrille.js that allow it to perform these transformations?
+ what is the purpose of the rand_times_value mutator in p5 quadrille js
+
+
+--- 
+ how does randomness and temporal variation work in p5 quadrille's data transformation mechanisms?
 

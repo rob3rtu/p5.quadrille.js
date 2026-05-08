@@ -2,57 +2,17 @@
 
 ---
  role: user
- content: (User is currently viewing documentation for /docs/transforms/reflect/) how to use it?
+ content: (User is currently viewing documentation for /docs/mutators/rand/rand_times_value/) what this method do?
 
 ---
  role: assistant
- content: To use the `reflect()` method in your code, you can simply call it on an instance of the `Quadrille` class. Here's an example:
+ content: The `rand(times, value)` method in the `p5.quadrille.js` library randomly fills the quadrille with the specified `value` a given number of `times`.
 
-```js
-let quadrille;
+Here's how it works:
 
-function setup() {
-  createCanvas(4 * Quadrille.cellLength, 4 * Quadrille.cellLength);
-  quadrille = createQuadrille(4, 4, 3, '🚀');
-  quadrille.rand(4, '🐒');
-}
+* If you pass only one argument (`times`), the method will randomly clear `times` number of cells in the quadrille, equivalent to calling `random(times, null)`.
+* If you pass two arguments (`times` and `value`), the method will randomly fill all empty cells with the specified `value`.
 
-function draw() {
-  background('orange');
-  drawQuadrille(quadrille);
-}
+For example, if you want to fill 5 random cells with a given color, you can call `quadrille.rand(5, "#FF0000")`, where `#FF0000` is the hexadecimal code for red.
 
-function mouseClicked() {
-  quadrille.reflect();  
-}
-
-function keyPressed() {
-  quadrille.reflect();
-}
-```
-
-In this example, the `reflect()` method is called when the user clicks the mouse or presses a key. This will reflect the quadrille across the horizontal axis.
-
-Note that you need to create an instance of the `Quadrille` class and call the `reflect()` method on it. You can also chain multiple transformations together by calling them in sequence, like this:
-
-```js
-quadrille.rotate().reflect().transpose();
-```
-
-This will first rotate the quadrille 90 degrees clockwise, then reflect it horizontally, and finally transpose it.
-
----
- role: user
- content: (User is currently viewing documentation for /docs/transforms/rotate/) what did i asked you last time?
-
----
- role: assistant
- content: Based on the provided Context and Conversation History, I found that your previous question was not about using the `reflect()` method. Instead, it was about how to use the `reflect()` method in your code.
-
-You can simply call the `reflect()` method on an instance of the `Quadrille` class to reflect the quadrille across the horizontal axis. Here's an example:
-
-```js
-quadrille.reflect();
-```
-
-This will reverse the order of the rows in the quadrille, effectively reflecting it horizontally.
+Note that this method does not affect filled cells; it only fills empty cells.
